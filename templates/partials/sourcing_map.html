@@ -1,93 +1,82 @@
-{% load static site_tags %}
+{% load site_tags %}
 <section class="panel panel--navy sourcing" aria-labelledby="sourcing-title">
   <div class="shell">
     <div class="sourcing__head reveal">
       <h2 class="h2" id="sourcing-title">{% if is_fa %}مسیر تأمین{% else %}The supply route{% endif %}</h2>
       <p class="lead mt-4 max-w-[52ch] text-paper/80">
         {% if is_fa %}
-          از سازنده در اروپا تا سایت شما؛ نیاز را می‌خوانیم، منبع را انتخاب می‌کنیم و تا خرید همراهی می‌کنیم.
+          نقش ما پیدا کردن منبع درست و همراهی تا خرید است؛ از سازنده تا سایت شما.
         {% else %}
-          From the manufacturer in Europe to your site: we read the need, choose the source and stay with you until the purchase.
+          Our role is to find the right source and stay with you until the purchase: from the maker to your site.
         {% endif %}
       </p>
     </div>
 
     <figure class="route reveal" data-route>
       <div class="route__frame">
-        <img class="route__map" src="{% static 'img/supply-map.svg' %}" width="1200" height="647"
-             alt="{% if is_fa %}نقشهٔ اروپا، شمال آفریقا و خاورمیانه با مسیر تأمین از اروپا به تهران{% else %}Map of Europe, North Africa and the Middle East with the supply route from Europe to Tehran{% endif %}"
-             loading="lazy" decoding="async">
+        <svg class="route__scene" viewBox="0 0 1200 420" aria-hidden="true" focusable="false">
+          <g class="route__line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+            <path d="M20 360 H1180" opacity="0.4" />
 
-        <svg class="route__overlay" viewBox="0 0 1200 647" aria-hidden="true" focusable="false">
-          <g class="route__track" fill="none" stroke-linecap="round">
-            <path class="route__main" d="M230 85 C 430 120, 640 300, 891 348" />
-            <g class="route__branches">
-              <path d="M891 348 C 930 330, 990 312, 1050 305" />
-              <path d="M891 348 C 930 370, 960 392, 990 400" />
-              <path d="M891 348 C 940 400, 1010 440, 1065 457" />
-            </g>
+            <path d="M78 360 V146 H262" />
+            <path d="M78 200 L166 146" opacity="0.5" />
+            <path d="M166 146 V262" opacity="0.5" />
+            <rect x="146" y="262" width="40" height="26" opacity="0.85" />
+            <path d="M166 262 V246" opacity="0.5" />
+
+            <rect x="52" y="322" width="44" height="38" opacity="0.7" />
+            <rect x="100" y="322" width="44" height="38" opacity="0.7" />
+            <rect x="52" y="282" width="44" height="36" opacity="0.55" />
+            <rect x="100" y="282" width="44" height="36" opacity="0.55" />
+
+            <path d="M928 360 C 946 292 956 254 968 244 C 980 254 992 292 1010 360" />
+            <path d="M944 312 H994" opacity="0.4" />
+            <path d="M1038 360 V206 H1056 V360" />
+            <path d="M1038 206 H1056" />
+            <path d="M1078 360 V330" opacity="0.7" />
+            <circle cx="1080" cy="316" r="16" opacity="0.7" />
+            <path d="M884 330 H928" opacity="0.6" />
+            <path d="M884 330 V300" opacity="0.6" />
           </g>
 
-          <g class="route__dots">
-            <circle cx="180" cy="76" r="4" />
-            <circle cx="255" cy="57" r="4" />
-            <circle cx="345" cy="114" r="4" />
-            <circle class="route__hub" cx="891" cy="348" r="6" />
-            <rect x="1045" y="300" width="10" height="10" />
-            <rect x="985" y="395" width="10" height="10" />
-            <rect x="1060" y="452" width="10" height="10" />
+          <path id="route-a" class="route__path" d="M186 288 C 320 250 440 268 596 296"
+                fill="none" stroke="var(--color-sky)" stroke-width="2" stroke-dasharray="8 10" />
+          <path id="route-b" class="route__path" d="M604 296 C 720 320 820 312 906 322"
+                fill="none" stroke="var(--color-sky)" stroke-width="2" stroke-dasharray="8 10" />
+
+          <g class="route__nodes" fill="var(--color-sky)">
+            <rect x="590" y="290" width="14" height="14" />
           </g>
 
-          <circle class="route__pulse" r="4.5">
-            <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.34;1" calcMode="linear">
-              <mpath href="#route-main-path" />
+          <circle class="route__pulse" r="5" fill="var(--color-paper)">
+            <animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0.5;0.5;1" keyTimes="0;0.32;0.62;1" calcMode="linear">
+              <mpath href="#route-full" />
             </animateMotion>
           </circle>
-          <path id="route-main-path" d="M230 85 C 430 120, 640 300, 891 348" fill="none" stroke="none" />
-
-          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" begin="2.4s" dur="0.01s" fill="freeze" />
-            <animateMotion dur="7s" begin="2.4s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
-              <mpath href="#route-branch-a" />
-            </animateMotion>
-          </circle>
-          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" begin="2.55s" dur="0.01s" fill="freeze" />
-            <animateMotion dur="7s" begin="2.55s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
-              <mpath href="#route-branch-b" />
-            </animateMotion>
-          </circle>
-          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" begin="2.7s" dur="0.01s" fill="freeze" />
-            <animateMotion dur="7s" begin="2.7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
-              <mpath href="#route-branch-c" />
-            </animateMotion>
-          </circle>
-          <path id="route-branch-a" d="M891 348 C 930 330, 990 312, 1050 305" fill="none" stroke="none" />
-          <path id="route-branch-b" d="M891 348 C 930 370, 960 392, 990 400" fill="none" stroke="none" />
-          <path id="route-branch-c" d="M891 348 C 940 400, 1010 440, 1065 457" fill="none" stroke="none" />
+          <path id="route-full" d="M186 288 C 320 250 440 268 596 296 C 720 320 820 312 906 322"
+                fill="none" stroke="none" />
         </svg>
       </div>
 
       <figcaption class="route__legend">
         <div class="route__item" data-stop="source" tabindex="0">
-          <h3>{% if is_fa %}منبع در اروپا{% else %}The source in Europe{% endif %}</h3>
+          <h3>{% if is_fa %}منبع{% else %}The source{% endif %}</h3>
           <p>
             {% if is_fa %}
-              درزهای انبساط فلزی، سیستم‌های الکتروهیدرولیک، درایو مکانیکی و حفاظت غیرفعال آتش.
+              سازندگانی که سال‌ها با آن‌ها کار کرده‌ایم.
             {% else %}
-              Metallic expansion joints, electro-hydraulic systems, mechanical drives and passive fire protection.
+              Manufacturers we have worked with for years.
             {% endif %}
           </p>
         </div>
 
         <div class="route__item" data-stop="middle" tabindex="0">
-          <h3>{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
+          <h3>{% if is_fa %}تماکار{% else %}Temakar{% endif %}</h3>
           <p>
             {% if is_fa %}
-              بررسی مشخصات فنی، انتخاب منبع مناسب، معرفی سازنده و همراهی تا خرید.
+              نیاز را می‌خوانیم، منبع مناسب را انتخاب می‌کنیم و معرفی می‌کنیم.
             {% else %}
-              Technical review, choosing the right source, introducing the manufacturer and support through the purchase.
+              We read the need, choose the right source and introduce it.
             {% endif %}
           </p>
         </div>
@@ -96,16 +85,12 @@
           <h3>{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
           <p>
             {% if is_fa %}
-              نیروگاه، تأسیسات نفت و گاز، پتروشیمی و کارخانه‌های تولیدی.
+              نیروگاه، نفت و گاز، پتروشیمی و کارخانه‌های تولیدی.
             {% else %}
-              Power plants, oil and gas facilities, petrochemical plants and manufacturing companies.
+              Power plants, oil and gas, petrochemicals and manufacturing.
             {% endif %}
           </p>
         </div>
-
-        <p class="route__note">
-          {% if is_fa %}خرید مستقیم از منبع، بدون پرداخت به ما.{% else %}A direct purchase from the source, with no payment to us.{% endif %}
-        </p>
       </figcaption>
     </figure>
   </div>

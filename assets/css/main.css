@@ -2064,7 +2064,7 @@ html[lang="fa"] .prose-temakar {
 }
 
 
-/* ---------- مسیر تأمین: نقشه ---------- */
+/* ---------- مسیر تأمین: صحنهٔ واسطه ---------- */
 
 .sourcing {
   overflow: clip;
@@ -2074,56 +2074,20 @@ html[lang="fa"] .prose-temakar {
   margin: 48px 0 0;
 }
 
-.route__frame {
-  position: relative;
-  aspect-ratio: 1200 / 647;
-  background-color: #0b2336;
-}
-
-.route__map,
-.route__overlay {
-  position: absolute;
-  inset: 0;
+.route__scene {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  color: color-mix(in srgb, var(--color-paper) 52%, transparent);
 }
 
-.route__map {
-  object-fit: cover;
+.route__path {
+  opacity: 0.9;
+  transition: stroke 220ms ease, stroke-width 220ms ease;
 }
 
-.route__overlay {
-  pointer-events: none;
-}
-
-.route__track {
-  stroke: var(--color-sky);
-  stroke-width: 2;
-  opacity: 0.85;
-  transition: stroke 220ms ease, stroke-width 220ms ease, opacity 220ms ease;
-}
-
-.route__main {
-  stroke-width: 2.4;
-  stroke-dasharray: 7 9;
-}
-
-.route__branches path {
-  stroke-width: 1.6;
-  opacity: 0.75;
-}
-
-.route__dots {
-  fill: var(--color-sky);
-}
-
-.route__hub {
-  fill: var(--color-paper);
-}
-
-.route__pulse {
-  fill: var(--color-paper);
+.route__nodes rect {
+  transition: fill 220ms ease;
 }
 
 .route__item h3 {
@@ -2138,7 +2102,7 @@ html[lang="fa"] .prose-temakar {
 
 .route__item p {
   margin: 8px 0 0;
-  max-width: 34ch;
+  max-width: 32ch;
   font-size: var(--t-small);
   line-height: 1.7;
   color: color-mix(in srgb, var(--color-paper) 76%, transparent);
@@ -2155,39 +2119,25 @@ html[lang="fa"] .prose-temakar {
   margin-block-start: 28px;
 }
 
-.route__note {
-  margin: 0;
-  font-size: var(--t-small);
-  color: color-mix(in srgb, var(--color-paper) 70%, transparent);
-}
-
 @media (min-width: 900px) {
   .route__legend {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 44px;
   }
-
-  .route__note {
-    grid-column: 1 / -1;
-  }
 }
 
-[data-route][data-focus="source"] .route__main {
+[data-route][data-focus="source"] #route-a {
   stroke: var(--color-paper);
   stroke-width: 3;
-  opacity: 1;
 }
 
-[data-route][data-focus="target"] .route__branches path {
+[data-route][data-focus="target"] #route-b {
   stroke: var(--color-paper);
-  stroke-width: 2.4;
-  opacity: 1;
+  stroke-width: 3;
 }
 
-[data-route][data-focus="middle"] .route__hub {
-  fill: var(--color-sky);
-  stroke: var(--color-paper);
-  stroke-width: 2;
+[data-route][data-focus="middle"] .route__nodes rect {
+  fill: var(--color-paper);
 }
 
 @media (prefers-reduced-motion: reduce) {
