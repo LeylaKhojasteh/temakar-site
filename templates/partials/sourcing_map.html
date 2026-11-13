@@ -1,92 +1,91 @@
 {% load site_tags %}
-<section class="panel panel--ink sourcing" aria-labelledby="sourcing-title">
+<section class="panel panel--navy sourcing" aria-labelledby="sourcing-title">
   <div class="shell">
-    <h2 class="h2 reveal" id="sourcing-title">
-      {% if is_fa %}مسیر تأمین{% else %}The supply route{% endif %}
-    </h2>
-    <p class="lead mt-4 max-w-[58ch] text-paper/80 reveal">
-      {% if is_fa %}
-        از منبع تأمین تا سایت شما؛ نیاز را می‌خوانیم، منبع را پیدا می‌کنیم و تا خرید همراهی می‌کنیم.
-      {% else %}
-        From the source to your site: we read the need, find the source and stay with you until the purchase.
-      {% endif %}
-    </p>
+    <div class="sourcing__head reveal">
+      <h2 class="h2" id="sourcing-title">{% if is_fa %}مسیر تأمین{% else %}The supply route{% endif %}</h2>
+      <p class="lead mt-4 max-w-[52ch] text-paper/80">
+        {% if is_fa %}
+          از سازنده در اروپا تا سایت شما؛ نیاز را می‌خوانیم، منبع را انتخاب می‌کنیم و تا خرید همراهی می‌کنیم.
+        {% else %}
+          From the manufacturer in Europe to your site: we read the need, choose the source and stay with you until the purchase.
+        {% endif %}
+      </p>
+    </div>
 
-    <ol class="sourcing__flow">
-      <li class="sourcing__station reveal">
-        <span class="sourcing__node" aria-hidden="true"></span>
-        <h3 class="sourcing__name">{% if is_fa %}منبع{% else %}The source{% endif %}</h3>
-        <p class="sourcing__text">
-          {% if is_fa %}
-            سازندگان اروپایی که سال‌ها با آن‌ها کار کرده‌ایم.
-          {% else %}
-            European manufacturers we have worked with for years.
-          {% endif %}
-        </p>
-        <ul class="sourcing__list">
-          {% if is_fa %}
-            <li>درزهای انبساط فلزی</li>
-            <li>سیستم‌های الکتروهیدرولیک</li>
-            <li>درایوهای مکانیکی</li>
-            <li>حفاظت غیرفعال آتش</li>
-          {% else %}
-            <li>Metallic expansion joints</li>
-            <li>Electro-hydraulic systems</li>
-            <li>Mechanical drives</li>
-            <li>Passive fire protection</li>
-          {% endif %}
-        </ul>
-      </li>
+    <figure class="route reveal">
+      <div class="route__frame">
+        <svg class="route__scene" viewBox="0 0 1200 420" aria-hidden="true" focusable="false">
+          <g class="route__line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+            <path d="M20 344 H1180" opacity="0.45" />
+            <path d="M96 344 V118" />
+            <path d="M96 118 H216" />
+            <path d="M96 172 L170 118" opacity="0.55" />
+            <path d="M168 118 V236" opacity="0.55" />
+            <path d="M160 236 H176 M168 236 V262" opacity="0.55" />
+            <path d="M60 344 V306 H112 V344" opacity="0.7" />
+            <path d="M120 344 V318 H164 V344" opacity="0.7" />
+            <path d="M986 344 V252 H1086 V344" />
+            <path d="M1098 344 V300 H1150 V344" opacity="0.7" />
+            <path d="M1030 252 V168 H1058 V252" />
+            <path d="M1030 168 H1058" />
+            <path d="M900 318 H948" opacity="0.7" />
+            <circle cx="922" cy="318" r="24" opacity="0.7" />
+            <circle cx="922" cy="318" r="10" opacity="0.45" />
+          </g>
 
-      <li class="sourcing__station reveal">
-        <span class="sourcing__node" aria-hidden="true"></span>
-        <h3 class="sourcing__name">{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
-        <p class="sourcing__text">
-          {% if is_fa %}
-            نیاز را می‌خوانیم، منبع مناسب را انتخاب می‌کنیم و معرفی می‌کنیم.
-          {% else %}
-            We read the need, choose the right source and introduce it.
-          {% endif %}
-        </p>
-        <ul class="sourcing__list">
-          {% if is_fa %}
-            <li>بررسی مشخصات فنی</li>
-            <li>تطبیق با استانداردها</li>
-            <li>معرفی سازنده</li>
-            <li>همراهی تا خرید</li>
-          {% else %}
-            <li>Technical review</li>
-            <li>Standards matching</li>
-            <li>Manufacturer introduction</li>
-            <li>Support through the purchase</li>
-          {% endif %}
-        </ul>
-      </li>
+          <path class="route__path" id="supply-route" d="M250 262 C 420 190 560 300 700 250 S 860 210 940 218"
+                fill="none" stroke="var(--color-sky)" stroke-width="2" stroke-dasharray="10 12" />
 
-      <li class="sourcing__station reveal">
-        <span class="sourcing__node" aria-hidden="true"></span>
-        <h3 class="sourcing__name">{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
-        <p class="sourcing__text">
-          {% if is_fa %}
-            خرید مستقیم از منبع، بدون پرداخت به ما.
-          {% else %}
-            A direct purchase from the source, with no payment to us.
-          {% endif %}
-        </p>
-        <ul class="sourcing__list">
-          {% if is_fa %}
-            <li>نیروگاه‌ها</li>
-            <li>تأسیسات نفت و گاز</li>
-            <li>پتروشیمی</li>
-            <li>کارخانه‌های تولیدی</li>
-          {% else %}
-            <li>Power plants</li>
-            <li>Oil and gas facilities</li>
-            <li>Petrochemical plants</li>
-            <li>Manufacturing companies</li>
-          {% endif %}
-        </ul>
-      </li>
-    </ol>
+          <g class="route__nodes" fill="var(--color-sky)">
+            <rect x="242" y="254" width="16" height="16" />
+            <rect x="932" y="210" width="16" height="16" />
+          </g>
+
+          <circle class="route__pulse" r="5" fill="var(--color-paper)">
+            <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#supply-route" />
+            </animateMotion>
+          </circle>
+        </svg>
+
+        <div class="route__notes">
+          <div class="route__note route__note--source">
+            <h3>{% if is_fa %}منبع در اروپا{% else %}The source in Europe{% endif %}</h3>
+            <p>
+              {% if is_fa %}
+                درزهای انبساط فلزی، سیستم‌های الکتروهیدرولیک، درایو مکانیکی و حفاظت غیرفعال آتش.
+              {% else %}
+                Metallic expansion joints, electro-hydraulic systems, mechanical drives and passive fire protection.
+              {% endif %}
+            </p>
+          </div>
+
+          <div class="route__note route__note--middle">
+            <h3>{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
+            <p>
+              {% if is_fa %}
+                بررسی مشخصات فنی، انتخاب منبع مناسب، معرفی سازنده و همراهی تا خرید.
+              {% else %}
+                Technical review, choosing the right source, introducing the manufacturer and support through the purchase.
+              {% endif %}
+            </p>
+          </div>
+
+          <div class="route__note route__note--target">
+            <h3>{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
+            <p>
+              {% if is_fa %}
+                نیروگاه، تأسیسات نفت و گاز، پتروشیمی و کارخانه‌های تولیدی.
+              {% else %}
+                Power plants, oil and gas facilities, petrochemical plants and manufacturing companies.
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      <figcaption class="route__caption">
+        {% if is_fa %}خرید مستقیم از منبع، بدون پرداخت به ما.{% else %}A direct purchase from the source, with no payment to us.{% endif %}
+      </figcaption>
+    </figure>
   </div>
 </section>

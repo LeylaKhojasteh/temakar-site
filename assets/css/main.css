@@ -2064,102 +2064,89 @@ html[lang="fa"] .prose-temakar {
 }
 
 
-/* ---------- مسیر تأمین: نقشهٔ سه‌ایستگاهی ---------- */
+/* ---------- مسیر تأمین: صحنهٔ حمل ---------- */
 
-.sourcing__flow {
+.sourcing {
+  overflow: clip;
+}
+
+.route {
+  margin: 56px 0 0;
+}
+
+.route__frame {
   position: relative;
-  display: grid;
-  gap: 36px;
-  margin: 64px 0 0;
-  padding: 0;
-  list-style: none;
 }
 
-.sourcing__station {
-  position: relative;
-  padding-block-start: 34px;
+.route__scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: color-mix(in srgb, var(--color-paper) 58%, transparent);
 }
 
-.sourcing__node {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  width: 14px;
-  height: 14px;
-  background-color: var(--color-accent);
-  box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-sky) 16%, transparent);
-  transition: background-color 200ms ease, box-shadow 200ms ease;
+.route__path {
+  opacity: 0.85;
 }
 
-.sourcing__name {
+.route__note h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-size: 1.05rem;
   font-weight: 700;
+  line-height: 1.3;
   color: var(--color-paper);
-  transition: color 200ms ease;
 }
 
-.sourcing__text {
-  margin: 12px 0 0;
-  max-width: 34ch;
+.route__note p {
+  margin: 8px 0 0;
+  max-width: 30ch;
   font-size: var(--t-small);
-  line-height: 1.7;
-  color: color-mix(in srgb, var(--color-paper) 80%, transparent);
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--color-paper) 78%, transparent);
 }
 
-.sourcing__list {
+.route__notes {
   display: grid;
-  gap: 8px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
+  gap: 22px;
+  margin-block-start: 28px;
+}
+
+.route__caption {
+  margin-block-start: 20px;
   font-size: var(--t-small);
-  color: color-mix(in srgb, var(--color-paper) 72%, transparent);
+  color: color-mix(in srgb, var(--color-paper) 70%, transparent);
 }
 
-.sourcing__list li {
-  position: relative;
-  padding-inline-start: 16px;
-}
-
-.sourcing__list li::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0.62em;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-sky);
-}
-
-.sourcing__station:hover .sourcing__name,
-.sourcing__station:focus-within .sourcing__name {
-  color: var(--color-sky);
-}
-
-.sourcing__station:hover .sourcing__node,
-.sourcing__station:focus-within .sourcing__node {
-  background-color: var(--color-sky);
-  box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-sky) 28%, transparent);
-}
-
-@media (min-width: 900px) {
-  .sourcing__flow {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 48px;
-  }
-
-  .sourcing__flow::before {
-    content: "";
+@media (min-width: 1100px) {
+  .route__notes {
     position: absolute;
-    inset-block-start: 6px;
-    inset-inline: 8px;
-    height: 2px;
-    background-color: color-mix(in srgb, var(--color-sky) 30%, transparent);
+    inset: 0;
+    display: block;
+    margin: 0;
   }
 
-  .sourcing__station {
-    padding-block-start: 38px;
+  .route__note {
+    position: absolute;
+    inset-block-start: 2%;
+    width: 24%;
+  }
+
+  .route__note--source {
+    left: 2%;
+  }
+
+  .route__note--middle {
+    left: 37%;
+  }
+
+  .route__note--target {
+    left: 73%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route__pulse {
+    display: none;
   }
 }
