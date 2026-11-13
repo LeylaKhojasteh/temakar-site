@@ -1,0 +1,9 @@
+/* استایل‌های کوچک ادمین برای فهرست‌های سایت */
+
+.admin-thumb {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  background-color: #dde4eb;
+}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static site_tags %}
+
+{% block content %}
+  <section class="page-media" aria-labelledby="about-title">
+    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/structure-wide.jpg' %}"
+         width="1600" height="900"
+         alt="{% if is_fa %}سازهٔ فلزی در نور روز{% else %}Steel structure in daylight{% endif %}"
+         decoding="async">
+    <div class="shell">
+      <div class="page-media__panel reveal">
+        <h1 class="page-title" id="about-title">{% if is_fa %}با شرکت ما آشنا شوید{% else %}Meet our company{% endif %}</h1>
+        <p class="page-lead">{% if is_fa %}تماکار، یک شرکت مهندسی بازرگانی.{% else %}Temakar, a commercial engineering company.{% endif %}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper" aria-labelledby="company-title">
+    <div class="shell">
+      <h2 class="visually-hidden" id="company-title">{% if is_fa %}معرفی شرکت{% else %}About Temakar{% endif %}</h2>
+      <div class="about-copy reveal">
+        {% if is_fa %}
+          <div>
+            <p>ما یک شرکت مهندسی بازرگانی با مأموریت بازاریابی هستیم که از توان تجاری خود در اروپا برای تأمین اقلام از منابع اروپایی استفاده می‌کند و در موارد شرقی، اقلام مورد نیاز کارخانه‌ها، سایت‌ها و ایستگاه‌های تولید صنایع انرژی از جمله نیروگاه‌ها و همچنین نفت، گاز و پتروشیمی را تأمین می‌کند.</p>
+            <p>ما فروش مستقیم نداریم و خدمات بازاریابی ما اقلام مورد نیاز شرکت‌های تولیدی و همچنین قطعات و تجهیزات لازم برای نیروگاه‌ها و سایت‌های نفت، گاز و پتروشیمی را تأمین می‌کند. به بیان دیگر، برای رفع نیاز شرکت‌های صنعت انرژی، منابع تأمین مناسب را شناسایی کرده و به آن‌ها معرفی کرده‌ایم و در تهیهٔ اقلام مورد نیاز همراهی‌شان کرده‌ایم تا بتوانند مستقیماً از منابع قابل اعتماد خرید و استفاده کنند.</p>
+          </div>
+          <div>
+            <p>مشتریان ما مستقیماً از منابعی که معرفی می‌کنیم خرید می‌کنند، بدون آنکه پرداختی به ما داشته باشند.</p>
+            <p>ما همچنین در حوزهٔ آموزش و مشاورهٔ کسب‌وکار فعالیت می‌کنیم.</p>
+          </div>
+        {% else %}
+          <div>
+            <p>We are a commercial engineering company with a marketing mission that utilizes its commercial potential in Europe to supply items from European sources and in Eastern cases to supply items for factories and sites and production stations of energy industries including power plants as well as oil, gas and petrochemicals.</p>
+            <p>We have no direct sales and our marketing services provide the items needed by manufacturing companies as well as parts and equipment required for power plant, oil and gas and petrochemical sites. In other words, in order to meet the needs of energy industry companies, we have identified the appropriate supply sources and introduced them to them and accompanied them to obtain the required items so that they can directly buy and use reliable sources.</p>
+          </div>
+          <div>
+            <p>Our customers buy directly from the sources we introduce without any payment to us.</p>
+            <p>We also work in the field of business education and consulting.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper-2" aria-labelledby="mission-title">
+    <div class="shell grid gap-10 md:grid-cols-[5fr_7fr] md:items-center">
+      <div class="reveal order-2 md:order-1">{% include "partials/graphics/target.html" %}</div>
+      <div class="reveal order-1 md:order-2">
+        <h2 class="h2" id="mission-title">{% if is_fa %}مأموریت{% else %}Mission{% endif %}</h2>
+        <p class="mt-5">
+          {% if is_fa %}
+            ما یک شرکت مهندسی بازرگانی یادگیرنده و نوآور هستیم با این مأموریت که برای رفع مشکلات تأمین نیاز مواد و تجهیزات و همچنین یافتن سازندهٔ مناسب برای نیاز شرکت‌های داخلی راهکار پیدا کنیم؛ شرکت‌هایی که نیازهای مشتریان را می‌شناسند و بررسی می‌کنند و از دانش، تخصص و شرکت‌های تخصصی بهره می‌گیرند. با شناسایی منابع مناسب تأمین قطعات و تجهیزات و ارائهٔ خدمات بازاریابی تأمین، برای شرکت‌های فعال در کارخانه‌ها و سایت‌های نیروگاهی، نفت و گاز و پتروشیمی ارزش افزوده ایجاد می‌کنیم. همچنین در حوزهٔ آموزش و ارائهٔ خدمات مشاورهٔ کسب‌وکار در زمینهٔ تأمین، بازاریابی و فروش فعال هستیم.
+          {% else %}
+            We are a learning and innovative business engineering company, with the mission of finding solutions to solve the problems of meeting the needs of materials and equipment and also a suitable manufacturer to meet the needs of domestic companies that know and study the needs of customers, benefit from knowledge, expertise and specialized companies. Appropriate sources of supply of parts and equipment, by providing appropriate supply marketing services, we add value for companies operating in factories and sites of power plants, oil and gas and petrochemical industries. We are also active in training and providing business consulting services in the field of supply, marketing and sales.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper" aria-labelledby="vision-title">
+    <div class="shell grid gap-10 md:grid-cols-[7fr_5fr] md:items-center">
+      <div class="reveal">
+        <h2 class="h2" id="vision-title">{% if is_fa %}چشم‌انداز{% else %}Vision{% endif %}</h2>
+        <p class="mt-5">
+          {% if is_fa %}
+            ما یک شرکت مهندسی بازرگانی هستیم که در حوزهٔ بازاریابی برای تأمین اقلام مورد نیاز شرکت‌های تولیدی و همچنین قطعات و تجهیزات لازم برای کارخانه‌ها و سایت‌های نیروگاهی، نفت و گاز و پتروشیمی فعالیت می‌کند و خدمات مشاوره و آموزش کسب‌وکار ارائه می‌دهد. قصد داریم با ارائهٔ خدمات مناسب و توسعهٔ ارتباطات، تا سال ۲۰۲۵ به شرکتی شناخته‌شده در این حوزه در صنعت انرژی تبدیل شویم.
+          {% else %}
+            We are a commercial engineering company with activities in the field of marketing to supply the items required by manufacturing companies as well as parts and equipment required by factories and sites of power plants, oil and gas and petrochemical industries and provide business consulting and training services. We intend to be a well-known company in this field in the energy industry by providing appropriate services and developing communications by 2025.
+          {% endif %}
+        </p>
+      </div>
+      <div class="reveal">{% include "partials/graphics/summit.html" %}</div>
+    </div>
+  </section>
+
+  <section class="question-band" aria-labelledby="question-title">
+    <div class="shell grid gap-8 md:grid-cols-[7fr_5fr] md:items-center">
+      <div class="reveal">
+        <h2 class="h2" id="question-title">{% if is_fa %}پرسشی دارید؟{% else %}Do you have a question?{% endif %}</h2>
+        <p class="lead mt-4 text-paper/85">
+          {% if is_fa %}با ما در تماس باشید.{% else %}Feel free to contact us.{% endif %}
+        </p>
+      </div>
+      <div class="reveal flex flex-wrap items-center gap-6">
+        {% if site.phone %}
+          <a class="text-link" href="tel:{{ site.phone|cut:' ' }}"><span class="ltr-text">{{ site.phone }}</span></a>
+        {% endif %}
+        <a class="btn" href="{% url 'contact:page' %}">{% tr "cta.send_message" %}</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

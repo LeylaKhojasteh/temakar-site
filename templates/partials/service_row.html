@@ -1,0 +1,5 @@
+{% load site_tags %}
+<a class="service-row reveal" href="{{ service.get_absolute_url }}">
+  <span class="service-row__logo">{% include service.logo_template %}</span>
+  <span class="service-row__title">{% pick service "title" %}</span>
+</a>

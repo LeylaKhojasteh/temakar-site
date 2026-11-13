@@ -1,0 +1,60 @@
+{% load site_tags %}
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="wordmark" href="{% url 'core:home' %}">{% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}</a>
+        <p class="text-small mt-4 max-w-[34ch] text-paper/80">
+          {% if is_fa %}تماکار در اختیار شماست؛ شریک حرفه‌ای و قابل اتکا.{% else %}Temakar is at your disposal. Professional and reliable partner.{% endif %}
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-title">{% tr "footer.nav_title" %}</p>
+        <nav class="footer-links" aria-label="{% if is_fa %}صفحه‌های سایت{% else %}Site pages{% endif %}">
+          {% for item in nav_items %}
+            <a href="{{ item.url }}">{{ item.label }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <div>
+          <p class="footer-title">{% if is_fa %}نشانی{% else %}Our address{% endif %}</p>
+          <address class="footer-links not-italic text-paper/80">
+            {% if is_fa %}{{ site.address_fa|default:site.address_en|linebreaksbr }}{% else %}{{ site.address_en|linebreaksbr }}{% endif %}
+          </address>
+
+          <p class="mt-4 footer-links">
+            {% if site.phone %}
+              <a href="tel:{{ site.phone|cut:' ' }}"><span class="ltr-text">{{ site.phone }}</span></a>
+            {% endif %}
+            {% if site.phone_secondary %}
+              <a href="tel:{{ site.phone_secondary|cut:' ' }}"><span class="ltr-text">{{ site.phone_secondary }}</span></a>
+            {% endif %}
+            {% if site.email %}
+              <a href="mailto:{{ site.email }}"><span class="ltr-text">{{ site.email }}</span></a>
+            {% endif %}
+          </p>
+        </div>
+
+        {% map_embed_url site as embed_url %}
+        {% if embed_url and request.resolver_match.app_name != "contact" %}
+          <div class="footer-map">
+            <div class="map-frame map-frame--footer">
+              <iframe
+                src="{{ embed_url }}"
+                title="{% if is_fa %}نقشهٔ موقعیت تماکار{% else %}Temakar location map{% endif %}"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {% now "Y" %} {% if is_fa %}تماکار{% else %}Temakar{% endif %}، {% tr "footer.rights" %}</span>
+    </div>
+  </div>
+</footer>

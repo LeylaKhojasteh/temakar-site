@@ -1,0 +1,2064 @@
+@import "tailwindcss";
+
+@source "../../templates";
+@source "../../apps";
+
+/* ---------- فونت‌ها: محلی، بدون درخواست بیرونی ---------- */
+
+@font-face {
+  font-family: "Estedad";
+  src: url("../fonts/estedad-var.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Epilogue";
+  src: url("../fonts/epilogue-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Epilogue";
+  src: url("../fonts/epilogue-500.woff2") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Epilogue";
+  src: url("../fonts/epilogue-900.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* ---------- توکن‌ها ---------- */
+
+@theme {
+  /* سه سطح پایه (کاغذ، کاغذ دوم، مرکب) + یک لهجه؛ لهجه فقط برای کنش. */
+  --color-paper: #e8edf2;
+  --color-paper-2: #dde4eb;
+  --color-ink: #0c1a26;
+  --color-ink-2: #2b3b49;
+  --color-ink-3: #55697a;
+  --color-line: #c6d1db;
+  --color-navy: #10314a;
+  --color-accent: #2f6289;
+  --color-sky: #a8c7de;
+  --color-on-accent: #f4f7fa;
+}
+
+:root {
+  --font-display: "Epilogue", "Segoe UI", sans-serif;
+  --font-text: "Epilogue", "Segoe UI", sans-serif;
+  --header-height: 72px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --max-width: 1480px;
+
+  --t-meta: 0.8125rem;
+  --t-small: 0.9375rem;
+  --t-body: 1.0625rem;
+  --t-lead: 1.25rem;
+  --t-statement: 1.5rem;
+  --t-head: clamp(1.35rem, 1.9vw, 1.75rem);
+  --t-title: clamp(1.8rem, 3.1vw, 2.7rem);
+  --t-display: clamp(2.25rem, 4.4vw, 4rem);
+  --t-poster: clamp(1.125rem, 2.3vw, 2rem);
+}
+
+html[lang="fa"] {
+  --font-display: "Estedad", "Segoe UI", sans-serif;
+  --font-text: "Estedad", "Segoe UI", sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-text);
+  font-size: var(--t-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="fa"] body {
+  line-height: 1.85;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- چیدمان و پنل‌ها ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.panel {
+  padding-block: clamp(64px, 8vw, 120px);
+}
+
+.panel--paper {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.panel--paper-2 {
+  background-color: var(--color-paper-2);
+  color: var(--color-ink);
+}
+
+.panel--ink {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.panel--navy {
+  background-color: var(--color-navy);
+  color: var(--color-paper);
+}
+
+
+.panel--tight {
+  padding-block: clamp(44px, 5.5vw, 84px);
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-head);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+html[lang="fa"] .h2 {
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.lead {
+  font-size: var(--t-lead);
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+html[lang="fa"] .lead {
+  line-height: 1.75;
+}
+
+.text-meta {
+  font-size: var(--t-meta);
+  color: var(--color-ink-3);
+}
+
+.text-small {
+  font-size: var(--t-small);
+}
+
+.on-dark .text-meta,
+.panel--ink .text-meta,
+.panel--navy .text-meta,
+.panel--blue .text-meta {
+  color: color-mix(in srgb, var(--color-paper) 70%, transparent);
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-statement);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  max-width: 34ch;
+}
+
+html[lang="fa"] .statement {
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+/* ---------- دکمه‌ها: یک اندازه، یک شکل ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding-inline: 28px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border: 2px solid var(--color-accent);
+  border-radius: 0;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
+    transform 120ms ease;
+}
+
+.btn:hover {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-on-accent);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"],
+.btn.htmx-request {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/* پیوندهای متنی، هم‌اندازه و با خط ضخیم‌تر */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  border-block-end: 2px solid currentColor;
+  padding-block-end: 2px;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.text-link:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.panel--ink .text-link:hover,
+.panel--navy .text-link:hover,
+.panel--blue .text-link:hover {
+  color: var(--color-sky);
+  border-color: var(--color-sky);
+}
+
+
+/* ---------- سرصفحه ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-paper);
+  transition: box-shadow 200ms ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 2px 0 0 var(--color-line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: var(--header-height);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.4rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.wordmark::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-accent);
+}
+
+html[lang="fa"] .wordmark {
+  letter-spacing: 0;
+}
+
+.primary-nav {
+  display: none;
+  gap: clamp(18px, 2.4vw, 34px);
+  margin-inline-start: 0;
+}
+
+.primary-nav a {
+  position: relative;
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--color-ink-2);
+  text-decoration: none;
+  padding-block: 8px;
+}
+
+.primary-nav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+html[dir="rtl"] .primary-nav a::after {
+  transform-origin: right;
+}
+
+.primary-nav a:hover,
+.primary-nav a[aria-current="page"] {
+  color: var(--color-ink);
+}
+
+.primary-nav a:hover::after,
+.primary-nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 34px;
+  padding-inline: 7px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: var(--color-ink);
+  text-decoration: none;
+  border: 1px solid var(--color-ink-3);
+}
+
+.lang-switch:hover {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--color-ink);
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+@media (min-width: 900px) {
+  .primary-nav {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* منوی موبایل */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  padding: 20px var(--gutter) 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+}
+
+.mobile-menu .wordmark {
+  color: var(--color-paper);
+}
+
+.mobile-menu .menu-toggle {
+  border-color: var(--color-paper);
+  color: var(--color-paper);
+}
+
+.mobile-menu .menu-toggle:hover {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-block: auto;
+  padding-block: 32px;
+}
+
+.mobile-menu__nav a {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 9vw, 3rem);
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--color-paper);
+  text-decoration: none;
+  padding-block: 8px;
+}
+
+.mobile-menu__nav a[aria-current="page"] {
+  color: var(--color-sky);
+}
+
+.mobile-menu__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding-block-start: 20px;
+}
+
+.mobile-menu__foot a {
+  color: var(--color-paper);
+}
+
+body.has-overlay {
+  overflow: hidden;
+}
+
+/* ---------- هرو ---------- */
+
+.hero {
+  position: relative;
+  background-color: var(--color-navy);
+  color: var(--color-paper);
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+  padding-block: clamp(48px, 6vw, 92px) clamp(48px, 6vw, 88px);
+  min-height: clamp(520px, 72svh, 760px);
+}
+
+.hero-copy {
+  max-width: none;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+html[lang="fa"] .hero-title {
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+  padding-block-end: 0.06em;
+}
+
+.hero-title .line > span {
+  display: block;
+  animation: rise 900ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+
+.hero-title .line:nth-child(2) > span {
+  animation-delay: 110ms;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hero-support {
+  color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  font-size: var(--t-body);
+  line-height: 1.75;
+  max-width: 42ch;
+  animation: fade-up 700ms 320ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-block-start: 28px;
+  animation: fade-up 700ms 420ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-art {
+  position: relative;
+  align-self: stretch;
+  min-height: clamp(280px, 46vw, 520px);
+}
+
+.hero-art .beam,
+.hero-art .column,
+.hero-art .brace,
+.hero-art .roof,
+.hero-art .crane,
+.hero-art .dim {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.hero-art .column {
+  animation-delay: 0.25s;
+}
+
+.hero-art .brace {
+  animation-delay: 0.45s;
+}
+
+.hero-art .roof {
+  animation-delay: 0.6s;
+}
+
+.hero-art .crane {
+  animation-delay: 0.85s;
+}
+
+.hero-art .dim {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  animation: fade-in 700ms 1.1s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+}
+
+/* ---------- نوار کوتاه دربارهٔ ما ---------- */
+
+.about-strip {
+  display: grid;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .about-strip {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  }
+}
+
+.poster-row__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-poster);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transition: color 200ms ease;
+}
+
+html[lang="fa"] .poster-row__title {
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+
+.poster-row:hover .poster-row__title,
+.poster-row:focus-visible .poster-row__title {
+  color: var(--color-accent);
+}
+
+.panel--paper .poster-row:hover .poster-row__title,
+.panel--paper .poster-row:focus-visible .poster-row__title,
+.panel--paper-2 .poster-row:hover .poster-row__title,
+.panel--paper-2 .poster-row:focus-visible .poster-row__title {
+  color: var(--color-accent);
+}
+
+.poster-row__summary {
+  grid-column: 1 / -1;
+  max-width: 62ch;
+  font-size: var(--t-body);
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+@media (min-width: 900px) {
+
+  .poster-row__summary {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    font-size: var(--t-small);
+  }
+
+}
+
+.photo-tile__label {
+  display: block;
+  margin-block-start: 10px;
+  font-size: var(--t-small);
+  font-weight: 600;
+}
+
+.photo-tile--a {
+  grid-column: span 6;
+  aspect-ratio: 16 / 9;
+}
+
+.photo-tile--b {
+  grid-column: span 3;
+  aspect-ratio: 4 / 5;
+  transform: rotate(-1.2deg);
+}
+
+.photo-tile--c {
+  grid-column: span 3;
+  aspect-ratio: 4 / 5;
+  transform: rotate(1.2deg);
+}
+
+@media (min-width: 900px) {
+  .photo-tile--a {
+    grid-column: span 3;
+    aspect-ratio: 4 / 5;
+    transform: rotate(-1.4deg);
+  }
+
+  .photo-tile--b {
+    grid-column: span 3;
+    aspect-ratio: 4 / 5;
+    transform: rotate(1.2deg);
+    margin-block-start: 36px;
+  }
+
+  .photo-tile--c {
+    grid-column: span 3;
+    aspect-ratio: 4 / 5;
+    transform: rotate(-0.8deg);
+    margin-block-start: 12px;
+  }
+}
+
+.contact-band__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 20ch;
+}
+
+html[lang="fa"] .contact-band__title {
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+@media (min-width: 900px) {
+
+  .contact-band__action {
+    justify-self: end;
+  }
+}
+
+/* ---------- تصویرها ---------- */
+
+.band-image {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  display: block;
+  background-color: var(--color-paper-2);
+}
+
+.row-thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline-end: 14px;
+  background-color: var(--color-paper-2);
+}
+
+/* ---------- متن مقاله‌ای ---------- */
+
+.prose-temakar {
+  max-width: 66ch;
+  font-size: var(--t-body);
+  line-height: 1.85;
+}
+
+.prose-temakar h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  margin-block: 1.8em 0.5em;
+}
+
+.prose-temakar h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-body);
+  font-weight: 700;
+  margin-block: 1.6em 0.4em;
+}
+
+.prose-temakar p {
+  margin-block: 0 1em;
+}
+
+.prose-temakar ul,
+.prose-temakar ol {
+  margin-block: 0 1.2em;
+  padding-inline-start: 1.3em;
+}
+
+.prose-temakar li {
+  margin-block-end: 0.35em;
+}
+
+.prose-temakar a {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+}
+
+.prose-temakar blockquote {
+  margin: 1.5em 0;
+  padding-inline-start: 1.1em;
+  border-inline-start: 4px solid var(--color-accent);
+  color: var(--color-ink-2);
+}
+
+/* ---------- جزئیات خدمت ---------- */
+
+.detail-grid {
+  display: grid;
+  gap: 40px;
+}
+
+.detail-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+@media (min-width: 900px) {
+  .detail-grid {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 3fr);
+    gap: 80px;
+    align-items: start;
+  }
+}
+
+/* ---------- فرم ---------- */
+
+.form-panel {
+  background-color: var(--color-paper);
+  border: 3px solid var(--color-ink);
+  padding: clamp(20px, 2.4vw, 30px);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-block-end: 18px;
+}
+
+.field-label {
+  font-size: var(--t-small);
+  font-weight: 600;
+}
+
+.field-hint {
+  font-size: var(--t-meta);
+  color: var(--color-ink-3);
+  font-weight: 400;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--color-ink);
+  background-color: #fbfcfd;
+  border: 2px solid var(--color-line);
+  border-radius: 0;
+  transition: border-color 160ms ease;
+}
+
+.field-input:hover {
+  border-color: var(--color-ink-3);
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 3px var(--color-accent);
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.field--error .field-input {
+  border-color: #b3261e;
+}
+
+.field-error {
+  color: #9d2019;
+  font-size: var(--t-small);
+  font-weight: 500;
+}
+
+.form-status {
+  margin-block-end: 18px;
+  padding: 14px 16px;
+  background-color: var(--color-sky);
+  color: var(--color-ink);
+  font-size: var(--t-small);
+  font-weight: 500;
+}
+
+.form-success {
+  padding: clamp(24px, 3vw, 36px);
+  background-color: var(--color-sky);
+  color: var(--color-ink);
+}
+
+.form-success h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  margin-block: 0 8px;
+}
+
+.honeypot {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- اطلاعات تماس ---------- */
+
+.info-list {
+  display: grid;
+  gap: 26px;
+  margin: 0;
+}
+
+.info-list dt {
+  font-size: var(--t-meta);
+  color: var(--color-ink-3);
+  margin-block-end: 4px;
+}
+
+.info-list dd {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.info-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+  border-block-end: 2px solid var(--color-line);
+}
+
+.info-list a:hover {
+  border-color: var(--color-ink);
+}
+
+.ltr-text {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
+
+/* ---------- نقشه: کوچک و زوم‌شده ---------- */
+
+.map-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: var(--color-paper-2);
+  border: 0;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.map-frame--footer {
+  max-width: 260px;
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------- فوتر ---------- */
+
+.site-footer .wordmark {
+  color: var(--color-paper);
+}
+
+.site-footer {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: clamp(36px, 4.5vw, 64px) 24px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .footer-grid {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 3fr) minmax(0, 5fr);
+    align-items: start;
+  }
+
+  .footer-contact {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer-grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 7fr);
+  }
+
+  .footer-contact {
+    grid-column: auto;
+  }
+}
+
+.footer-contact {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 700px) {
+  .footer-contact {
+    grid-template-columns: minmax(220px, 1fr) minmax(260px, 400px);
+    align-items: stretch;
+  }
+
+  .footer-map {
+    align-self: stretch;
+    min-height: 180px;
+  }
+
+  .footer-map .map-frame {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .footer-map iframe {
+    height: 100%;
+  }
+}
+
+@media (max-width: 699px) {
+  .footer-map {
+    display: none;
+  }
+}
+
+.footer-title {
+  font-size: var(--t-meta);
+  color: color-mix(in srgb, var(--color-paper) 65%, transparent);
+  margin-block-end: 12px;
+}
+
+.footer-links {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: var(--color-paper);
+  text-decoration: none;
+  font-size: var(--t-small);
+}
+
+.footer-links a:hover {
+  color: var(--color-sky);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-start: 36px;
+  font-size: var(--t-meta);
+  color: color-mix(in srgb, var(--color-paper) 65%, transparent);
+}
+
+/* ---------- صفحه‌های خطا ---------- */
+
+.error-page {
+  display: grid;
+  align-content: center;
+  min-height: clamp(420px, 58svh, 640px);
+}
+
+.error-code {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 0.9;
+  color: var(--color-sky);
+}
+
+/* ---------- دسترس‌پذیری و کمکی ---------- */
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 16px;
+  inset-block-start: -100px;
+  z-index: 100;
+  padding: 12px 18px;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  inset-block-start: 16px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- حرکت: ورود بخش‌ها ---------- */
+
+.has-reveal .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.16, 0.84, 0.32, 1),
+    transform 700ms cubic-bezier(0.16, 0.84, 0.32, 1);
+}
+
+.has-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- ادمین: ویرایشگر متن ---------- */
+
+.richtext-source {
+  width: 100%;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+}
+
+.empty-state {
+  padding: clamp(24px, 4vw, 40px);
+  background-color: var(--color-paper);
+  font-size: var(--t-body);
+  color: var(--color-ink-2);
+}
+
+/* ---------- مسیر صفحه ---------- */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: var(--t-small);
+  margin-block-end: 20px;
+  color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-sky);
+}
+
+.breadcrumb__sep {
+  opacity: 0.5;
+}
+
+/* تأخیر کوتاه ورود، برای خواندن پله‌ای فهرست‌ها */
+.has-reveal .poster-list > .reveal:nth-child(2) {
+  transition-delay: 60ms;
+}
+
+.has-reveal .poster-list > .reveal:nth-child(3) {
+  transition-delay: 120ms;
+}
+
+.has-reveal .poster-list > .reveal:nth-child(4) {
+  transition-delay: 180ms;
+}
+
+.has-reveal .photo-composition > .reveal:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.has-reveal .photo-composition > .reveal:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+/* تصویر نقشهٔ فنی در هرو صفحه‌های داخلی */
+
+
+
+@media (min-width: 900px) {
+}
+
+/* سرصفحهٔ تصویری صفحه‌های داخلی */
+.page-media {
+  position: relative;
+  background-color: var(--color-paper);
+}
+
+.page-media__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  object-fit: cover;
+  background-color: var(--color-paper-2);
+  animation: media-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes media-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.035);
+  }
+}
+
+.page-media__panel {
+  position: relative;
+  z-index: 1;
+  margin-block-start: calc(-1 * clamp(48px, 9vw, 120px));
+  background-color: var(--color-navy);
+  color: var(--color-paper);
+  padding: clamp(24px, 4vw, 48px);
+  width: min(100%, 820px);
+}
+
+.page-media__panel .page-lead {
+  color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+}
+
+@media (max-width: 639px) {
+  .page-media__img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .page-media__panel {
+    width: 100%;
+    margin-block-start: 0;
+  }
+}
+
+/* ---------- کارت تصویری خدمت ---------- */
+
+.service-cards {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 28px);
+  grid-template-columns: 1fr;
+}
+
+.service-card {
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+  background-color: var(--color-paper);
+}
+
+.service-card__media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-paper-2);
+}
+
+.service-card__media--empty {
+  background-color: var(--color-navy);
+}
+
+.service-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms cubic-bezier(0.16, 0.84, 0.32, 1);
+}
+
+.service-card:hover .service-card__media img {
+  transform: scale(1.03);
+}
+
+.service-card__body {
+  padding-block: 16px 4px;
+}
+
+.service-card__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.service-card__text {
+  display: block;
+  margin-block-start: 6px;
+  font-size: var(--t-small);
+  color: var(--color-ink-2);
+}
+
+@media (min-width: 700px) {
+  .service-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .service-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.detail-aside {
+  align-items: stretch;
+}
+
+.detail-aside .btn {
+  width: 100%;
+}
+
+
+@media (max-width: 639px) {
+  .form-panel {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+}
+
+/* ---------- تیتر و مقدمهٔ صفحه‌های داخلی ---------- */
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-title);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+  max-width: 22ch;
+}
+
+html[lang="fa"] .page-title {
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.page-lead {
+  font-size: var(--t-lead);
+  line-height: 1.6;
+  max-width: 56ch;
+  color: color-mix(in srgb, currentColor 82%, transparent);
+}
+
+html[lang="fa"] .page-lead {
+  line-height: 1.8;
+}
+
+/* تصویر متحرک سرصفحه نباید از کادر بیرون بزند */
+.page-media {
+  overflow: clip;
+}
+
+
+.has-reveal .form-panel .reveal:nth-of-type(2) {
+  transition-delay: 70ms;
+}
+
+.has-reveal .form-panel .reveal:nth-of-type(3) {
+  transition-delay: 140ms;
+}
+
+.has-reveal .form-panel .reveal:nth-of-type(4) {
+  transition-delay: 210ms;
+}
+
+/* پیش‌نمایش تصویر دسته روی ردیف خدمات */
+.row-preview {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  background-color: var(--color-paper-2);
+}
+
+.row-preview.is-on {
+  opacity: 1;
+}
+
+@media (max-width: 899px) {
+  .row-preview {
+    display: none;
+  }
+}
+
+
+/* متن معرفی شرکت */
+.about-copy {
+  display: grid;
+  gap: clamp(24px, 4vw, 56px);
+  font-size: var(--t-body);
+  line-height: 1.85;
+}
+
+.about-copy p {
+  margin: 0 0 1.1em;
+}
+
+.about-copy p:last-child {
+  margin-block-end: 0;
+}
+
+@media (min-width: 900px) {
+  .about-copy {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+
+/* ---------- صحنهٔ خط انتقال نیرو ---------- */
+
+.hero-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  color: var(--color-paper);
+  overflow: visible;
+}
+
+.hero-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-scene .art-draw path,
+.hero-scene .art-draw circle {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: art-draw 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes art-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-scene .art-flow path {
+  stroke-dasharray: 10 16;
+  animation: art-flow 3.2s linear infinite;
+  opacity: 0.75;
+}
+
+.hero-scene .art-pulse path {
+  stroke-dasharray: 2 140;
+  animation: art-pulse 3.6s linear infinite;
+}
+
+@keyframes art-flow {
+  to {
+    stroke-dashoffset: -52;
+  }
+}
+
+@keyframes art-pulse {
+  to {
+    stroke-dashoffset: -142;
+  }
+}
+
+.hero-scene .art-fill {
+  opacity: 0;
+  animation: fade-in 900ms 1.2s ease forwards;
+}
+
+
+/* گسترش ناحیهٔ لمس بدون بزرگ‌ترکردن ظاهر کنترل */
+.lang-switch {
+  position: relative;
+}
+
+.lang-switch::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.nav-dd__toggle {
+  position: relative;
+}
+
+.nav-dd__toggle::after {
+  content: "";
+  position: absolute;
+  inset: -9px;
+}
+
+
+/* ---------- لوگوهای دوبعدی خدمات ---------- */
+
+.service-logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  color: var(--color-ink);
+  overflow: visible;
+}
+
+@media (min-width: 900px) {
+  .service-logo {
+    width: 84px;
+    height: 84px;
+    flex-basis: 84px;
+  }
+}
+
+.service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 3vw, 36px);
+  padding-block: clamp(16px, 2vw, 26px);
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-row__title {
+  order: 1;
+}
+
+.service-row__logo {
+  order: 2;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.service-row__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+html[lang="fa"] .service-row__title {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.service-row:hover .service-row__title,
+.service-row:focus-visible .service-row__title {
+  color: var(--color-accent);
+}
+
+.service-row:hover .service-logo,
+.service-row:focus-visible .service-logo {
+  color: var(--color-accent);
+}
+
+.panel--ink .service-row:hover .service-row__title,
+.panel--ink .service-row:focus-visible .service-row__title {
+  color: var(--color-sky);
+}
+
+.panel--ink .service-row:hover .service-logo,
+.panel--ink .service-row:focus-visible .service-logo {
+  color: var(--color-sky);
+}
+
+.panel--ink .service-logo {
+  color: var(--color-paper);
+}
+
+.logo-flow {
+  stroke-dasharray: 7 9;
+  animation: logo-flow 2.8s linear infinite;
+}
+
+.logo-flow--slow {
+  animation-duration: 4.2s;
+}
+
+@keyframes logo-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.logo-blades,
+.logo-valve {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-spin 10s linear infinite;
+}
+
+.logo-valve {
+  animation-duration: 14s;
+}
+
+@keyframes logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-node {
+  animation: logo-pulse 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes logo-pulse {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.logo-drop {
+  animation: logo-bob 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes logo-bob {
+  from {
+    transform: translateY(-3px);
+  }
+  to {
+    transform: translateY(3px);
+  }
+}
+
+/* ---------- گرافیک مأموریت و چشم‌انداز ---------- */
+
+.feature-graphic {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+}
+
+.feature-graphic .arc {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: arc-draw 2.4s ease-out forwards;
+}
+
+.feature-graphic .orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-spin 26s linear infinite;
+}
+
+.feature-graphic .halo {
+  animation: logo-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes arc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- منوی کشویی هدر ---------- */
+
+.nav-dd {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-dd__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-2);
+  cursor: pointer;
+}
+
+.nav-dd__toggle:hover {
+  color: var(--color-ink);
+}
+
+.nav-dd__toggle svg {
+  transition: transform 200ms ease;
+}
+
+.nav-dd[data-open="true"] .nav-dd__toggle svg {
+  transform: rotate(180deg);
+}
+
+.nav-dd__menu {
+  position: absolute;
+  inset-block-start: calc(100% + 14px);
+  inset-inline-start: 0;
+  z-index: 60;
+  min-width: 320px;
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-line);
+  display: none;
+}
+
+.nav-dd[data-open="true"] .nav-dd__menu {
+  display: block;
+  animation: menu-in 380ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+
+.nav-dd[data-closing="true"] .nav-dd__menu {
+  animation: menu-out 240ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+@keyframes menu-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nav-dd__menu a {
+  display: block;
+  padding: 10px 12px;
+  font-size: var(--t-small);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.nav-dd__menu a:hover,
+.nav-dd__menu a:focus-visible {
+  background-color: var(--color-paper-2);
+  color: var(--color-accent);
+}
+
+.nav-dd__menu li + li {
+  margin-block-start: 2px;
+}
+
+.mobile-menu__sub {
+  display: grid;
+  gap: 2px;
+  padding-inline-start: 4px;
+  margin-block-start: 2px;
+}
+
+.mobile-menu__sub a {
+  font-size: 1rem !important;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--color-paper) 75%, transparent);
+  padding-block: 6px;
+}
+
+/* ---------- بخش پرسش، جدا از فوتر ---------- */
+
+.question-band {
+  background-color: var(--color-accent);
+  color: var(--color-paper);
+  padding-block: clamp(56px, 7vw, 96px);
+}
+
+
+/* ---------- صحنهٔ خط انتقال نیرو ---------- */
+
+
+
+.hero-scene .art-draw path,
+
+@keyframes art-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+@keyframes art-flow {
+  to {
+    stroke-dashoffset: -52;
+  }
+}
+
+@keyframes art-pulse {
+  to {
+    stroke-dashoffset: -142;
+  }
+}
+
+
+
+/* نقشه زیر اطلاعات تماس */
+.contact-map {
+  margin-block-start: 32px;
+  max-width: 460px;
+}
+
+.contact-map .map-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+
+/* ---------- فهرست درون‌صفحه‌ای ---------- */
+
+.detail-aside {
+  position: sticky;
+  inset-block-start: 104px;
+  align-self: start;
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+}
+
+.toc {
+  width: 100%;
+  padding: 20px 22px;
+  background-color: var(--color-paper-2);
+}
+
+.toc__title {
+  margin: 0;
+  font-size: var(--t-meta);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-2);
+}
+
+.toc ol {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc a {
+  display: block;
+  padding-block: 6px;
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-block-end: 2px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.toc a:hover,
+.toc a:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ---------- ردیف خدمات: پاسخ لمسی ---------- */
+
+.service-row {
+  margin-inline: -14px;
+  padding-inline: 14px;
+  transition: background-color 200ms ease;
+}
+
+.service-row:hover,
+.service-row:focus-visible {
+  background-color: color-mix(in srgb, var(--color-ink) 6%, transparent);
+}
+
+.service-row:hover .service-logo,
+.service-row:focus-visible .service-logo {
+  transform: scale(1.06);
+}
+
+.service-logo {
+  transition: transform 260ms cubic-bezier(0.16, 0.84, 0.32, 1);
+}
+
+/* ---------- حرکت فقط وقتی در دید است ---------- */
+
+.service-logo *,
+.feature-graphic * {
+  animation-play-state: paused;
+}
+
+.service-logo[data-in-view="true"] *,
+.feature-graphic[data-in-view="true"] *,
+.service-row:hover .service-logo *,
+.service-row:focus-visible .service-logo * {
+  animation-play-state: running;
+}
+
+/* ---------- شکست خط بهتر در دو زبان ---------- */
+
+h1,
+h2,
+h3,
+.h2,
+.page-title,
+.hero-title,
+.statement {
+  text-wrap: balance;
+}
+
+p,
+li,
+.lead,
+.prose-temakar p,
+.prose-temakar li {
+  text-wrap: pretty;
+}
+
+html[lang="fa"] .prose-temakar {
+  line-height: 1.9;
+}
+
+/* ---------- چاپ برگهٔ خدمت ---------- */
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .site-header,
+  .site-footer,
+  .page-media__img,
+  .breadcrumb,
+  .detail-aside,
+  .question-band,
+  .service-row,
+  .site-skip-link {
+    display: none !important;
+  }
+
+  .page-media,
+  .panel {
+    background-color: #fff !important;
+    padding: 0 !important;
+    min-height: 0;
+  }
+
+  .page-media__panel {
+    background-color: #fff !important;
+    color: #000 !important;
+    padding: 0 0 12mm !important;
+  }
+
+  .page-title,
+  .page-lead {
+    color: #000 !important;
+  }
+
+  .page-title {
+    font-size: 22pt;
+  }
+
+  .detail-grid {
+    display: block;
+  }
+
+  .prose-temakar {
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  .prose-temakar h3 {
+    break-after: avoid;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}

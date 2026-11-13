@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static site_tags %}
+
+{% block content %}
+  <section class="page-media" aria-labelledby="services-title">
+    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/bridge-fog.jpg' %}"
+         width="1600" height="1000"
+         alt="{% if is_fa %}سازهٔ پل در مه{% else %}Bridge structure in fog{% endif %}"
+         decoding="async">
+    <div class="shell">
+      <div class="page-media__panel reveal">
+        <h1 class="page-title" id="services-title">{% if is_fa %}خدمات ما{% else %}Our services{% endif %}</h1>
+        <p class="page-lead">
+          {% if is_fa %}تأمین مواد، تجهیزات و قطعات صنعت انرژی، همراه با مشاوره و آموزش کسب‌وکار.
+          {% else %}Supply of materials, equipment and parts for the energy industry, with business consulting and training.{% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper" aria-labelledby="services-list-title">
+    <div class="shell">
+      <h2 class="visually-hidden" id="services-list-title">{% tr "services.list.title" %}</h2>
+      {% for service in services %}
+        {% include "partials/service_row.html" with service=service %}
+      {% empty %}
+        <p class="empty-state">{% tr "services.empty" %}</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

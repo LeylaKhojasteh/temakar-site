@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static site_tags %}
+
+{% block content %}
+  <section class="page-media" aria-labelledby="contact-title">
+    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/concrete-sky.jpg' %}"
+         width="1600" height="1000"
+         alt="{% if is_fa %}ساختمان بتنی در برابر آسمان{% else %}Concrete building against the sky{% endif %}"
+         decoding="async">
+    <div class="shell">
+      <div class="page-media__panel reveal">
+        <h1 class="page-title" id="contact-title">{% if is_fa %}تماس با ما{% else %}Feel free to contact us{% endif %}</h1>
+        <p class="page-lead">
+          {% if is_fa %}تماکار در اختیار شماست.{% else %}Temakar is at your disposal.{% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper" aria-labelledby="contact-info-title">
+    <div class="shell grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
+      <div class="reveal">
+        <h2 class="h2" id="contact-info-title">{% tr "contact.info.title" %}</h2>
+
+        <dl class="info-list mt-8">
+          {% if site.phone or site.phone_secondary %}
+            <div>
+              <dt>{% tr "contact.phone" %}</dt>
+              <dd class="flex flex-col gap-1">
+                {% if site.phone %}<a href="tel:{{ site.phone|cut:' ' }}"><span class="ltr-text">{{ site.phone }}</span></a>{% endif %}
+                {% if site.phone_secondary %}<a href="tel:{{ site.phone_secondary|cut:' ' }}"><span class="ltr-text">{{ site.phone_secondary }}</span></a>{% endif %}
+              </dd>
+            </div>
+          {% endif %}
+          {% if site.email %}
+            <div>
+              <dt>{% tr "contact.email" %}</dt>
+              <dd><a href="mailto:{{ site.email }}"><span class="ltr-text">{{ site.email }}</span></a></dd>
+            </div>
+          {% endif %}
+          {% if site.address_fa or site.address_en %}
+            <div>
+              <dt>{% tr "contact.address" %}</dt>
+              <dd>{% if is_fa %}{{ site.address_fa|default:site.address_en|linebreaksbr }}{% else %}{{ site.address_en|linebreaksbr }}{% endif %}</dd>
+            </div>
+          {% endif %}
+          {% if social_links %}
+            <div>
+              <dt>{% tr "contact.social" %}</dt>
+              <dd class="flex flex-col gap-2">
+                {% for link in social_links %}
+                  <a href="{{ link.url }}" rel="noopener noreferrer nofollow" target="_blank">{% if is_fa %}{{ link.label_fa }}{% else %}{{ link.label_en }}{% endif %}</a>
+                {% endfor %}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+
+        {% map_embed_url site as embed_url %}
+        {% map_link_url site as external_map %}
+        {% if embed_url %}
+          <div class="contact-map">
+            <div class="map-frame">
+              <iframe
+                src="{{ embed_url }}"
+                title="{% if is_fa %}نقشهٔ موقعیت تماکار{% else %}Temakar location map{% endif %}"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            {% if external_map %}
+              <p class="mt-2">
+                <a class="text-link" href="{{ external_map }}" target="_blank" rel="noopener noreferrer">{% tr "contact.map.open" %}</a>
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="form-panel reveal">
+        <h2 class="h2 mb-6">{% tr "contact.form.title" %}</h2>
+        <div id="contact-form">
+          {% if success %}
+            {% include "contact/_success.html" %}
+          {% else %}
+            {% include "contact/_form.html" %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'vendor/htmx/htmx.min.js' %}" defer></script>
+{% endblock %}

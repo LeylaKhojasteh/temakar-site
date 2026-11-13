@@ -1,0 +1,48 @@
+{% load site_tags %}
+<header class="site-header" data-site-header>
+  <div class="shell header-inner">
+    <a class="wordmark" href="{% url 'core:home' %}">
+      {% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}
+      <span class="visually-hidden">{% if is_fa %}صفحهٔ اصلی{% else %}home{% endif %}</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="{% if is_fa %}ناوبری اصلی{% else %}Main navigation{% endif %}">
+      {% for item in nav_items %}
+        {% if item.url == services_url and service_menu %}
+          <div class="nav-dd" data-nav-dd>
+            <a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+            <button class="nav-dd__toggle" type="button" data-nav-dd-toggle
+                    aria-expanded="false" aria-controls="services-menu">
+              <span class="visually-hidden">{% if is_fa %}نمایش خدمات{% else %}Show services{% endif %}</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+                <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+              </svg>
+            </button>
+            <ul class="nav-dd__menu" id="services-menu" data-nav-dd-menu>
+              {% for service in service_menu %}
+                <li><a href="{{ service.get_absolute_url }}">{% pick service "title" %}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% else %}
+          <a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="header-actions">
+      {% if is_fa %}
+        <a class="lang-switch" href="{{ alt_paths.en }}" hreflang="en" lang="en">EN<span class="visually-hidden">, Switch to English</span></a>
+      {% else %}
+        <a class="lang-switch" href="{{ alt_paths.fa }}" hreflang="fa" lang="fa">FA<span class="visually-hidden">, تغییر به فارسی</span></a>
+      {% endif %}
+
+      <button class="menu-toggle" type="button" data-menu-open aria-expanded="false" aria-controls="mobile-menu">
+        <span class="visually-hidden">{% tr "nav.menu" %}</span>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
+          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

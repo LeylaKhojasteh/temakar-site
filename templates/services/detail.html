@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static site_tags %}
+
+{% block content %}
+  <section class="page-media" aria-labelledby="service-title">
+    {% if service.image %}
+      <img class="page-media__img" fetchpriority="high" src="{{ service.image.url }}"
+           width="{{ service.image_width }}" height="{{ service.image_height }}" alt="" decoding="async">
+    {% else %}
+      <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/vault-light.jpg' %}"
+           width="1600" height="1000" alt="" decoding="async">
+    {% endif %}
+
+    <div class="shell">
+      <div class="page-media__panel reveal">
+        <nav class="breadcrumb" aria-label="{% if is_fa %}مسیر صفحه{% else %}Breadcrumb{% endif %}">
+          <a href="{% url 'core:home' %}">{% tr "nav.home" %}</a>
+          <span class="breadcrumb__sep" aria-hidden="true">/</span>
+          <a href="{% url 'services:index' %}">{% tr "nav.services" %}</a>
+          <span class="breadcrumb__sep" aria-hidden="true">/</span>
+          <span aria-current="page">{% pick service "title" %}</span>
+        </nav>
+
+        <h1 class="page-title" id="service-title">{% pick service "title" %}</h1>
+        {% if service.summary_fa or service.summary_en %}
+          <p class="page-lead">{% pick service "summary" %}</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--paper" aria-labelledby="service-body-title">
+    <div class="shell">
+      <h2 class="visually-hidden" id="service-body-title">
+        {% if is_fa %}جزئیات خدمت{% else %}Service details{% endif %}
+      </h2>
+
+      <div class="detail-grid">
+        <div class="prose-temakar reveal">
+          {{ body_html|safe }}
+        </div>
+
+        <aside class="detail-aside reveal">
+          {% if toc %}
+            <nav class="toc" aria-labelledby="toc-title">
+              <p class="toc__title" id="toc-title">
+                {% if is_fa %}در این صفحه{% else %}On this page{% endif %}
+              </p>
+              <ol>
+                {% for item in toc %}
+                  <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+                {% endfor %}
+              </ol>
+            </nav>
+          {% endif %}
+
+          <a class="btn" href="{% url 'contact:page' %}">{% tr "cta.contact" %}</a>
+          <a class="text-link" href="{% url 'services:index' %}">{% tr "cta.back_to_services" %}</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {% if related_services %}
+    <section class="panel panel--paper-2 panel--tight" aria-labelledby="related-title">
+      <div class="shell">
+        <h2 class="h2 reveal mb-8" id="related-title">
+          {% if is_fa %}خدمات مرتبط{% else %}Related services{% endif %}
+        </h2>
+        <div>
+          {% for item in related_services %}
+            {% include "partials/service_row.html" with service=item %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

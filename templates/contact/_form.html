@@ -1,0 +1,83 @@
+{% load site_tags %}
+<form method="post"
+      action="{% url 'contact:page' %}"
+      hx-post="{% url 'contact:page' %}"
+      hx-target="#contact-form"
+      hx-swap="innerHTML"
+      hx-disabled-elt="find button[type=submit]"
+      novalidate>
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+    <div class="form-status" role="alert">
+      {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+    </div>
+  {% elif form.errors %}
+    <div class="form-status" role="alert">{% tr "form.error.summary" %}</div>
+  {% endif %}
+
+  <div class="grid gap-x-6 sm:grid-cols-2">
+    <div class="field reveal{% if form.name.errors %} field--error{% endif %}">
+      <label class="field-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+      {{ form.name }}
+      {% if form.name.errors %}
+        <p class="field-error" id="{{ form.name.auto_id }}_error">{{ form.name.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div class="field reveal{% if form.company.errors %} field--error{% endif %}">
+      <label class="field-label" for="{{ form.company.id_for_label }}">
+        {{ form.company.label }} <span class="field-hint">({% tr "form.optional" %})</span>
+      </label>
+      {{ form.company }}
+      {% if form.company.errors %}
+        <p class="field-error" id="{{ form.company.auto_id }}_error">{{ form.company.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div class="field reveal{% if form.email.errors %} field--error{% endif %}">
+      <label class="field-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+      {{ form.email }}
+      {% if form.email.errors %}
+        <p class="field-error" id="{{ form.email.auto_id }}_error">{{ form.email.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div class="field reveal{% if form.phone.errors %} field--error{% endif %}">
+      <label class="field-label" for="{{ form.phone.id_for_label }}">
+        {{ form.phone.label }} <span class="field-hint">({% tr "form.optional" %})</span>
+      </label>
+      {{ form.phone }}
+      {% if form.phone.errors %}
+        <p class="field-error" id="{{ form.phone.auto_id }}_error">{{ form.phone.errors.0 }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="field reveal{% if form.subject.errors %} field--error{% endif %}">
+    <label class="field-label" for="{{ form.subject.id_for_label }}">{{ form.subject.label }}</label>
+    {{ form.subject }}
+    {% if form.subject.errors %}
+      <p class="field-error" id="{{ form.subject.auto_id }}_error">{{ form.subject.errors.0 }}</p>
+    {% endif %}
+  </div>
+
+  <div class="field reveal{% if form.body.errors %} field--error{% endif %}">
+    <label class="field-label" for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
+    {{ form.body }}
+    {% if form.body.errors %}
+      <p class="field-error" id="{{ form.body.auto_id }}_error">{{ form.body.errors.0 }}</p>
+    {% endif %}
+  </div>
+
+  {# تلهٔ ربات: برای کاربر نامرئی است و باید خالی بماند. #}
+  <div class="honeypot" aria-hidden="true">
+    <label for="{{ form.website.id_for_label }}">Website</label>
+    {{ form.website }}
+  </div>
+
+  {{ form.token }}
+  {{ form.language }}
+
+  <button class="btn" type="submit">{% tr "cta.send_message" %}</button>
+</form>
