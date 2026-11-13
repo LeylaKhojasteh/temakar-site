@@ -1,0 +1,16 @@
+line-length = 100
+target-version = "py311"
+
+exclude = [
+    ".venv",
+    "node_modules",
+    "staticfiles",
+    "media",
+    "**/migrations/**",
+]
+
+[lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = [
+    "E501", # خطوط فارسی و HTML طولانی‌تر از سقف می‌شوند
+]

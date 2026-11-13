@@ -1,0 +1,38 @@
+# محیط و رمزها
+.env
+.env.*
+!.env.example
+
+# پایتون
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# جنگو
+db.sqlite3
+/staticfiles/
+/media/
+/locale/*/LC_MESSAGES/*.mo
+
+# ابزارهای فرانت
+node_modules/
+.taste-skill/
+
+# تست و خروجی
+/test-results/
+/playwright-report/
+/artifacts/
+
+# سیستم‌عامل و ویرایشگر
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# خروجی بیلد تیلویند (با npm run css:build ساخته می‌شود)
+/static/css/app.css
+
+# کلاستر محلی پستگرس برای توسعه (با scripts/dev-db.ps1 ساخته می‌شود)
+/.pgdata/

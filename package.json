@@ -1,0 +1,15 @@
+{
+  "name": "temakar-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ابزار ساخت استایل‌های سایت تماکار",
+  "scripts": {
+    "css:build": "tailwindcss -i ./assets/css/main.css -o ./static/css/app.css --minify",
+    "css:watch": "tailwindcss -i ./assets/css/main.css -o ./static/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "axe-core": "^4.14.0",
+    "tailwindcss": "^4.3.5"
+  }
+}
