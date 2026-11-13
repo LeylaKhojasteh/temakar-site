@@ -1,4 +1,4 @@
-{% load site_tags %}
+{% load static site_tags %}
 <section class="panel panel--navy sourcing" aria-labelledby="sourcing-title">
   <div class="shell">
     <div class="sourcing__head reveal">
@@ -12,79 +12,100 @@
       </p>
     </div>
 
-    <figure class="route reveal">
+    <figure class="route reveal" data-route>
       <div class="route__frame">
-        <svg class="route__scene" viewBox="0 0 1200 420" aria-hidden="true" focusable="false">
-          <g class="route__line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-            <path d="M20 344 H1180" opacity="0.45" />
-            <path d="M96 344 V118" />
-            <path d="M96 118 H216" />
-            <path d="M96 172 L170 118" opacity="0.55" />
-            <path d="M168 118 V236" opacity="0.55" />
-            <path d="M160 236 H176 M168 236 V262" opacity="0.55" />
-            <path d="M60 344 V306 H112 V344" opacity="0.7" />
-            <path d="M120 344 V318 H164 V344" opacity="0.7" />
-            <path d="M986 344 V252 H1086 V344" />
-            <path d="M1098 344 V300 H1150 V344" opacity="0.7" />
-            <path d="M1030 252 V168 H1058 V252" />
-            <path d="M1030 168 H1058" />
-            <path d="M900 318 H948" opacity="0.7" />
-            <circle cx="922" cy="318" r="24" opacity="0.7" />
-            <circle cx="922" cy="318" r="10" opacity="0.45" />
+        <img class="route__map" src="{% static 'img/supply-map.svg' %}" width="1200" height="647"
+             alt="{% if is_fa %}نقشهٔ اروپا، شمال آفریقا و خاورمیانه با مسیر تأمین از اروپا به تهران{% else %}Map of Europe, North Africa and the Middle East with the supply route from Europe to Tehran{% endif %}"
+             loading="lazy" decoding="async">
+
+        <svg class="route__overlay" viewBox="0 0 1200 647" aria-hidden="true" focusable="false">
+          <g class="route__track" fill="none" stroke-linecap="round">
+            <path class="route__main" d="M230 85 C 430 120, 640 300, 891 348" />
+            <g class="route__branches">
+              <path d="M891 348 C 930 330, 990 312, 1050 305" />
+              <path d="M891 348 C 930 370, 960 392, 990 400" />
+              <path d="M891 348 C 940 400, 1010 440, 1065 457" />
+            </g>
           </g>
 
-          <path class="route__path" id="supply-route" d="M250 262 C 420 190 560 300 700 250 S 860 210 940 218"
-                fill="none" stroke="var(--color-sky)" stroke-width="2" stroke-dasharray="10 12" />
-
-          <g class="route__nodes" fill="var(--color-sky)">
-            <rect x="242" y="254" width="16" height="16" />
-            <rect x="932" y="210" width="16" height="16" />
+          <g class="route__dots">
+            <circle cx="180" cy="76" r="4" />
+            <circle cx="255" cy="57" r="4" />
+            <circle cx="345" cy="114" r="4" />
+            <circle class="route__hub" cx="891" cy="348" r="6" />
+            <rect x="1045" y="300" width="10" height="10" />
+            <rect x="985" y="395" width="10" height="10" />
+            <rect x="1060" y="452" width="10" height="10" />
           </g>
 
-          <circle class="route__pulse" r="5" fill="var(--color-paper)">
-            <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#supply-route" />
+          <circle class="route__pulse" r="4.5">
+            <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.34;1" calcMode="linear">
+              <mpath href="#route-main-path" />
             </animateMotion>
           </circle>
+          <path id="route-main-path" d="M230 85 C 430 120, 640 300, 891 348" fill="none" stroke="none" />
+
+          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="2.4s" dur="0.01s" fill="freeze" />
+            <animateMotion dur="7s" begin="2.4s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
+              <mpath href="#route-branch-a" />
+            </animateMotion>
+          </circle>
+          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="2.55s" dur="0.01s" fill="freeze" />
+            <animateMotion dur="7s" begin="2.55s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
+              <mpath href="#route-branch-b" />
+            </animateMotion>
+          </circle>
+          <circle class="route__pulse route__pulse--branch" r="3.5" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="2.7s" dur="0.01s" fill="freeze" />
+            <animateMotion dur="7s" begin="2.7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.22;1" calcMode="linear">
+              <mpath href="#route-branch-c" />
+            </animateMotion>
+          </circle>
+          <path id="route-branch-a" d="M891 348 C 930 330, 990 312, 1050 305" fill="none" stroke="none" />
+          <path id="route-branch-b" d="M891 348 C 930 370, 960 392, 990 400" fill="none" stroke="none" />
+          <path id="route-branch-c" d="M891 348 C 940 400, 1010 440, 1065 457" fill="none" stroke="none" />
         </svg>
-
-        <div class="route__notes">
-          <div class="route__note route__note--source">
-            <h3>{% if is_fa %}منبع در اروپا{% else %}The source in Europe{% endif %}</h3>
-            <p>
-              {% if is_fa %}
-                درزهای انبساط فلزی، سیستم‌های الکتروهیدرولیک، درایو مکانیکی و حفاظت غیرفعال آتش.
-              {% else %}
-                Metallic expansion joints, electro-hydraulic systems, mechanical drives and passive fire protection.
-              {% endif %}
-            </p>
-          </div>
-
-          <div class="route__note route__note--middle">
-            <h3>{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
-            <p>
-              {% if is_fa %}
-                بررسی مشخصات فنی، انتخاب منبع مناسب، معرفی سازنده و همراهی تا خرید.
-              {% else %}
-                Technical review, choosing the right source, introducing the manufacturer and support through the purchase.
-              {% endif %}
-            </p>
-          </div>
-
-          <div class="route__note route__note--target">
-            <h3>{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
-            <p>
-              {% if is_fa %}
-                نیروگاه، تأسیسات نفت و گاز، پتروشیمی و کارخانه‌های تولیدی.
-              {% else %}
-                Power plants, oil and gas facilities, petrochemical plants and manufacturing companies.
-              {% endif %}
-            </p>
-          </div>
-        </div>
       </div>
-      <figcaption class="route__caption">
-        {% if is_fa %}خرید مستقیم از منبع، بدون پرداخت به ما.{% else %}A direct purchase from the source, with no payment to us.{% endif %}
+
+      <figcaption class="route__legend">
+        <div class="route__item" data-stop="source" tabindex="0">
+          <h3>{% if is_fa %}منبع در اروپا{% else %}The source in Europe{% endif %}</h3>
+          <p>
+            {% if is_fa %}
+              درزهای انبساط فلزی، سیستم‌های الکتروهیدرولیک، درایو مکانیکی و حفاظت غیرفعال آتش.
+            {% else %}
+              Metallic expansion joints, electro-hydraulic systems, mechanical drives and passive fire protection.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="route__item" data-stop="middle" tabindex="0">
+          <h3>{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
+          <p>
+            {% if is_fa %}
+              بررسی مشخصات فنی، انتخاب منبع مناسب، معرفی سازنده و همراهی تا خرید.
+            {% else %}
+              Technical review, choosing the right source, introducing the manufacturer and support through the purchase.
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="route__item" data-stop="target" tabindex="0">
+          <h3>{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
+          <p>
+            {% if is_fa %}
+              نیروگاه، تأسیسات نفت و گاز، پتروشیمی و کارخانه‌های تولیدی.
+            {% else %}
+              Power plants, oil and gas facilities, petrochemical plants and manufacturing companies.
+            {% endif %}
+          </p>
+        </div>
+
+        <p class="route__note">
+          {% if is_fa %}خرید مستقیم از منبع، بدون پرداخت به ما.{% else %}A direct purchase from the source, with no payment to us.{% endif %}
+        </p>
       </figcaption>
     </figure>
   </div>

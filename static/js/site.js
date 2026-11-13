@@ -210,6 +210,24 @@
     }
   }
 
+  // نقشهٔ مسیر تأمین: هاور روی هر ایستگاه، همان بخش مسیر را روشن می‌کند.
+  var routeFigure = document.querySelector("[data-route]");
+  if (routeFigure) {
+    var routeItems = routeFigure.querySelectorAll(".route__item");
+    Array.prototype.forEach.call(routeItems, function (item) {
+      var focus = function () {
+        routeFigure.setAttribute("data-focus", item.getAttribute("data-stop"));
+      };
+      var blur = function () {
+        routeFigure.removeAttribute("data-focus");
+      };
+      item.addEventListener("pointerenter", focus);
+      item.addEventListener("pointerleave", blur);
+      item.addEventListener("focusin", focus);
+      item.addEventListener("focusout", blur);
+    });
+  }
+
   if (!menu || !openButton) {
     return;
   }
