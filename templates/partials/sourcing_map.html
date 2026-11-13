@@ -1,0 +1,92 @@
+{% load site_tags %}
+<section class="panel panel--ink sourcing" aria-labelledby="sourcing-title">
+  <div class="shell">
+    <h2 class="h2 reveal" id="sourcing-title">
+      {% if is_fa %}مسیر تأمین{% else %}The supply route{% endif %}
+    </h2>
+    <p class="lead mt-4 max-w-[58ch] text-paper/80 reveal">
+      {% if is_fa %}
+        از منبع تأمین تا سایت شما؛ نیاز را می‌خوانیم، منبع را پیدا می‌کنیم و تا خرید همراهی می‌کنیم.
+      {% else %}
+        From the source to your site: we read the need, find the source and stay with you until the purchase.
+      {% endif %}
+    </p>
+
+    <ol class="sourcing__flow">
+      <li class="sourcing__station reveal">
+        <span class="sourcing__node" aria-hidden="true"></span>
+        <h3 class="sourcing__name">{% if is_fa %}منبع{% else %}The source{% endif %}</h3>
+        <p class="sourcing__text">
+          {% if is_fa %}
+            سازندگان اروپایی که سال‌ها با آن‌ها کار کرده‌ایم.
+          {% else %}
+            European manufacturers we have worked with for years.
+          {% endif %}
+        </p>
+        <ul class="sourcing__list">
+          {% if is_fa %}
+            <li>درزهای انبساط فلزی</li>
+            <li>سیستم‌های الکتروهیدرولیک</li>
+            <li>درایوهای مکانیکی</li>
+            <li>حفاظت غیرفعال آتش</li>
+          {% else %}
+            <li>Metallic expansion joints</li>
+            <li>Electro-hydraulic systems</li>
+            <li>Mechanical drives</li>
+            <li>Passive fire protection</li>
+          {% endif %}
+        </ul>
+      </li>
+
+      <li class="sourcing__station reveal">
+        <span class="sourcing__node" aria-hidden="true"></span>
+        <h3 class="sourcing__name">{% if is_fa %}تماکار، تهران{% else %}Temakar, Tehran{% endif %}</h3>
+        <p class="sourcing__text">
+          {% if is_fa %}
+            نیاز را می‌خوانیم، منبع مناسب را انتخاب می‌کنیم و معرفی می‌کنیم.
+          {% else %}
+            We read the need, choose the right source and introduce it.
+          {% endif %}
+        </p>
+        <ul class="sourcing__list">
+          {% if is_fa %}
+            <li>بررسی مشخصات فنی</li>
+            <li>تطبیق با استانداردها</li>
+            <li>معرفی سازنده</li>
+            <li>همراهی تا خرید</li>
+          {% else %}
+            <li>Technical review</li>
+            <li>Standards matching</li>
+            <li>Manufacturer introduction</li>
+            <li>Support through the purchase</li>
+          {% endif %}
+        </ul>
+      </li>
+
+      <li class="sourcing__station reveal">
+        <span class="sourcing__node" aria-hidden="true"></span>
+        <h3 class="sourcing__name">{% if is_fa %}سایت شما{% else %}Your site{% endif %}</h3>
+        <p class="sourcing__text">
+          {% if is_fa %}
+            خرید مستقیم از منبع، بدون پرداخت به ما.
+          {% else %}
+            A direct purchase from the source, with no payment to us.
+          {% endif %}
+        </p>
+        <ul class="sourcing__list">
+          {% if is_fa %}
+            <li>نیروگاه‌ها</li>
+            <li>تأسیسات نفت و گاز</li>
+            <li>پتروشیمی</li>
+            <li>کارخانه‌های تولیدی</li>
+          {% else %}
+            <li>Power plants</li>
+            <li>Oil and gas facilities</li>
+            <li>Petrochemical plants</li>
+            <li>Manufacturing companies</li>
+          {% endif %}
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>

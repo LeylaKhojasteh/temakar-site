@@ -2062,3 +2062,104 @@ html[lang="fa"] .prose-temakar {
     text-decoration: underline;
   }
 }
+
+
+/* ---------- مسیر تأمین: نقشهٔ سه‌ایستگاهی ---------- */
+
+.sourcing__flow {
+  position: relative;
+  display: grid;
+  gap: 36px;
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sourcing__station {
+  position: relative;
+  padding-block-start: 34px;
+}
+
+.sourcing__node {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-sky) 16%, transparent);
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.sourcing__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-paper);
+  transition: color 200ms ease;
+}
+
+.sourcing__text {
+  margin: 12px 0 0;
+  max-width: 34ch;
+  font-size: var(--t-small);
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-paper) 80%, transparent);
+}
+
+.sourcing__list {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--t-small);
+  color: color-mix(in srgb, var(--color-paper) 72%, transparent);
+}
+
+.sourcing__list li {
+  position: relative;
+  padding-inline-start: 16px;
+}
+
+.sourcing__list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-sky);
+}
+
+.sourcing__station:hover .sourcing__name,
+.sourcing__station:focus-within .sourcing__name {
+  color: var(--color-sky);
+}
+
+.sourcing__station:hover .sourcing__node,
+.sourcing__station:focus-within .sourcing__node {
+  background-color: var(--color-sky);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-sky) 28%, transparent);
+}
+
+@media (min-width: 900px) {
+  .sourcing__flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+  }
+
+  .sourcing__flow::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 6px;
+    inset-inline: 8px;
+    height: 2px;
+    background-color: color-mix(in srgb, var(--color-sky) 30%, transparent);
+  }
+
+  .sourcing__station {
+    padding-block-start: 38px;
+  }
+}
