@@ -33,7 +33,7 @@ def who_we_are(request):
 
 def favicon(request):
     """مرورگرها همیشه /favicon.ico را می‌خواهند؛ به فایل SVG هدایت می‌شود."""
-    return redirect(static("img/favicon.svg"), permanent=True)
+    return redirect(static("img/favicon-32.png"), permanent=True)
 
 
 def page_not_found(request, exception=None):

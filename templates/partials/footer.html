@@ -1,9 +1,12 @@
-{% load site_tags %}
+{% load static site_tags %}
 <footer class="site-footer">
   <div class="shell">
     <div class="footer-grid">
       <div>
-        <a class="wordmark" href="{% url 'core:home' %}">{% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}</a>
+        <a class="wordmark" href="{% url 'core:home' %}">
+          <img class="wordmark__img" src="{% static 'img/brand/logo-light.png' %}" width="280" height="300"
+               alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}" loading="lazy">
+        </a>
         <p class="text-small mt-4 max-w-[34ch] text-paper/80">
           {% if is_fa %}تماکار در اختیار شماست؛ شریک حرفه‌ای و قابل اتکا.{% else %}Temakar is at your disposal. Professional and reliable partner.{% endif %}
         </p>
