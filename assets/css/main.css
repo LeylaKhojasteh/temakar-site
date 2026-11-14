@@ -53,7 +53,7 @@
 :root {
   --font-display: "Epilogue", "Segoe UI", sans-serif;
   --font-text: "Epilogue", "Segoe UI", sans-serif;
-  --header-height: 88px;
+  --header-height: 72px;
   --gutter: clamp(20px, 4vw, 56px);
   --max-width: 1480px;
 
