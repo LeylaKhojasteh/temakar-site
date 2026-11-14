@@ -2754,8 +2754,19 @@ html[dir="ltr"] .hero-media__shade {
   animation: flow-side-breathe 8.5s ease-in-out infinite alternate-reverse;
 }
 
+.flow-grid__wave {
+  animation: flow-grid-travel 6s linear infinite;
+}
 
+.flow-dot {
+  animation: flow-dot-twinkle 4s ease-in-out infinite alternate;
+}
 
+.flow-dot--2 { animation-delay: -1.3s; }
+.flow-dot--3 { animation-delay: -2.4s; }
+.flow-dot--4 { animation-delay: -0.7s; }
+.flow-dot--5 { animation-delay: -3.1s; }
+.flow-dot--6 { animation-delay: -1.9s; }
 
 @keyframes flow-breathe {
   from { opacity: 0.6; }
@@ -2772,13 +2783,22 @@ html[dir="ltr"] .hero-media__shade {
   to { opacity: 0.8; }
 }
 
+@keyframes flow-grid-travel {
+  from { transform: translateX(-420px); }
+  to { transform: translateX(1500px); }
+}
 
+@keyframes flow-dot-twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 0.9; }
+}
 
 @media (max-width: 720px) {
   .flow-main__wide { display: none; }
   .flow-main__mid { opacity: 0.7; }
   .flow-side__left-glow, .flow-side__right-glow { opacity: 0.4; }
   .flow-bloom--slow { display: none; }
+  .flow-grid__wave { opacity: 0.3; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2790,9 +2810,16 @@ html[dir="ltr"] .hero-media__shade {
   .flow-side__glow,
   .flow-side__left-glow,
   .flow-side__right-glow,
+  .flow-grid__wave,
+  .flow-dot {
+    animation: none !important;
+  }
 
   .flow-bloom {
     display: none;
   }
 
+  .flow-grid__wave {
+    opacity: 0.2;
+  }
 }

@@ -80,12 +80,6 @@
           <filter id="flow-blur-sm" x="-80%" y="-300%" width="260%" height="700%">
             <feGaussianBlur stdDeviation="2.6" />
           </filter>
-          <filter id="flow-blur-soft" x="-50%" y="-220%" width="200%" height="540%">
-            <feGaussianBlur stdDeviation="11" />
-          </filter>
-          <filter id="flow-blur-core" x="-100%" y="-400%" width="300%" height="900%">
-            <feGaussianBlur stdDeviation="1.1" />
-          </filter>
 
           <path id="flow-path-main" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929" />
           <path id="flow-path-left" d="M 109 477 C 117 454 370 439 603 440" />
@@ -93,22 +87,27 @@
         </defs>
 
         <!-- موج نور روی شبکهٔ کف -->
+        <g class="flow-grid" mask="url(#grid-mask)">
+          <rect class="flow-grid__wave" x="0" y="600" width="1752" height="297" fill="url(#grid-wave-grad)"
+                filter="url(#flow-blur-lg)" opacity=".5" />
+        </g>
+
         <!-- هالهٔ پایه: همیشه دیده می‌شود -->
         <path class="flow-base" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929"
-              fill="none" stroke="#ffb35c" stroke-width="30" stroke-linecap="round"
-              filter="url(#flow-blur-soft)" opacity=".34" />
+              fill="none" stroke="#ffb35c" stroke-width="54" stroke-linecap="round"
+              filter="url(#flow-blur-lg)" opacity=".3" />
 
         <!-- جریان اصلی: گرادیان‌های متحرک روی همان مسیر -->
         <g class="flow-main">
           <path class="flow-main__wide" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929"
-                fill="none" stroke="url(#flow-main-a)" stroke-width="16" stroke-linecap="round"
-                filter="url(#flow-blur-md)" opacity=".85" />
+                fill="none" stroke="url(#flow-main-a)" stroke-width="26" stroke-linecap="round"
+                filter="url(#flow-blur-md)" opacity=".8" />
           <path class="flow-main__mid" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929"
-                fill="none" stroke="url(#flow-main-b)" stroke-width="7" stroke-linecap="round"
-                filter="url(#flow-blur-sm)" opacity=".9" />
+                fill="none" stroke="url(#flow-main-b)" stroke-width="13" stroke-linecap="round"
+                filter="url(#flow-blur-md)" opacity=".85" />
           <path class="flow-main__core" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929"
-                fill="none" stroke="url(#flow-main-c)" stroke-width="2.6" stroke-linecap="round"
-                filter="url(#flow-blur-core)" opacity="1" />
+                fill="none" stroke="url(#flow-main-c)" stroke-width="4.5" stroke-linecap="round"
+                filter="url(#flow-blur-sm)" opacity=".95" />
         </g>
 
         <!-- شکوفه‌های کشیده که در امتداد مسیر می‌روند -->
@@ -127,20 +126,27 @@
 
         <!-- قوس‌های فرعی چپ و راست -->
         <g class="flow-side">
-          <path class="flow-side__left-glow" d="M 72 486 C 110 448 372 436 660 438" fill="none"
-                stroke="url(#flow-left)" stroke-width="40" stroke-linecap="round"
-                filter="url(#flow-blur-soft)" opacity=".6" />
-          <path class="flow-side__left-line" d="M 72 486 C 110 448 372 436 660 438" fill="none"
-                stroke="#ffd9a8" stroke-width="2.4" stroke-linecap="round" opacity=".38" />
-          <path class="flow-side__right-glow" d="M 1300 470 C 1462 462 1670 512 1830 538" fill="none"
-                stroke="url(#flow-right)" stroke-width="34" stroke-linecap="round"
-                filter="url(#flow-blur-soft)" opacity=".5" />
-          <path class="flow-side__right-line" d="M 1300 470 C 1462 462 1670 512 1830 538" fill="none"
-                stroke="#cfeeff" stroke-width="2" stroke-linecap="round" opacity=".35" />
+          <path class="flow-side__left-glow" d="M 109 477 C 117 454 370 439 603 440" fill="none"
+                stroke="url(#flow-left)" stroke-width="18" stroke-linecap="round"
+                filter="url(#flow-blur-md)" opacity=".65" />
+          <path class="flow-side__left-line" d="M 109 477 C 117 454 370 439 603 440" fill="none"
+                stroke="#ffd9a8" stroke-width="1.6" stroke-linecap="round" opacity=".5" />
+          <path class="flow-side__right-glow" d="M 1330 474 C 1455 465 1645 501 1780 515" fill="none"
+                stroke="url(#flow-right)" stroke-width="14" stroke-linecap="round"
+                filter="url(#flow-blur-md)" opacity=".55" />
+          <path class="flow-side__right-line" d="M 1330 474 C 1455 465 1645 501 1780 515" fill="none"
+                stroke="#cfeeff" stroke-width="1.3" stroke-linecap="round" opacity=".45" />
         </g>
 
         <!-- جرقه‌های ریز روی شبکه -->
-        
+        <g class="flow-dots" fill="#d6f1ff" filter="url(#flow-blur-sm)">
+          <circle class="flow-dot flow-dot--1" cx="430" cy="770" r="2.2" />
+          <circle class="flow-dot flow-dot--2" cx="640" cy="815" r="1.9" />
+          <circle class="flow-dot flow-dot--3" cx="910" cy="735" r="2.1" />
+          <circle class="flow-dot flow-dot--4" cx="1120" cy="860" r="2.4" />
+          <circle class="flow-dot flow-dot--5" cx="1300" cy="775" r="2" />
+          <circle class="flow-dot flow-dot--6" cx="1480" cy="820" r="2.2" />
+        </g>
       </svg>
 
       <div class="hero-media__shade"></div>
