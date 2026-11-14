@@ -2358,3 +2358,240 @@ html[dir="ltr"] .hero-media__scrim {
 .skip-link:focus-visible {
   transform: translate(-50%, 0);
 }
+
+/* ---------- هرو: پارچهٔ انرژی، شبکهٔ دیجیتال و نورهای ثانویه ---------- */
+
+.hero-media__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to left,
+      rgba(4, 14, 24, 0.92) 0%,
+      rgba(4, 14, 24, 0.62) 30%,
+      rgba(4, 14, 24, 0.16) 58%,
+      rgba(4, 14, 24, 0) 78%
+    ),
+    linear-gradient(to top, rgba(4, 14, 24, 0.5) 0%, rgba(4, 14, 24, 0) 42%);
+}
+
+html[dir="ltr"] .hero-media__shade {
+  background:
+    linear-gradient(
+      to right,
+      rgba(4, 14, 24, 0.92) 0%,
+      rgba(4, 14, 24, 0.62) 30%,
+      rgba(4, 14, 24, 0.16) 58%,
+      rgba(4, 14, 24, 0) 78%
+    ),
+    linear-gradient(to top, rgba(4, 14, 24, 0.5) 0%, rgba(4, 14, 24, 0) 42%);
+}
+
+.hero-media__veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 80% at 82% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
+}
+
+html[dir="ltr"] .hero-media__veil {
+  background: radial-gradient(70% 80% at 18% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
+}
+
+.hero-grid {
+  animation: hero-grid-breathe 11s ease-in-out infinite alternate;
+}
+
+.hero-dot {
+  animation: hero-twinkle 5.5s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-dot--2 {
+  animation-delay: -1.4s;
+}
+
+.hero-dot--3 {
+  animation-delay: -2.6s;
+}
+
+.hero-dot--4 {
+  animation-delay: -3.1s;
+}
+
+.hero-dot--5 {
+  animation-delay: -0.8s;
+}
+
+.hero-dot--6 {
+  animation-delay: -4.2s;
+}
+
+.hero-dot--7 {
+  animation-delay: -1.9s;
+}
+
+.hero-source {
+  animation: hero-source-pulse 8s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-glow__base {
+  animation: hero-breathe 9s ease-in-out infinite alternate;
+}
+
+.hero-glow__bloom {
+  animation: hero-breathe 7s ease-in-out infinite alternate-reverse;
+}
+
+.hero-glow__run {
+  animation: hero-run 16s linear infinite;
+}
+
+.hero-arc {
+  animation: hero-drift 20s ease-in-out infinite alternate;
+}
+
+.hero-arc--2 {
+  animation-delay: -6s;
+  animation-duration: 26s;
+}
+
+.hero-orbit {
+  animation: hero-shimmer 14s ease-in-out infinite alternate;
+}
+
+.hero-orbit--2 {
+  animation-delay: -5s;
+  animation-duration: 19s;
+}
+
+.hero-streak {
+  animation: hero-streak 13s ease-in-out infinite alternate;
+}
+
+.hero-streak--r {
+  animation-delay: -4s;
+}
+
+.hero-streak--l2 {
+  animation-delay: -7s;
+}
+
+@keyframes hero-grid-breathe {
+  from {
+    opacity: 0.62;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-twinkle {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-source-pulse {
+  from {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes hero-breathe {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 0.78;
+  }
+}
+
+@keyframes hero-run {
+  from {
+    stroke-dashoffset: 550;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    opacity: 0.1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0.26;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes hero-shimmer {
+  from {
+    opacity: 0.14;
+  }
+  to {
+    opacity: 0.34;
+  }
+}
+
+@keyframes hero-streak {
+  from {
+    opacity: 0.06;
+  }
+  to {
+    opacity: 0.22;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-glow__base {
+    display: none;
+  }
+
+  .hero-glow__bloom {
+    opacity: 0.45;
+  }
+
+  .hero-glow__run {
+    opacity: 0.6;
+  }
+
+  .hero-arcs {
+    opacity: 0.7;
+  }
+
+  .hero-media__veil {
+    background: radial-gradient(90% 70% at 70% 30%, rgba(4, 14, 24, 0.55), rgba(4, 14, 24, 0) 65%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grid,
+  .hero-dot,
+  .hero-source,
+  .hero-glow__base,
+  .hero-glow__bloom,
+  .hero-glow__run,
+  .hero-arc,
+  .hero-orbit,
+  .hero-streak {
+    animation: none !important;
+  }
+
+  .hero-glow__run {
+    stroke-dasharray: none;
+    opacity: 0.35;
+  }
+}

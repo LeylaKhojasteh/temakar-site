@@ -2,45 +2,133 @@
 {% load static site_tags %}
 
 {% block content %}
-  {# هرو: پالایشگاه در پس‌زمینه، هالهٔ نور و شبکهٔ آبی روی آن، متن‌های سایت روی لایهٔ خوانا #}
+  {# هرو: پالایشگاه ثابت، پارچهٔ انرژی حجیم و شبکهٔ دیجیتال؛ متن‌ها روی لایهٔ خوانا #}
   <section class="hero hero--media" aria-labelledby="hero-title">
     <div class="hero-media" aria-hidden="true">
       <img class="hero-media__image" src="{% static 'img/hero/refinery.webp' %}" width="1752" height="897"
            alt="" fetchpriority="high" decoding="async">
 
+      <div class="hero-media__shade"></div>
+
       <svg class="hero-media__effects" viewBox="0 0 1752 897" preserveAspectRatio="xMidYMid slice"
            aria-hidden="true" focusable="false">
         <defs>
-          <filter id="hero-glow" x="-40%" y="-250%" width="180%" height="600%">
-            <feGaussianBlur stdDeviation="7" />
-          </filter>
-          <linearGradient id="hero-grid-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#6db6ff" stop-opacity="0" />
-            <stop offset=".4" stop-color="#6db6ff" stop-opacity=".8" />
-            <stop offset="1" stop-color="#6db6ff" stop-opacity=".26" />
+          <linearGradient id="hero-glow-ramp" gradientUnits="userSpaceOnUse" x1="620" y1="430" x2="1720" y2="800">
+            <stop offset="0" stop-color="#ffc46b" stop-opacity="0" />
+            <stop offset=".22" stop-color="#ffc46b" stop-opacity=".95" />
+            <stop offset=".58" stop-color="#ffa348" stop-opacity=".85" />
+            <stop offset=".86" stop-color="#ff8f3d" stop-opacity=".55" />
+            <stop offset="1" stop-color="#ff7a2f" stop-opacity="0" />
           </linearGradient>
-          <clipPath id="hero-grid-clip">
-            <path d="M 470 535 H 1150 L 1600 897 H 70 Z" />
-          </clipPath>
+
+          <radialGradient id="hero-source-ramp" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff1cf" stop-opacity=".95" />
+            <stop offset=".42" stop-color="#ffc06a" stop-opacity=".6" />
+            <stop offset="1" stop-color="#ff9a3c" stop-opacity="0" />
+          </radialGradient>
+
+          <linearGradient id="hero-grid-mask" x1="0" y1="500" x2="0" y2="897" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff" stop-opacity="0" />
+            <stop offset=".3" stop-color="#fff" stop-opacity=".55" />
+            <stop offset=".7" stop-color="#fff" stop-opacity=".95" />
+            <stop offset="1" stop-color="#fff" stop-opacity="1" />
+          </linearGradient>
+
+          <linearGradient id="hero-grid-stroke" x1="0" y1="500" x2="0" y2="897" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6db6ff" stop-opacity="0" />
+            <stop offset=".5" stop-color="#7cc3ff" stop-opacity=".55" />
+            <stop offset="1" stop-color="#a8dcff" stop-opacity=".8" />
+          </linearGradient>
+
+          <mask id="hero-grid-fade">
+            <rect x="0" y="500" width="1752" height="397" fill="url(#hero-grid-mask)" />
+          </mask>
+
+          <filter id="hero-blur-xl" x="-60%" y="-120%" width="220%" height="340%">
+            <feGaussianBlur stdDeviation="38" />
+          </filter>
+          <filter id="hero-blur-lg" x="-60%" y="-160%" width="220%" height="420%">
+            <feGaussianBlur stdDeviation="17" />
+          </filter>
+          <filter id="hero-blur-md" x="-80%" y="-200%" width="260%" height="500%">
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+          <filter id="hero-blur-sm" x="-80%" y="-200%" width="260%" height="500%">
+            <feGaussianBlur stdDeviation="1.8" />
+          </filter>
+          <filter id="hero-dot-glow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
-        <g class="hero-grid" clip-path="url(#hero-grid-clip)" stroke="url(#hero-grid-fade)" stroke-width="1.5" fill="none">
-          <path d="M 0 555 H 1752 M 0 578 H 1752 M 0 607 H 1752 M 0 641 H 1752 M 0 681 H 1752 M 0 730 H 1752 M 0 790 H 1752 M 0 865 H 1752" />
-          <path d="M 805 530 L 10 897 M 805 530 L 190 897 M 805 530 L 370 897 M 805 530 L 550 897 M 805 530 L 730 897 M 805 530 L 910 897 M 805 530 L 1090 897 M 805 530 L 1270 897 M 805 530 L 1450 897 M 805 530 L 1630 897" />
+        <!-- سطح دیجیتال کف: خطوط پرسپکتیو، محو و درخشان -->
+        <g class="hero-grid" mask="url(#hero-grid-fade)">
+          <g class="hero-grid__bloom" stroke="url(#hero-grid-stroke)" stroke-width="2.4" fill="none"
+             filter="url(#hero-blur-sm)" opacity=".55">
+            <path d="M 0 548 H 1752 M 0 574 H 1752 M 0 606 H 1752 M 0 646 H 1752 M 0 696 H 1752 M 0 758 H 1752 M 0 832 H 1752 M 0 888 H 1752" />
+            <path d="M 805 520 L 10 897 M 805 520 L 190 897 M 805 520 L 370 897 M 805 520 L 550 897 M 805 520 L 730 897 M 805 520 L 910 897 M 805 520 L 1090 897 M 805 520 L 1270 897 M 805 520 L 1450 897 M 805 520 L 1630 897 M 805 520 L 1745 897" />
+          </g>
+          <g class="hero-grid__line" stroke="url(#hero-grid-stroke)" stroke-width="1" fill="none" opacity=".8">
+            <path d="M 0 548 H 1752 M 0 574 H 1752 M 0 606 H 1752 M 0 646 H 1752 M 0 696 H 1752 M 0 758 H 1752 M 0 832 H 1752 M 0 888 H 1752" />
+            <path d="M 805 520 L 10 897 M 805 520 L 190 897 M 805 520 L 370 897 M 805 520 L 550 897 M 805 520 L 730 897 M 805 520 L 910 897 M 805 520 L 1090 897 M 805 520 L 1270 897 M 805 520 L 1450 897 M 805 520 L 1630 897 M 805 520 L 1745 897" />
+          </g>
+          <g class="hero-grid__dots" fill="#bfe4ff" filter="url(#hero-dot-glow)">
+            <circle class="hero-dot hero-dot--1" cx="370" cy="696" r="2.6" />
+            <circle class="hero-dot hero-dot--2" cx="730" cy="758" r="2.2" />
+            <circle class="hero-dot hero-dot--3" cx="1090" cy="696" r="2.4" />
+            <circle class="hero-dot hero-dot--4" cx="550" cy="832" r="2.8" />
+            <circle class="hero-dot hero-dot--5" cx="1270" cy="832" r="2.4" />
+            <circle class="hero-dot hero-dot--6" cx="910" cy="888" r="2.6" />
+            <circle class="hero-dot hero-dot--7" cx="1450" cy="758" r="2.2" />
+          </g>
         </g>
 
-        <path class="hero-light hero-light--track" d="M 625 470 C 815 520 1120 680 1810 830" />
-        <path class="hero-light hero-light--glow" pathLength="100" d="M 625 470 C 815 520 1120 680 1810 830" />
-        <path class="hero-light hero-light--core" pathLength="100" d="M 625 470 C 815 520 1120 680 1810 830" />
+        <!-- منبع نور: هستهٔ گرم نزدیک مرکز پالایشگاه -->
+        <ellipse class="hero-source" cx="660" cy="452" rx="150" ry="108" fill="url(#hero-source-ramp)" />
 
-        <path class="hero-light hero-light--track" d="M 612 487 C 815 548 1150 715 1810 858" />
-        <path class="hero-light hero-light--glow hero-light--second" pathLength="100" d="M 612 487 C 815 548 1150 715 1810 858" />
-        <path class="hero-light hero-light--core hero-light--second" pathLength="100" d="M 612 487 C 815 548 1150 715 1810 858" />
+        <!-- نوار انرژی اصلی: پایه، شکوفه، هسته، و درخشش متحرک -->
+        <g class="hero-glow">
+          <path class="hero-glow__base" d="M 640 430 C 790 500 900 560 1050 620 C 1230 690 1450 745 1730 812"
+                fill="none" stroke="#ffb35c" stroke-width="86" stroke-linecap="round" filter="url(#hero-blur-xl)" opacity=".38" />
+          <path class="hero-glow__bloom" d="M 640 430 C 790 500 900 560 1050 620 C 1230 690 1450 745 1730 812"
+                fill="none" stroke="url(#hero-glow-ramp)" stroke-width="34" stroke-linecap="round" filter="url(#hero-blur-lg)" opacity=".62" />
+          <path class="hero-glow__core" d="M 640 430 C 790 500 900 560 1050 620 C 1230 690 1450 745 1730 812"
+                fill="none" stroke="#ffe9c4" stroke-width="6.5" stroke-linecap="round" filter="url(#hero-blur-md)" opacity=".85" />
+          <path class="hero-glow__run" d="M 640 430 C 790 500 900 560 1050 620 C 1230 690 1450 745 1730 812"
+                fill="none" stroke="#fff6e2" stroke-width="13" stroke-linecap="round" filter="url(#hero-blur-md)"
+                stroke-dasharray="130 420" opacity=".9" />
+        </g>
 
-        <path class="hero-light hero-light--core hero-light--blue" pathLength="100" d="M 620 482 C 845 554 1215 730 1800 846" />
+        <!-- رگه‌های آبی سرد در دل هاله -->
+        <g class="hero-cool" fill="none" stroke="#9fd6ff" stroke-linecap="round">
+          <path d="M 700 470 C 850 540 980 590 1120 640" stroke-width="2.2" opacity=".45" filter="url(#hero-blur-md)" />
+          <path d="M 760 520 C 900 585 1040 645 1200 690" stroke-width="1.6" opacity=".3" filter="url(#hero-blur-md)" />
+        </g>
+
+        <!-- نورهای ثانویه: قوس‌ها، مدارها و رگه‌های محو در سراسر صحنه -->
+        <g class="hero-arcs" fill="none" stroke-linecap="round">
+          <path class="hero-arc hero-arc--1" d="M 220 508 Q 700 388 1180 470" stroke="#ffcf8a" stroke-width="3"
+                opacity=".22" filter="url(#hero-blur-lg)" />
+          <path class="hero-arc hero-arc--2" d="M 120 560 Q 720 430 1300 520" stroke="#ffb867" stroke-width="2.2"
+                opacity=".16" filter="url(#hero-blur-lg)" />
+          <ellipse class="hero-orbit hero-orbit--1" cx="830" cy="470" rx="430" ry="96" stroke="#ffcf8a"
+                   stroke-width="1.4" stroke-dasharray="2 16" opacity=".3" filter="url(#hero-blur-sm)" />
+          <ellipse class="hero-orbit hero-orbit--2" cx="880" cy="500" rx="610" ry="132" stroke="#9fd6ff"
+                   stroke-width="1.2" stroke-dasharray="1 22" opacity=".2" filter="url(#hero-blur-sm)" />
+          <path class="hero-streak hero-streak--l" d="M 90 300 L 330 250" stroke="#ffd79b" stroke-width="2"
+                opacity=".18" filter="url(#hero-blur-md)" />
+          <path class="hero-streak hero-streak--r" d="M 1450 230 L 1700 300" stroke="#ffc98d" stroke-width="2"
+                opacity=".2" filter="url(#hero-blur-md)" />
+          <path class="hero-streak hero-streak--l2" d="M 60 420 L 260 392" stroke="#9fd6ff" stroke-width="1.6"
+                opacity=".16" filter="url(#hero-blur-md)" />
+        </g>
       </svg>
 
-      <div class="hero-media__scrim"></div>
+      <div class="hero-media__veil"></div>
     </div>
 
     <div class="shell hero-inner">
