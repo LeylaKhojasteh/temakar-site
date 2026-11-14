@@ -42,7 +42,7 @@
 
           <linearGradient id="flow-left" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="240" y2="0">
             <stop offset="0" stop-color="#ffc98d" stop-opacity="0" />
-            <stop offset=".5" stop-color="#ffd9a8" stop-opacity=".75" />
+            <stop offset=".5" stop-color="#ffe2b8" stop-opacity="1" />
             <stop offset="1" stop-color="#ffc98d" stop-opacity="0" />
             <animate attributeName="x1" values="40;520" dur="7s" repeatCount="indefinite" />
             <animate attributeName="x2" values="220;700" dur="7s" repeatCount="indefinite" />
@@ -50,7 +50,7 @@
 
           <linearGradient id="flow-right" gradientUnits="userSpaceOnUse" x1="1300" y1="0" x2="1460" y2="0">
             <stop offset="0" stop-color="#9fd6ff" stop-opacity="0" />
-            <stop offset=".5" stop-color="#cfeeff" stop-opacity=".6" />
+            <stop offset=".5" stop-color="#e2f5ff" stop-opacity=".95" />
             <stop offset="1" stop-color="#9fd6ff" stop-opacity="0" />
             <animate attributeName="x1" values="1260;1780" dur="8s" begin="-2s" repeatCount="indefinite" />
             <animate attributeName="x2" values="1420;1940" dur="8s" begin="-2s" repeatCount="indefinite" />
@@ -87,11 +87,6 @@
         </defs>
 
         <!-- موج نور روی شبکهٔ کف -->
-        <g class="flow-grid" mask="url(#grid-mask)">
-          <rect class="flow-grid__wave" x="0" y="600" width="1752" height="297" fill="url(#grid-wave-grad)"
-                filter="url(#flow-blur-lg)" opacity=".5" />
-        </g>
-
         <!-- هالهٔ پایه: همیشه دیده می‌شود -->
         <path class="flow-base" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929"
               fill="none" stroke="#ffb35c" stroke-width="54" stroke-linecap="round"
@@ -117,21 +112,14 @@
         <g class="flow-side">
           <path class="flow-side__left-glow" d="M 96 480 C 112 452 372 437 620 439" fill="none"
                 stroke="url(#flow-left)" stroke-width="30" stroke-linecap="round"
-                filter="url(#flow-blur-md)" opacity=".6" />
+                filter="url(#flow-blur-md)" opacity=".85" />
           <path class="flow-side__right-glow" d="M 1288 466 C 1350 474 1420 502 1470 540" fill="none"
                 stroke="url(#flow-right)" stroke-width="26" stroke-linecap="round"
-                filter="url(#flow-blur-md)" opacity=".55" />
+                filter="url(#flow-blur-md)" opacity=".8" />
         </g>
 
         <!-- جرقه‌های ریز روی شبکه -->
-        <g class="flow-dots" fill="#d6f1ff" filter="url(#flow-blur-sm)">
-          <circle class="flow-dot flow-dot--1" cx="430" cy="770" r="2.2" />
-          <circle class="flow-dot flow-dot--2" cx="640" cy="815" r="1.9" />
-          <circle class="flow-dot flow-dot--3" cx="910" cy="735" r="2.1" />
-          <circle class="flow-dot flow-dot--4" cx="1120" cy="860" r="2.4" />
-          <circle class="flow-dot flow-dot--5" cx="1300" cy="775" r="2" />
-          <circle class="flow-dot flow-dot--6" cx="1480" cy="820" r="2.2" />
-        </g>
+        
       </svg>
 
       <div class="hero-media__shade"></div>
