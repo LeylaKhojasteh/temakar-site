@@ -302,3 +302,12 @@
     }
   });
 })();
+
+  // احترام به کاهش حرکت برای انیمیشن‌های SMIL داخل هیرو.
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".hero-media__motion").forEach(function (svg) {
+      if (typeof svg.pauseAnimations === "function") {
+        svg.pauseAnimations();
+      }
+    });
+  }
