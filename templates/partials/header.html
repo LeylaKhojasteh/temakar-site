@@ -1,4 +1,4 @@
-{% load site_tags %}
+{% load static site_tags %}
 <header class="site-header" data-site-header>
   <div class="shell header-inner">
     <a class="wordmark" href="{% url 'core:home' %}">
@@ -7,7 +7,7 @@
           <img class="wordmark__img" src="{{ img.image.url }}"{% if img.image_width %} width="{{ img.image_width }}" height="{{ img.image_height }}"{% endif %}
                alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}">
         {% else %}
-          {% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}
+          <img class="wordmark__img" src="{% static 'img/brand/logo.png' %}" width="280" height="300" alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}">
         {% endif %}
       {% endwith %}
       <span class="visually-hidden">{% if is_fa %}صفحهٔ اصلی{% else %}home{% endif %}</span>

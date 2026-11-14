@@ -1,7 +1,15 @@
-{% load site_tags %}
+{% load static site_tags %}
 <div class="mobile-menu" id="mobile-menu" data-menu hidden>
   <div class="mobile-menu__top">
-    <a class="wordmark" href="{% url 'core:home' %}">{% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}</a>
+    <a class="wordmark" href="{% url 'core:home' %}">
+      {% with img=site_images|get:"logo" %}
+        {% if img %}
+          <img class="wordmark__img" src="{{ img.image.url }}"{% if img.image_width %} width="{{ img.image_width }}" height="{{ img.image_height }}"{% endif %} alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}">
+        {% else %}
+          <img class="wordmark__img" src="{% static 'img/brand/logo.png' %}" width="280" height="300" alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}">
+        {% endif %}
+      {% endwith %}
+    </a>
     <button class="menu-toggle" type="button" data-menu-close>
       <span class="visually-hidden">{% tr "nav.close" %}</span>
       <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
