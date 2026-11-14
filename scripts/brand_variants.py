@@ -1,6 +1,9 @@
-"""ساخت نسخهٔ روشن لوگو برای فوتر و آیکون‌های سایت از فایل اصلی.
+"""ساخت نسخهٔ فوتر لوگو و آیکون‌های سایت از فایل اصلی.
 
-فقط به Pillow نیاز دارد. بعد از هر بار عوض‌کردن Logo، این را اجرا کن:
+در فوتر، بخش آبی لوگو کاغذی می‌شود تا روی زمینهٔ تیره دیده شود، ولی بخش قرمز
+رنگ خودش را نگه می‌دارد و کمی روشن‌تر می‌شود.
+
+فقط به Pillow نیاز دارد. بعد از هر بار عوض‌کردن لوگو:
 
     python scripts/brand_variants.py
 """
@@ -11,21 +14,34 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "img" / "brand" / "logo.png"
-LIGHT = ROOT / "static" / "img" / "brand" / "logo-light.png"
+FOOTER = ROOT / "static" / "img" / "brand" / "logo-light.png"
 PAPER = (232, 237, 242)
+RED_LIFT = 1.45
 
 
-def make_light(source: Image.Image) -> None:
-    """همان شکل لوگو، با رنگ کاغذی، برای زمینه‌های تیره."""
+def is_red(red: int, green: int, blue: int) -> bool:
+    return red > green + 40 and red > blue + 40
+
+
+def make_footer_variant(source: Image.Image) -> None:
     light = source.copy()
     pixels = light.load()
     for y in range(light.height):
         for x in range(light.width):
             red, green, blue, alpha = pixels[x, y]
-            if alpha:
+            if not alpha:
+                continue
+            if is_red(red, green, blue):
+                pixels[x, y] = (
+                    min(255, round(red * RED_LIFT)),
+                    min(255, round(green * RED_LIFT) + 30),
+                    min(255, round(blue * RED_LIFT) + 26),
+                    alpha,
+                )
+            else:
                 pixels[x, y] = (*PAPER, alpha)
-    light.save(LIGHT, format="PNG", optimize=True)
-    print(f"{LIGHT.name}: {LIGHT.stat().st_size // 1024} KB")
+    light.save(FOOTER, format="PNG", optimize=True)
+    print(f"{FOOTER.name}: {FOOTER.stat().st_size // 1024} KB")
 
 
 def make_icon(source: Image.Image, size: int, name: str, background=None) -> None:
@@ -40,7 +56,7 @@ def make_icon(source: Image.Image, size: int, name: str, background=None) -> Non
 
 def main() -> None:
     source = Image.open(LOGO).convert("RGBA")
-    make_light(source)
+    make_footer_variant(source)
     make_icon(source, 32, "icon-32.png")
     make_icon(source, 64, "icon-64.png")
     make_icon(source, 180, "icon-touch.png", background=(*PAPER, 255))
