@@ -40,3 +40,6 @@ Thumbs.db
 # عکس‌های خام مالک (فقط راهنما در گیت می‌ماند)
 /assets/photos/*
 !/assets/photos/README.md
+
+# بستهٔ طراحی هیرو که مالک فرستاد
+/temakar-energy-hero-files-*.zip

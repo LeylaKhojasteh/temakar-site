@@ -2153,3 +2153,208 @@ html[lang="fa"] .prose-temakar {
 .site-footer .wordmark__img {
   height: 80px;
 }
+
+/* ---------- هرو تصویری: پالایشگاه، هالهٔ طلایی و شبکهٔ آبی ---------- */
+
+.hero--media {
+  --hero-gold: #f2b45a;
+  --hero-ice: #8ecbff;
+  --hero-speed: 5.6s;
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(560px, 62vw, 780px);
+  background-color: #061b37;
+  overflow: clip;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-media__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-media__effects {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    rgba(6, 20, 33, 0.92) 0%,
+    rgba(6, 20, 33, 0.62) 30%,
+    rgba(6, 20, 33, 0.2) 58%,
+    rgba(6, 20, 33, 0) 78%
+  );
+}
+
+html[dir="ltr"] .hero-media__scrim {
+  background: linear-gradient(
+    to right,
+    rgba(6, 20, 33, 0.92) 0%,
+    rgba(6, 20, 33, 0.62) 30%,
+    rgba(6, 20, 33, 0.2) 58%,
+    rgba(6, 20, 33, 0) 78%
+  );
+}
+
+.hero--media .hero-inner {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: inherit;
+  padding-block: clamp(72px, 8vw, 116px);
+}
+
+.hero--media .hero-copy {
+  max-width: min(640px, 92%);
+}
+
+.hero--media .hero-title {
+  color: var(--color-paper);
+}
+
+.hero--media .hero-support {
+  color: color-mix(in srgb, var(--color-paper) 90%, transparent);
+}
+
+.hero-grid {
+  opacity: 0.26;
+  animation: hero-grid-breathe 9s ease-in-out infinite alternate;
+}
+
+@keyframes hero-grid-breathe {
+  from {
+    opacity: 0.18;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+
+.hero-light {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-light--track {
+  stroke: var(--hero-gold);
+  stroke-width: 2;
+  opacity: 0.14;
+}
+
+.hero-light--glow {
+  stroke: var(--hero-gold);
+  stroke-width: 9;
+  stroke-dasharray: 16 84;
+  filter: url(#hero-glow);
+  opacity: 0.55;
+  animation: hero-travel var(--hero-speed) linear infinite;
+}
+
+.hero-light--core {
+  stroke: #ffe6b0;
+  stroke-width: 2.6;
+  stroke-dasharray: 16 84;
+  opacity: 0.9;
+  animation: hero-travel var(--hero-speed) linear infinite;
+}
+
+.hero-light--second {
+  animation-delay: -2.1s;
+  animation-duration: 6.4s;
+}
+
+.hero-light--blue {
+  stroke: var(--hero-ice);
+  opacity: 0.5;
+  animation-delay: -3.4s;
+  animation-duration: 7.4s;
+}
+
+@keyframes hero-travel {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero--media {
+    min-height: 78svh;
+  }
+
+  .hero--media .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-grid {
+    opacity: 0.16;
+  }
+
+  .hero-light--glow {
+    opacity: 0.38;
+  }
+
+  .hero-light--core {
+    stroke-width: 2;
+  }
+
+  .hero-media__scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(6, 20, 33, 0.94) 0%,
+      rgba(6, 20, 33, 0.72) 48%,
+      rgba(6, 20, 33, 0.3) 100%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grid,
+  .hero-light {
+    animation: none !important;
+  }
+
+  .hero-light--glow,
+  .hero-light--core {
+    stroke-dasharray: none;
+    opacity: 0.2;
+  }
+}
+
+/* ---------- پیوند پرش به محتوا ---------- */
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-start: 50%;
+  z-index: 100;
+  padding: 12px 22px;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--t-small);
+  text-decoration: none;
+  transform: translate(-50%, -160%);
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
