@@ -2182,15 +2182,7 @@ html[lang="fa"] .prose-temakar {
   object-position: center;
 }
 
-html[dir="ltr"] .hero-media__scrim {
-  background: linear-gradient(
-    to right,
-    rgba(6, 20, 33, 0.92) 0%,
-    rgba(6, 20, 33, 0.62) 30%,
-    rgba(6, 20, 33, 0.2) 58%,
-    rgba(6, 20, 33, 0) 78%
-  );
-}
+
 
 .hero--media .hero-inner {
   position: relative;
@@ -2270,9 +2262,7 @@ html[dir="ltr"] .hero-media__shade {
     linear-gradient(to top, rgba(4, 14, 24, 0.5) 0%, rgba(4, 14, 24, 0) 42%);
 }
 
-html[dir="ltr"] .hero-media__veil {
-  background: radial-gradient(70% 80% at 18% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
-}
+
 
 /* ---------- هرو v4: لایهٔ شفاف مرجع + حرکت نقاط درخشان ---------- */
 
@@ -2298,10 +2288,6 @@ html[dir="ltr"] .hero-media__veil {
 
 .hero-media__image {
   z-index: 0;
-}
-
-.hero-media__overlay {
-  z-index: 1;
 }
 
 .hero-media__shade {
@@ -2352,100 +2338,125 @@ html[dir="ltr"] .hero-media__shade {
 
 /* ---------- هیرو: جریان انرژی، هاله‌های فرعی و رگه‌ها ---------- */
 
-.hero-trail__glow {
-  animation: hero-trail-breathe 11s ease-in-out infinite alternate;
-}
+
 
 /* ---------- هیرو: نور زنده با لایه‌های نرم (بدون خط و مدار) ---------- */
 
-.hero-media__breathe {
+
+
+/* ---------- هیرو: هاله و شبکهٔ بازسازی‌شده روی عکس تمیز ---------- */
+
+.hero-media__glow {
   position: absolute;
   inset: 0;
   z-index: 2;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  mix-blend-mode: screen;
-  opacity: 0.22;
-  animation: hero-breathe-soft 9s ease-in-out infinite alternate;
 }
 
-.hero-media__pulse {
-  position: absolute;
-  z-index: 3;
-  width: 62%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 214, 150, 0.55) 0%, rgba(255, 176, 92, 0.28) 38%, rgba(255, 150, 70, 0) 68%);
-  filter: blur(26px);
-  mix-blend-mode: screen;
-  opacity: 0.3;
-  pointer-events: none;
+.glow-grid {
+  animation: glow-grid-breathe 13s ease-in-out infinite alternate;
 }
 
-.hero-media__pulse--main {
-  inset-inline-start: 34%;
-  inset-block-start: 34%;
-  animation: hero-drift-soft 18s ease-in-out infinite alternate;
+.glow-dot {
+  animation: glow-twinkle 5s ease-in-out infinite alternate;
 }
 
-.hero-media__pulse--side {
-  inset-inline-start: 4%;
-  inset-block-start: 18%;
-  width: 38%;
-  background: radial-gradient(circle, rgba(160, 210, 255, 0.4) 0%, rgba(120, 180, 255, 0.18) 42%, rgba(90, 150, 255, 0) 70%);
-  animation: hero-drift-soft 24s ease-in-out infinite alternate-reverse;
+.glow-dot--2 { animation-delay: -1.7s; }
+.glow-dot--3 { animation-delay: -2.9s; }
+.glow-dot--4 { animation-delay: -0.9s; }
+.glow-dot--5 { animation-delay: -3.6s; }
+.glow-dot--6 { animation-delay: -2.1s; }
+.glow-dot--7 { animation-delay: -4.4s; }
+
+.glow-sun {
+  animation: glow-sun-pulse 9s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-@keyframes hero-breathe-soft {
-  from {
-    opacity: 0.12;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0.3;
-    transform: scale(1.015);
-  }
+.glow-trail__base {
+  animation: glow-breathe 10s ease-in-out infinite alternate;
 }
 
-@keyframes hero-drift-soft {
-  from {
-    transform: translate3d(-3%, 2%, 0) scale(0.94);
-    opacity: 0.2;
-  }
-  to {
-    transform: translate3d(4%, -3%, 0) scale(1.06);
-    opacity: 0.4;
-  }
+.glow-trail__bloom {
+  animation: glow-breathe 7s ease-in-out infinite alternate-reverse;
+}
+
+.glow-trail__core {
+  animation: glow-core 6s ease-in-out infinite alternate;
+}
+
+.glow-ambient--left {
+  animation: glow-ambient-breath 11s ease-in-out infinite alternate;
+}
+
+.glow-ambient--right {
+  animation: glow-ambient-breath 15s ease-in-out infinite alternate-reverse;
+}
+
+.glow-pulse {
+  animation: glow-pulse-breathe 7s ease-in-out infinite alternate;
+}
+
+@keyframes glow-grid-breathe {
+  from { opacity: 0.55; }
+  to { opacity: 0.9; }
+}
+
+@keyframes glow-twinkle {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
+}
+
+@keyframes glow-sun-pulse {
+  from { opacity: 0.8; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes glow-breathe {
+  from { opacity: 0.22; }
+  to { opacity: 0.4; }
+}
+
+@keyframes glow-core {
+  from { opacity: 0.55; }
+  to { opacity: 0.9; }
+}
+
+@keyframes glow-ambient-breath {
+  from { opacity: 0.5; }
+  to { opacity: 0.85; }
+}
+
+@keyframes glow-pulse-breathe {
+  from { opacity: 0.25; }
+  to { opacity: 0.6; }
 }
 
 @media (max-width: 720px) {
-  .hero-media__breathe {
-    opacity: 0.12;
-  }
-
-  .hero-media__pulse {
-    filter: blur(18px);
-    opacity: 0.2;
-  }
-
-  .hero-media__pulse--side {
-    display: none;
-  }
+  .glow-trail__base { opacity: 0.22; }
+  .glow-sun { opacity: 0.8; }
+  .glow-ambient--left, .glow-ambient--right { opacity: 0.45; }
+  .glow-pulse--slow { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-media__breathe,
-  .hero-media__pulse {
+  .glow-grid,
+  .glow-dot,
+  .glow-sun,
+  .glow-trail__base,
+  .glow-trail__bloom,
+  .glow-trail__core,
+  .glow-ambient,
+  .glow-pulse {
     animation: none !important;
   }
 
-  .hero-media__breathe {
-    opacity: 0.18;
+  .glow-pulse {
+    display: none;
   }
 
-  .hero-media__pulse {
-    opacity: 0.22;
-  }
+  .glow-trail__base { opacity: 0.32; }
+  .glow-ambient--left, .glow-ambient--right { opacity: 0.6; }
 }
