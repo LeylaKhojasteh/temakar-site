@@ -2393,3 +2393,172 @@ html[dir="ltr"] .hero-media__shade {
     display: none;
   }
 }
+
+/* ---------- هیرو: جریان انرژی، هاله‌های فرعی و رگه‌ها ---------- */
+
+.hero-trail__glow {
+  animation: hero-trail-breathe 11s ease-in-out infinite alternate;
+}
+
+.hero-trail__flow {
+  animation: hero-flow 9s linear infinite;
+}
+
+.hero-trail__core {
+  animation: hero-flow 6s linear infinite, hero-trail-breathe 5s ease-in-out infinite alternate;
+}
+
+.hero-trail__shimmer {
+  animation: hero-flow 22s linear infinite;
+}
+
+.hero-travel--main {
+  animation: hero-spark-breathe 6s ease-in-out infinite alternate;
+}
+
+.hero-travel--main-slow {
+  animation: hero-spark-breathe 14s ease-in-out infinite alternate-reverse;
+}
+
+.hero-ambient__glow--left {
+  animation: hero-ambient-breathe 9s ease-in-out infinite alternate;
+}
+
+.hero-ambient__glow--right {
+  animation: hero-ambient-breathe 13s ease-in-out infinite alternate-reverse;
+}
+
+.hero-ambient__line--left {
+  animation: hero-flow 12s linear infinite;
+}
+
+.hero-ambient__line--right {
+  animation: hero-flow-reverse 15s linear infinite;
+}
+
+.hero-travel--side {
+  animation: hero-spark-breathe 8s ease-in-out infinite alternate;
+}
+
+.hero-streak--1 {
+  animation: hero-streak-drift 17s ease-in-out infinite alternate;
+}
+
+.hero-streak--2 {
+  animation: hero-streak-drift 21s ease-in-out infinite alternate-reverse;
+}
+
+.hero-streak--3 {
+  animation: hero-streak-drift 25s ease-in-out infinite alternate;
+}
+
+.hero-grid-sweep {
+  animation: hero-grid-sweep 18s linear infinite;
+}
+
+@keyframes hero-trail-breathe {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.38;
+  }
+}
+
+@keyframes hero-flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-flow-reverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 100;
+  }
+}
+
+@keyframes hero-ambient-breathe {
+  from {
+    opacity: 0.38;
+  }
+  to {
+    opacity: 0.62;
+  }
+}
+
+@keyframes hero-streak-drift {
+  from {
+    opacity: 0.08;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0.2;
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes hero-grid-sweep {
+  from {
+    transform: translateX(-320px);
+    opacity: 0.06;
+  }
+  50% {
+    opacity: 0.13;
+  }
+  to {
+    transform: translateX(1500px);
+    opacity: 0.06;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-trail__glow {
+    opacity: 0.2;
+  }
+
+  .hero-trail__flow {
+    opacity: 0.6;
+  }
+
+  .hero-ambient__glow--left,
+  .hero-ambient__glow--right {
+    opacity: 0.32;
+  }
+
+  .hero-grid-sweep {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-trail__glow,
+  .hero-trail__flow,
+  .hero-trail__core,
+  .hero-trail__shimmer,
+  .hero-travel,
+  .hero-ambient__glow,
+  .hero-ambient__line,
+  .hero-streak,
+  .hero-grid-sweep {
+    animation: none !important;
+  }
+
+  .hero-travel {
+    display: none;
+  }
+
+  .hero-trail__glow {
+    opacity: 0.3;
+  }
+
+  .hero-ambient__glow--left,
+  .hero-ambient__glow--right {
+    opacity: 0.45;
+  }
+}
