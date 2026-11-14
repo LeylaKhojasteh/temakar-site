@@ -53,7 +53,7 @@
 :root {
   --font-display: "Epilogue", "Segoe UI", sans-serif;
   --font-text: "Epilogue", "Segoe UI", sans-serif;
-  --header-height: 72px;
+  --header-height: 88px;
   --gutter: clamp(20px, 4vw, 56px);
   --max-width: 1480px;
 
@@ -308,10 +308,7 @@ html[lang="fa"] .statement {
 }
 
 .wordmark::before {
-  content: "";
-  width: 14px;
-  height: 14px;
-  background-color: var(--color-accent);
+  content: none;
 }
 
 html[lang="fa"] .wordmark {
@@ -2150,5 +2147,9 @@ html[lang="fa"] .prose-temakar {
 .wordmark__img {
   display: block;
   width: auto;
-  height: 48px;
+  height: 64px;
+}
+
+.site-footer .wordmark__img {
+  height: 56px;
 }
