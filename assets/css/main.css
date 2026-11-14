@@ -53,7 +53,7 @@
 :root {
   --font-display: "Epilogue", "Segoe UI", sans-serif;
   --font-text: "Epilogue", "Segoe UI", sans-serif;
-  --header-height: 72px;
+  --header-height: 64px;
   --gutter: clamp(20px, 4vw, 56px);
   --max-width: 1480px;
 
@@ -2147,9 +2147,9 @@ html[lang="fa"] .prose-temakar {
 .wordmark__img {
   display: block;
   width: auto;
-  height: 64px;
+  height: 56px;
 }
 
 .site-footer .wordmark__img {
-  height: 56px;
+  height: 48px;
 }

@@ -4,15 +4,8 @@
     <div class="footer-grid">
       <div>
         <a class="wordmark" href="{% url 'core:home' %}">
-          {% with img=site_images|get:"logo" %}
-            {% if img %}
-              <img class="wordmark__img" src="{{ img.image.url }}"{% if img.image_width %} width="{{ img.image_width }}" height="{{ img.image_height }}"{% endif %}
-                   alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}" loading="lazy">
-            {% else %}
-              <img class="wordmark__img" src="{% static 'img/brand/logo.png' %}" width="280" height="300"
-                   alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}" loading="lazy">
-            {% endif %}
-          {% endwith %}
+          <img class="wordmark__img" src="{% static 'img/brand/logo-light.png' %}" width="332" height="300"
+               alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}" loading="lazy">
         </a>
         <p class="text-small mt-4 max-w-[34ch] text-paper/80">
           {% if is_fa %}تماکار در اختیار شماست؛ شریک حرفه‌ای و قابل اتکا.{% else %}Temakar is at your disposal. Professional and reliable partner.{% endif %}
