@@ -36,7 +36,3 @@ Thumbs.db
 
 # کلاستر محلی پستگرس برای توسعه (با scripts/dev-db.ps1 ساخته می‌شود)
 /.pgdata/
-
-# عکس‌های خام مالک پیش از بهینه‌سازی
-/incoming-photos/*
-!/incoming-photos/README.md

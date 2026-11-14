@@ -3,10 +3,9 @@
 
 {% block content %}
   <section class="page-media" aria-labelledby="about-title">
-    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/structure-wide.jpg' %}"
-         width="1600" height="900"
-         alt="{% if is_fa %}سازهٔ فلزی در نور روز{% else %}Steel structure in daylight{% endif %}"
-         decoding="async">
+    {% with img=site_images|get:"about" %}
+      {% include "partials/page_image.html" with img=img fallback="img/demo/structure-wide.jpg" fallback_w=1600 fallback_h=900 fallback_alt_en="Steel structure in daylight" fallback_alt="سازهٔ فلزی در نور روز" priority=True %}
+    {% endwith %}
     <div class="shell">
       <div class="page-media__panel reveal">
         <h1 class="page-title" id="about-title">{% if is_fa %}با شرکت ما آشنا شوید{% else %}Meet our company{% endif %}</h1>

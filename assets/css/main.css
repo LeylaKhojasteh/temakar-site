@@ -2145,3 +2145,10 @@ html[lang="fa"] .prose-temakar {
     display: none;
   }
 }
+
+
+.wordmark__img {
+  display: block;
+  width: auto;
+  height: 30px;
+}

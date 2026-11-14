@@ -3,10 +3,9 @@
 
 {% block content %}
   <section class="page-media" aria-labelledby="services-title">
-    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/bridge-fog.jpg' %}"
-         width="1600" height="1000"
-         alt="{% if is_fa %}سازهٔ پل در مه{% else %}Bridge structure in fog{% endif %}"
-         decoding="async">
+    {% with img=site_images|get:"services" %}
+      {% include "partials/page_image.html" with img=img fallback="img/demo/bridge-fog.jpg" fallback_w=1600 fallback_h=1000 fallback_alt_en="Bridge structure in fog" fallback_alt="سازهٔ پل در مه" priority=True %}
+    {% endwith %}
     <div class="shell">
       <div class="page-media__panel reveal">
         <h1 class="page-title" id="services-title">{% if is_fa %}خدمات ما{% else %}Our services{% endif %}</h1>

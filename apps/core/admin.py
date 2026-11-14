@@ -1,8 +1,10 @@
 """پنل ادمین بخش عمومی: تنظیمات سایت و شبکه‌های اجتماعی."""
 
 from django.contrib import admin
+from django.utils.html import format_html
 
-from .models import SiteSettings, SocialLink
+from .models import SiteImage, SiteSettings, SocialLink
+from .uploads import image_variant
 
 admin.site.site_header = "مدیریت تماکار"
 admin.site.site_title = "تماکار"
@@ -31,3 +33,34 @@ class SocialLinkAdmin(admin.ModelAdmin):
     list_display = ("label_fa", "label_en", "url", "order", "is_active")
     list_editable = ("order", "is_active")
     list_filter = ("is_active",)
+
+
+@admin.register(SiteImage)
+class SiteImageAdmin(admin.ModelAdmin):
+    list_display = ("key", "thumb", "updated_at")
+    readonly_fields = ("preview", "image_width", "image_height", "updated_at")
+    fieldsets = (
+        ("جایگاه", {"fields": ("key",)}),
+        ("تصویر", {"fields": ("image", "preview", "image_width", "image_height")}),
+        ("متن جایگزین", {"fields": ("alt_fa", "alt_en")}),
+        ("زمان", {"fields": ("updated_at",)}),
+    )
+
+    @admin.display(description="تصویر")
+    def thumb(self, obj):
+        if not obj.image:
+            return "-"
+        variant = image_variant(obj.image, "thumb")
+        return format_html(
+            '<img class="admin-thumb" src="{}" width="48" height="48" alt="">',
+            variant.url,
+        )
+
+    @admin.display(description="پیش‌نمایش")
+    def preview(self, obj):
+        if not obj.image:
+            return "-"
+        return format_html(
+            '<img src="{}" width="320" alt="" class="admin-preview">',
+            obj.image.url,
+        )

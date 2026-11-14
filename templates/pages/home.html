@@ -44,9 +44,9 @@
         </p>
       </div>
       <div class="reveal">
-        <img class="band-image" src="{% static 'img/demo/structure-wide-800.jpg' %}" width="800" height="450"
-             alt="{% if is_fa %}سازهٔ فلزی در نور روز{% else %}Steel structure in daylight{% endif %}"
-             loading="lazy" decoding="async">
+        {% with img=site_images|get:"home_about" %}
+          {% include "partials/page_image.html" with img=img fallback="img/demo/structure-wide-800.jpg" fallback_w=800 fallback_h=450 fallback_alt_en="Steel structure in daylight" fallback_alt="سازهٔ فلزی در نور روز" class_name="band-image" %}
+        {% endwith %}
       </div>
     </div>
   </section>

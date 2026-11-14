@@ -3,10 +3,9 @@
 
 {% block content %}
   <section class="page-media" aria-labelledby="contact-title">
-    <img class="page-media__img" fetchpriority="high" src="{% static 'img/demo/concrete-sky.jpg' %}"
-         width="1600" height="1000"
-         alt="{% if is_fa %}ساختمان بتنی در برابر آسمان{% else %}Concrete building against the sky{% endif %}"
-         decoding="async">
+    {% with img=site_images|get:"contact" %}
+      {% include "partials/page_image.html" with img=img fallback="img/demo/concrete-sky.jpg" fallback_w=1600 fallback_h=1000 fallback_alt_en="Concrete building against the sky" fallback_alt="ساختمان بتنی در برابر آسمان" priority=True %}
+    {% endwith %}
     <div class="shell">
       <div class="page-media__panel reveal">
         <h1 class="page-title" id="contact-title">{% if is_fa %}تماس با ما{% else %}Feel free to contact us{% endif %}</h1>

@@ -7,3 +7,8 @@
   object-fit: cover;
   background-color: #dde4eb;
 }
+
+.admin-preview {
+  max-width: 100%;
+  height: auto;
+}

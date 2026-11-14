@@ -50,3 +50,14 @@ def map_link_url(site) -> str:
 def variant(field_file, kind: str):
     """نسخهٔ کوچک تصویر (card یا thumb) با ابعاد درست."""
     return image_variant(field_file, kind)
+
+
+@register.filter
+def get(mapping, key):
+    """دسترسی به مقدار دیکشنری با کلید متغیر در قالب."""
+    if not mapping:
+        return None
+    try:
+        return mapping.get(key)
+    except AttributeError:
+        return None

@@ -2,7 +2,14 @@
 <header class="site-header" data-site-header>
   <div class="shell header-inner">
     <a class="wordmark" href="{% url 'core:home' %}">
-      {% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}
+      {% with img=site_images|get:"logo" %}
+        {% if img %}
+          <img class="wordmark__img" src="{{ img.image.url }}"{% if img.image_width %} width="{{ img.image_width }}" height="{{ img.image_height }}"{% endif %}
+               alt="{% if is_fa %}تماکار{% else %}Temakar{% endif %}">
+        {% else %}
+          {% if is_fa %}تماکار{% else %}TEMAKAR{% endif %}
+        {% endif %}
+      {% endwith %}
       <span class="visually-hidden">{% if is_fa %}صفحهٔ اصلی{% else %}home{% endif %}</span>
     </a>
 

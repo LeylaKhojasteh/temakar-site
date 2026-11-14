@@ -427,3 +427,81 @@ def test_contact_page_shows_the_language_specific_settings(client):
 
     assert "FA ADDRESS" in persian and "EN ADDRESS" not in persian
     assert "EN ADDRESS" in english
+
+
+# --- تصاویر مدیریت‌شده -----------------------------------------------------
+
+
+@pytest.mark.django_db
+def test_site_image_is_optimized_on_save(settings, tmp_path):
+    from django.core.files.uploadedfile import SimpleUploadedFile
+
+    from apps.core.models import SiteImage
+
+    settings.MEDIA_ROOT = tmp_path
+    image = SiteImage(
+        key=SiteImage.Key.ABOUT,
+        image=SimpleUploadedFile("about.jpg", make_image_bytes(3000, 2000), content_type="image/jpeg"),
+    )
+    image.save()
+
+    assert image.image_width == 2000
+    assert image.image_height <= 2000
+    assert image.image.name.endswith(".jpg")
+
+
+@pytest.mark.django_db
+def test_page_uses_the_uploaded_masthead_over_the_fallback(settings, tmp_path, client):
+    from django.core.files.uploadedfile import SimpleUploadedFile
+
+    from apps.core.models import SiteImage
+
+    settings.MEDIA_ROOT = tmp_path
+    image = SiteImage(
+        key=SiteImage.Key.SERVICES,
+        image=SimpleUploadedFile("services.jpg", make_image_bytes(1600, 1000), content_type="image/jpeg"),
+        alt_fa="سالن تأسیسات",
+        alt_en="Plant hall",
+    )
+    image.save()
+
+    body = client.get("/our-services/").content.decode()
+
+    assert image.image.url in body
+    assert "img/demo/bridge-fog.jpg" not in body
+    assert "Plant hall" in body
+
+
+@pytest.mark.django_db
+def test_import_site_images_command(settings, tmp_path):
+    from django.core.management import call_command
+
+    from apps.core.models import SiteImage
+
+    settings.MEDIA_ROOT = tmp_path / "media"
+    source = tmp_path / "photos"
+    source.mkdir()
+    (source / "about.jpg").write_bytes(make_image_bytes(1200, 800))
+    (source / "ignored.jpg").write_bytes(make_image_bytes(1200, 800))
+
+    call_command("import_site_images", str(source))
+
+    assert SiteImage.objects.filter(key=SiteImage.Key.ABOUT).exists()
+    assert SiteImage.objects.count() == 1
+
+
+@pytest.mark.django_db
+def test_import_service_images_command(settings, tmp_path):
+    from django.core.management import call_command
+
+    settings.MEDIA_ROOT = tmp_path / "media"
+    service = make_service(slug="power-transmission-material-facilities")
+    source = tmp_path / "photos"
+    source.mkdir()
+    (source / "transmission.jpg").write_bytes(make_image_bytes(1600, 1000))
+
+    call_command("import_service_images", str(source))
+
+    service.refresh_from_db()
+    assert service.image
+    assert service.image_width == 1600

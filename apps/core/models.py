@@ -2,6 +2,8 @@
 
 from django.db import models
 
+from apps.core.uploads import ImageFileSizeValidator, UploadToFolder, store_optimized_image
+
 
 class SiteSettings(models.Model):
     """تنظیمات یکتای سایت؛ همیشه یک رکورد با شناسهٔ ۱."""
@@ -57,3 +59,58 @@ class SocialLink(models.Model):
 
     def __str__(self) -> str:
         return self.label_fa or self.label_en
+
+
+class SiteImage(models.Model):
+    """تصویرهای مدیریت‌شدهٔ صفحه‌ها (سرصفحه‌ها، نوار خانه و لوگو).
+
+    جای هر تصویر با یک کلید ثابت مشخص است؛ مالک از پنل ادمین برای هر جایگاه
+    تصویر می‌گذارد و تا وقتی تصویری نگذاشته باشد، قالب به عکس موقت برمی‌گردد.
+    """
+
+    class Key(models.TextChoices):
+        LOGO = "logo", "لوگو"
+        HOME_ABOUT = "home_about", "نوار دربارهٔ ما (صفحهٔ اصلی)"
+        ABOUT = "about", "سرصفحهٔ معرفی شرکت"
+        SERVICES = "services", "سرصفحهٔ خدمات"
+        CONTACT = "contact", "سرصفحهٔ تماس"
+
+    key = models.CharField(
+        "جایگاه",
+        max_length=40,
+        choices=Key.choices,
+        unique=True,
+        help_text="هر جایگاه یک تصویر دارد.",
+    )
+    image = models.ImageField(
+        "تصویر",
+        upload_to=UploadToFolder("site"),
+        validators=[ImageFileSizeValidator()],
+        help_text="برای لوگو، PNG با پس‌زمینهٔ شفاف بهتر است.",
+    )
+    image_width = models.PositiveIntegerField(editable=False, default=0)
+    image_height = models.PositiveIntegerField(editable=False, default=0)
+    alt_fa = models.CharField("متن جایگزین (فارسی)", max_length=200, blank=True)
+    alt_en = models.CharField("متن جایگزین (انگلیسی)", max_length=200, blank=True)
+    updated_at = models.DateTimeField("تاریخ ویرایش", auto_now=True)
+
+    class Meta:
+        ordering = ("key",)
+        verbose_name = "تصویر صفحه"
+        verbose_name_plural = "تصاویر صفحه‌ها"
+
+    def __str__(self) -> str:
+        return self.get_key_display()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._original_image = self.image.name if self.pk and self.image else ""
+
+    def save(self, *args, **kwargs):
+        if self.image and self.image.name != self._original_image:
+            store_optimized_image(self)
+        elif not self.image:
+            self.image_width = self.image_height = 0
+        super().save(*args, **kwargs)
+        if self.image:
+            self._original_image = self.image.name
