@@ -1,7 +1,8 @@
 """ساخت نسخهٔ فوتر لوگو و آیکون‌های سایت از فایل اصلی.
 
 در فوتر، بخش آبی لوگو کاغذی می‌شود تا روی زمینهٔ تیره دیده شود، ولی بخش قرمز
-رنگ خودش را نگه می‌دارد و کمی روشن‌تر می‌شود.
+رنگ خودش را نگه می‌دارد و کمی روشن‌تر می‌شود. آیکون‌ها روی یک پلاک کاغذی
+گرد گوشه می‌نشینند تا در تب مرورگر تیره هم خوانا باشند.
 
 فقط به Pillow نیاز دارد. بعد از هر بار عوض‌کردن لوگو:
 
@@ -10,7 +11,7 @@
 
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "img" / "brand" / "logo.png"
@@ -44,10 +45,20 @@ def make_footer_variant(source: Image.Image) -> None:
     print(f"{FOOTER.name}: {FOOTER.stat().st_size // 1024} KB")
 
 
-def make_icon(source: Image.Image, size: int, name: str, background=None) -> None:
-    canvas = Image.new("RGBA", (size, size), background or (0, 0, 0, 0))
+def make_icon(source: Image.Image, size: int, name: str, plate: bool = True) -> None:
+    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    if plate:
+        draw = ImageDraw.Draw(canvas)
+        draw.rounded_rectangle(
+            (0, 0, size - 1, size - 1),
+            radius=max(2, round(size * 0.2)),
+            fill=(*PAPER, 255),
+        )
+    else:
+        canvas.paste((*PAPER, 255), (0, 0, size, size))
+
     logo = source.copy()
-    logo.thumbnail((int(size * 0.9), int(size * 0.9)), Image.LANCZOS)
+    logo.thumbnail((int(size * 0.72), int(size * 0.72)), Image.LANCZOS)
     canvas.alpha_composite(logo, ((size - logo.width) // 2, (size - logo.height) // 2))
     target = ROOT / "static" / "img" / name
     canvas.save(target, format="PNG", optimize=True)
@@ -59,7 +70,7 @@ def main() -> None:
     make_footer_variant(source)
     make_icon(source, 32, "icon-32.png")
     make_icon(source, 64, "icon-64.png")
-    make_icon(source, 180, "icon-touch.png", background=(*PAPER, 255))
+    make_icon(source, 180, "icon-touch.png", plate=False)
 
 
 if __name__ == "__main__":
