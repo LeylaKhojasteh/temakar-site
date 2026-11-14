@@ -8,109 +8,44 @@
       <img class="hero-media__image" src="{% static 'img/hero/refinery.webp' %}" width="1752" height="897"
            alt="" fetchpriority="high" decoding="async">
 
-      
+      <img class="hero-media__overlay" src="{% static 'img/hero/energy-overlay.webp' %}" width="1200" height="614"
+           alt="" decoding="async">
 
-      <svg class="hero-media__glow" viewBox="0 0 1752 897" preserveAspectRatio="xMidYMid slice"
+      <svg class="hero-media__motion" viewBox="0 0 1752 897" preserveAspectRatio="xMidYMid slice"
            aria-hidden="true" focusable="false">
         <defs>
-          <filter id="glow-blur-xl" x="-60%" y="-120%" width="220%" height="340%">
-            <feGaussianBlur stdDeviation="40" />
+          <filter id="hero-soft-light" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="10" />
           </filter>
-          <filter id="glow-blur-lg" x="-60%" y="-160%" width="220%" height="420%">
-            <feGaussianBlur stdDeviation="18" />
+          <filter id="hero-tiny-light" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="3" />
           </filter>
-          <filter id="glow-blur-md" x="-80%" y="-200%" width="260%" height="500%">
-            <feGaussianBlur stdDeviation="7" />
-          </filter>
-          <filter id="glow-blur-sm" x="-80%" y="-200%" width="260%" height="500%">
-            <feGaussianBlur stdDeviation="2.4" />
-          </filter>
-
-          <linearGradient id="glow-trail" gradientUnits="userSpaceOnUse" x1="360" y1="640" x2="1740" y2="776">
-            <stop offset="0" stop-color="#ffb45c" stop-opacity="0" />
-            <stop offset=".2" stop-color="#ffbe6a" stop-opacity=".8" />
-            <stop offset=".55" stop-color="#ffb057" stop-opacity=".95" />
-            <stop offset=".82" stop-color="#ff9846" stop-opacity=".7" />
-            <stop offset="1" stop-color="#ff8a3b" stop-opacity="0" />
-          </linearGradient>
-          <radialGradient id="glow-sun" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stop-color="#fff2d2" stop-opacity=".95" />
-            <stop offset=".35" stop-color="#ffc978" stop-opacity=".7" />
-            <stop offset=".7" stop-color="#ff9f4c" stop-opacity=".28" />
-            <stop offset="1" stop-color="#ff8a3b" stop-opacity="0" />
-          </radialGradient>
-          <radialGradient id="glow-left" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stop-color="#ffd9a1" stop-opacity=".55" />
-            <stop offset=".5" stop-color="#ffbf80" stop-opacity=".24" />
-            <stop offset="1" stop-color="#ffb067" stop-opacity="0" />
-          </radialGradient>
-          <radialGradient id="glow-cool" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stop-color="#b9e2ff" stop-opacity=".4" />
-            <stop offset=".55" stop-color="#8cc9ff" stop-opacity=".16" />
-            <stop offset="1" stop-color="#7bb9ff" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient id="glow-grid" x1="0" y1="640" x2="0" y2="897" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#8fd0ff" stop-opacity="0" />
-            <stop offset=".45" stop-color="#9bd7ff" stop-opacity=".45" />
-            <stop offset="1" stop-color="#c3e9ff" stop-opacity=".7" />
-          </linearGradient>
-
-          <path id="glow-path" d="M 360 640 C 470 610 520 600 600 612 C 760 636 900 640 1050 668 C 1200 696 1330 700 1430 728 C 1560 762 1660 768 1740 776" />
+          <path id="hero-spark-main" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929" />
+          <path id="hero-spark-left" d="M 109 477 C 117 454 370 439 603 440" />
+          <path id="hero-spark-right" d="M 1330 474 C 1455 465 1645 501 1780 515" />
         </defs>
 
-        <!-- شبکهٔ کف: پرسپکتیو، محو در دوردست -->
-        <g class="glow-grid">
-          <g stroke="url(#glow-grid)" stroke-width="1.2" fill="none" opacity=".7">
-            <path d="M 0 700 H 1752 M 0 732 H 1752 M 0 768 H 1752 M 0 810 H 1752 M 0 858 H 1752 M 0 897 H 1752" />
-            <path d="M 890 640 L -40 897 M 890 640 L 120 897 M 890 640 L 280 897 M 890 640 L 440 897 M 890 640 L 600 897 M 890 640 L 760 897 M 890 640 L 920 897 M 890 640 L 1080 897 M 890 640 L 1240 897 M 890 640 L 1400 897 M 890 640 L 1560 897 M 890 640 L 1720 897 M 890 640 L 1860 897" />
-          </g>
-          <g class="glow-grid__bloom" stroke="#9bd7ff" stroke-width="2.6" fill="none" opacity=".25" filter="url(#glow-blur-sm)">
-            <path d="M 0 700 H 1752 M 0 732 H 1752 M 0 768 H 1752 M 0 810 H 1752 M 0 858 H 1752" />
-            <path d="M 890 640 L -40 897 M 890 640 L 120 897 M 890 640 L 280 897 M 890 640 L 440 897 M 890 640 L 600 897 M 890 640 L 760 897 M 890 640 L 920 897 M 890 640 L 1080 897 M 890 640 L 1240 897 M 890 640 L 1400 897 M 890 640 L 1560 897 M 890 640 L 1720 897 M 890 640 L 1860 897" />
-          </g>
-          <g class="glow-grid__dots" fill="#d3efff" filter="url(#glow-blur-sm)">
-            <circle class="glow-dot glow-dot--1" cx="440" cy="768" r="2.4" />
-            <circle class="glow-dot glow-dot--2" cx="600" cy="810" r="2" />
-            <circle class="glow-dot glow-dot--3" cx="920" cy="732" r="2.2" />
-            <circle class="glow-dot glow-dot--4" cx="1080" cy="858" r="2.6" />
-            <circle class="glow-dot glow-dot--5" cx="1240" cy="768" r="2.2" />
-            <circle class="glow-dot glow-dot--6" cx="1400" cy="810" r="2.4" />
-            <circle class="glow-dot glow-dot--7" cx="760" cy="897" r="2.4" />
-          </g>
-        </g>
-
-        <!-- نور اصلی: خورشید نزدیک مرکز پالایشگاه -->
-        <ellipse class="glow-sun" cx="1286" cy="716" rx="230" ry="150" fill="url(#glow-sun)" />
-
-        <!-- مسیر نور: پایه، شکوفه، هسته -->
-        <g class="glow-trail">
-          <path class="glow-trail__base" d="M 360 640 C 470 610 520 600 600 612 C 760 636 900 640 1050 668 C 1200 696 1330 700 1430 728 C 1560 762 1660 768 1740 776"
-                fill="none" stroke="#ffb45c" stroke-width="90" stroke-linecap="round"
-                filter="url(#glow-blur-xl)" opacity=".32" />
-          <path class="glow-trail__bloom" d="M 360 640 C 470 610 520 600 600 612 C 760 636 900 640 1050 668 C 1200 696 1330 700 1430 728 C 1560 762 1660 768 1740 776"
-                fill="none" stroke="url(#glow-trail)" stroke-width="30" stroke-linecap="round"
-                filter="url(#glow-blur-lg)" opacity=".6" />
-          <path class="glow-trail__core" d="M 360 640 C 470 610 520 600 600 612 C 760 636 900 640 1050 668 C 1200 696 1330 700 1430 728 C 1560 762 1660 768 1740 776"
-                fill="none" stroke="#ffe9c6" stroke-width="5" stroke-linecap="round"
-                filter="url(#glow-blur-md)" opacity=".8" />
-        </g>
-
-        <!-- هاله‌های فرعی چپ و راست -->
-        <ellipse class="glow-ambient glow-ambient--left" cx="300" cy="545" rx="300" ry="140" fill="url(#glow-left)" />
-        <ellipse class="glow-ambient glow-ambient--right" cx="1620" cy="520" rx="260" ry="120" fill="url(#glow-cool)" />
-
-        <!-- پالس‌های نرم که درون مسیر جابه‌جا می‌شوند -->
-        <g class="glow-pulse glow-pulse--main">
-          <ellipse rx="120" ry="46" fill="#ffcf8a" opacity=".3" filter="url(#glow-blur-lg)" />
-          <ellipse rx="42" ry="16" fill="#fff1cf" opacity=".35" filter="url(#glow-blur-md)" />
-          <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-            <mpath href="#glow-path" />
+        <g class="hero-spark hero-spark--main">
+          <circle r="29" fill="#ffb243" opacity=".62" filter="url(#hero-soft-light)" />
+          <circle r="9" fill="#fff2c9" opacity=".62" filter="url(#hero-tiny-light)" />
+          <animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+            <mpath href="#hero-spark-main" />
           </animateMotion>
         </g>
-        <g class="glow-pulse glow-pulse--slow">
-          <ellipse rx="160" ry="60" fill="#ffb867" opacity=".18" filter="url(#glow-blur-xl)" />
-          <animateMotion dur="22s" begin="-8s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-            <mpath href="#glow-path" />
+
+        <g class="hero-spark hero-spark--side">
+          <circle r="14" fill="#ffba60" opacity=".48" filter="url(#hero-soft-light)" />
+          <circle r="3" fill="#fff4d2" opacity=".6" filter="url(#hero-tiny-light)" />
+          <animateMotion dur="11s" repeatCount="indefinite" calcMode="linear">
+            <mpath href="#hero-spark-left" />
+          </animateMotion>
+        </g>
+
+        <g class="hero-spark hero-spark--side">
+          <circle r="12" fill="#96d7ff" opacity=".43" filter="url(#hero-soft-light)" />
+          <circle r="2.5" fill="#eef9ff" opacity=".55" filter="url(#hero-tiny-light)" />
+          <animateMotion dur="12s" begin="-4s" repeatCount="indefinite" calcMode="linear">
+            <mpath href="#hero-spark-right" />
           </animateMotion>
         </g>
       </svg>
