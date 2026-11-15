@@ -2657,7 +2657,7 @@ html[dir="ltr"] .hero-media__shade {
 }
 
 .hero--media .hero-inner {
-  z-index: 4;
+  z-index: 5;
 }
 
 .hero-spark {
@@ -2719,7 +2719,9 @@ html[dir="ltr"] .hero-media__shade {
 /* ---------- هیرو: جریان نور روی لایهٔ مرجع ---------- */
 
 .hero-media__motion {
+  z-index: 4;
   opacity: 1;
+  mix-blend-mode: screen;
 }
 
 .flow-base {
