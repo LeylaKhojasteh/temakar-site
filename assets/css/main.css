@@ -2780,3 +2780,82 @@ html[dir="ltr"] .hero-media__shade {
 .hero-media__overlay {
   opacity: 1;
 }
+
+/* ---------- مه و ابر نرم روی افق ---------- */
+
+.hero-media__haze {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-haze {
+  position: absolute;
+  display: block;
+  width: 62%;
+  height: 22%;
+  border-radius: 50%;
+  filter: blur(46px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+.hero-haze--1 {
+  left: -12%;
+  top: 26%;
+  background: radial-gradient(closest-side, rgba(255, 176, 92, 0.22), rgba(255, 176, 92, 0) 70%);
+  animation: haze-drift-a 54s ease-in-out infinite alternate;
+}
+
+.hero-haze--2 {
+  left: 38%;
+  top: 30%;
+  width: 54%;
+  background: radial-gradient(closest-side, rgba(255, 208, 150, 0.18), rgba(255, 208, 150, 0) 72%);
+  animation: haze-drift-b 68s ease-in-out infinite alternate;
+}
+
+.hero-haze--3 {
+  left: 72%;
+  top: 24%;
+  width: 46%;
+  background: radial-gradient(closest-side, rgba(150, 205, 255, 0.14), rgba(150, 205, 255, 0) 72%);
+  animation: haze-drift-a 76s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes haze-drift-a {
+  from {
+    transform: translate3d(-3%, 0, 0) scale(1);
+    opacity: 0.38;
+  }
+  to {
+    transform: translate3d(4%, -1.5%, 0) scale(1.06);
+    opacity: 0.6;
+  }
+}
+
+@keyframes haze-drift-b {
+  from {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+    opacity: 0.3;
+  }
+  to {
+    transform: translate3d(-4%, -1%, 0) scale(1);
+    opacity: 0.52;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-haze {
+    filter: blur(30px);
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-haze {
+    animation: none !important;
+  }
+}
