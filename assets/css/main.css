@@ -2725,11 +2725,11 @@ html[dir="ltr"] .hero-media__shade {
 }
 
 .flow-base {
-  animation: flow-breathe 5s ease-in-out infinite alternate;
+  animation: none;
 }
 
 .flow-main__wide {
-  animation: flow-breathe 6s ease-in-out infinite alternate-reverse;
+  animation: none;
 }
 
 .flow-main__mid {
@@ -2781,4 +2781,12 @@ html[dir="ltr"] .hero-media__shade {
   .flow-side__right-glow {
     animation: none !important;
   }
+}
+
+.flow-side__left-needle {
+  animation: flow-side-breathe 6s ease-in-out infinite alternate;
+}
+
+.flow-side__right-needle {
+  animation: flow-side-breathe 7.5s ease-in-out infinite alternate-reverse;
 }
