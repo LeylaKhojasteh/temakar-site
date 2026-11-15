@@ -44,14 +44,15 @@
             <animate attributeName="x2" values="1020;2160" dur="7.5s" begin="-3.1s" repeatCount="indefinite" />
           </linearGradient>
 
-          <linearGradient id="flow-left" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="520" y2="0">
+          <linearGradient id="flow-left" gradientUnits="userSpaceOnUse" x1="300" y1="0" x2="360" y2="0">
             <stop offset="0" stop-color="#ffc98d" stop-opacity="0" />
-            <stop offset=".35" stop-color="#ffd9a8" stop-opacity=".5" />
-            <stop offset=".5" stop-color="#ffe2b8" stop-opacity=".85" />
-            <stop offset=".65" stop-color="#ffd9a8" stop-opacity=".5" />
+            <stop offset=".22" stop-color="#ffd9a8" stop-opacity=".35" />
+            <stop offset=".3" stop-color="#ffe2b8" stop-opacity=".95" />
+            <stop offset=".7" stop-color="#ffe2b8" stop-opacity=".95" />
+            <stop offset=".78" stop-color="#ffd9a8" stop-opacity=".35" />
             <stop offset="1" stop-color="#ffc98d" stop-opacity="0" />
-            <animate attributeName="x1" values="20;380" dur="5.5s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="540;900" dur="5.5s" repeatCount="indefinite" />
+            <animate attributeName="x1" values="300;-40" dur="6.5s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="360;520" dur="6.5s" repeatCount="indefinite" />
           </linearGradient>
 
           <linearGradient id="flow-right" gradientUnits="userSpaceOnUse" x1="1260" y1="0" x2="1520" y2="0">
@@ -103,12 +104,10 @@
 
         <!-- قوس‌های فرعی چپ و راست -->
         <g class="flow-side">
-          <path class="flow-side__left-needle" d="M 96 480 C 112 452 372 437 620 439" fill="none"
+          <path class="flow-side__left-needle" d="M 300 486 C 250 458 170 444 96 442" fill="none"
                 stroke="url(#flow-left)" stroke-width="3" stroke-linecap="butt"
                 filter="url(#flow-blur-xs)" opacity="1" />
-          <path class="flow-side__right-needle" d="M 1288 466 C 1350 474 1420 502 1470 540" fill="none"
-                stroke="url(#flow-right)" stroke-width="2.6" stroke-linecap="butt"
-                filter="url(#flow-blur-xs)" opacity="1" />
+          
         </g>
 
         <!-- جرقه‌های ریز روی شبکه -->

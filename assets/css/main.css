@@ -2780,6 +2780,3 @@ html[dir="ltr"] .hero-media__shade {
   animation: flow-side-breathe 6s ease-in-out infinite alternate;
 }
 
-.flow-side__right-needle {
-  animation: flow-side-breathe 7.5s ease-in-out infinite alternate-reverse;
-}
