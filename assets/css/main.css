@@ -2537,3 +2537,156 @@ html[dir="ltr"] .hero-media__shade {
     display: none;
   }
 }
+
+/* ---------- تنظیمات تازهٔ هیرو، هدر، بخش پرسش و فوتر ---------- */
+
+.hero--media {
+  height: calc(100svh - var(--header-height));
+  min-height: 480px;
+}
+
+.hero--media .hero-inner {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  padding-block: clamp(32px, 4.5vw, 64px);
+}
+
+.hero--media .hero-title {
+  font-size: clamp(1.9rem, 3.3vw, 3.1rem);
+  margin-block-end: 26px;
+}
+
+.hero-actions {
+  margin-block-start: 0;
+}
+
+.hero-actions .btn {
+  min-height: 46px;
+  padding-inline: 20px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .hero--media {
+    height: calc(100svh - var(--header-height));
+    min-height: 440px;
+  }
+
+  .hero--media .hero-title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+}
+
+.primary-nav {
+  margin-inline-start: 12px;
+}
+
+.primary-nav a {
+  font-size: calc(var(--t-small) * 0.9);
+}
+
+.question-band {
+  padding-block: clamp(36px, 4.2vw, 60px);
+}
+
+.site-footer {
+  padding-block: clamp(28px, 3.4vw, 46px) 18px;
+}
+
+.footer-grid {
+  gap: 24px;
+}
+
+.footer-title {
+  font-size: 0.78rem;
+  margin-block-end: 8px;
+}
+
+.footer-links {
+  gap: 6px;
+}
+
+.footer-links a {
+  font-size: 0.86rem;
+}
+
+.site-footer .wordmark__img {
+  height: 64px;
+}
+
+.footer-bottom {
+  margin-block-start: 22px;
+  font-size: 0.76rem;
+}
+
+/* ---------- همکاران و تأمین‌کنندگان ---------- */
+
+.partners__rail {
+  margin-block-start: 34px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.partners__marquee {
+  display: flex;
+  width: max-content;
+  animation: partners-marquee 42s linear infinite;
+}
+
+.partners__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(26px, 4vw, 64px);
+  margin: 0;
+  padding: 0 clamp(26px, 4vw, 64px) 0 0;
+  list-style: none;
+}
+
+.partners__item img {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 170px;
+  object-fit: contain;
+  opacity: 0.62;
+  filter: grayscale(1);
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+
+.partners__item img:hover {
+  opacity: 1;
+  filter: none;
+}
+
+.partners__rail:hover .partners__marquee {
+  animation-play-state: paused;
+}
+
+@keyframes partners-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 720px) {
+  .partners__item img {
+    height: 34px;
+    max-width: 130px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners__marquee {
+    animation: none;
+    flex-wrap: wrap;
+  }
+
+  .partners__track[aria-hidden="true"] {
+    display: none;
+  }
+}

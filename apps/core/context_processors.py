@@ -4,7 +4,7 @@ from django.conf import settings
 from django.urls import reverse
 
 from apps.core.i18n import language, translate
-from apps.core.models import SiteImage, SiteSettings, SocialLink
+from apps.core.models import Partner, SiteImage, SiteSettings, SocialLink
 from apps.services.models import Service
 
 
@@ -61,6 +61,7 @@ def site_context(request) -> dict:
 
     return {
         "site": site,
+        "partners": list(Partner.objects.filter(is_active=True)),
         "site_images": {image.key: image for image in SiteImage.objects.all()},
         "social_links": SocialLink.objects.filter(is_active=True),
         "service_menu": services,

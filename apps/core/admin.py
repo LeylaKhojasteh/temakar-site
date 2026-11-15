@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import SiteImage, SiteSettings, SocialLink
+from .models import Partner, SiteImage, SiteSettings, SocialLink
 from .uploads import image_variant
 
 admin.site.site_header = "مدیریت تماکار"
@@ -63,4 +63,26 @@ class SiteImageAdmin(admin.ModelAdmin):
         return format_html(
             '<img src="{}" width="320" alt="" class="admin-preview">',
             obj.image.url,
+        )
+
+
+@admin.register(Partner)
+class PartnerAdmin(admin.ModelAdmin):
+    list_display = ("name_fa", "thumb", "order", "is_active")
+    list_editable = ("order", "is_active")
+    list_filter = ("is_active",)
+    search_fields = ("name_fa", "name_en")
+    fieldsets = (
+        ("شناسه", {"fields": ("name_fa", "name_en", "url", "order", "is_active")}),
+        ("لوگو", {"fields": ("logo",)}),
+    )
+
+    @admin.display(description="لوگو")
+    def thumb(self, obj):
+        if not obj.logo:
+            return "-"
+        variant = image_variant(obj.logo, "thumb")
+        return format_html(
+            '<img class="admin-thumb" src="{}" width="48" height="48" alt="">',
+            variant.url,
         )

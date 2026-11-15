@@ -1,5 +1,6 @@
 // رفتارهای عمومی: منوی موبایل، فوکوس، ورود بخش‌ها و پارالاکس ملایم هرو.
 (function () {
+
   "use strict";
 
   var header = document.querySelector("[data-site-header]");

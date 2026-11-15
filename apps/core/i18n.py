@@ -14,7 +14,7 @@ STRINGS: dict[str, dict[str, str]] = {
     "nav.home": {"en": "Home", "fa": "خانه"},
     "nav.about": {"en": "Who we are", "fa": "ما کی هستیم"},
     "nav.services": {"en": "Our services", "fa": "خدمات ما"},
-    "nav.contact": {"en": "Contact", "fa": "تماس"},
+    "nav.contact": {"en": "Contact us", "fa": "تماس با ما"},
     "nav.menu": {"en": "Menu", "fa": "منو"},
     "nav.close": {"en": "Close", "fa": "بستن"},
     "nav.language_en": {"en": "English", "fa": "انگلیسی"},

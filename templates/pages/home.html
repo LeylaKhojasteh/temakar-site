@@ -20,16 +20,9 @@
           <span class="line"><span>{% if is_fa %}تأمین تجهیزات{% else %}Supply for the{% endif %}</span></span>
           <span class="line"><span>{% if is_fa %}صنعت انرژی{% else %}energy industry{% endif %}</span></span>
         </h1>
-        <p class="hero-support">
-          {% if is_fa %}
-            تماکار اقلام مورد نیاز شرکت‌های تولیدی و قطعات و تجهیزات نیروگاه‌ها و سایت‌های نفت، گاز و پتروشیمی را تأمین می‌کند.
-          {% else %}
-            Temakar supplies the items needed by manufacturing companies and the parts and equipment required by power plants and oil, gas and petrochemical sites.
-          {% endif %}
-        </p>
+        
         <div class="hero-actions">
           <a class="btn" href="{% url 'services:index' %}">{% tr "cta.services" %}</a>
-          <a class="text-link" href="{% url 'contact:page' %}">{% tr "cta.contact" %}</a>
         </div>
       </div>
     </div>
@@ -78,14 +71,14 @@
     </div>
   </section>
 
-  {# فصل چهارم: مسیر تأمین #}
-  {% include "partials/sourcing_map.html" %}
+  {# همکاران و تأمین‌کنندگان #}
+  {% include "partials/partners.html" %}
 
   {# فصل پنجم: کنش پایانی #}
   <section class="question-band" aria-labelledby="home-question-title">
     <div class="shell grid gap-8 md:grid-cols-[7fr_5fr] md:items-center">
       <div class="reveal">
-        <h2 class="h2" id="home-question-title">{% if is_fa %}پرسشی دارید؟{% else %}Do you have a question?{% endif %}</h2>
+        <h2 class="h2" id="home-question-title">{% if is_fa %}درخواستی دارید؟{% else %}Do you have a request?{% endif %}</h2>
         <p class="lead mt-4 text-paper/85">
           {% if is_fa %}با ما در تماس باشید.{% else %}Feel free to contact us.{% endif %}
         </p>

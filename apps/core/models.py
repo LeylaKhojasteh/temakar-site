@@ -114,3 +114,41 @@ class SiteImage(models.Model):
         super().save(*args, **kwargs)
         if self.image:
             self._original_image = self.image.name
+
+
+class Partner(models.Model):
+    """همکار یا تأمین‌کننده که لوگویش در نوار همکاران نمایش داده می‌شود."""
+
+    name_fa = models.CharField("نام (فارسی)", max_length=120)
+    name_en = models.CharField("نام (انگلیسی)", max_length=120, blank=True)
+    logo = models.ImageField(
+        "لوگو",
+        upload_to=UploadToFolder("partners"),
+        validators=[ImageFileSizeValidator()],
+        help_text="PNG با پس‌زمینهٔ شفاف یا سفید؛ ارتفاع نمایش ۴۴ پیکسل است.",
+    )
+    image_width = models.PositiveIntegerField(editable=False, default=0)
+    image_height = models.PositiveIntegerField(editable=False, default=0)
+    url = models.URLField("نشانی وب", blank=True, help_text="اختیاری.")
+    order = models.PositiveSmallIntegerField("ترتیب", default=0)
+    is_active = models.BooleanField("فعال", default=True)
+    created_at = models.DateTimeField("تاریخ ایجاد", auto_now_add=True)
+
+    class Meta:
+        ordering = ("order", "id")
+        verbose_name = "همکار"
+        verbose_name_plural = "همکاران و تأمین‌کنندگان"
+
+    def __str__(self) -> str:
+        return self.name_fa or self.name_en
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._original_image = self.logo.name if self.pk and self.logo else ""
+
+    def save(self, *args, **kwargs):
+        if self.logo and self.logo.name != self._original_image:
+            store_optimized_image(self, field_name="logo")
+        super().save(*args, **kwargs)
+        if self.logo:
+            self._original_image = self.logo.name
