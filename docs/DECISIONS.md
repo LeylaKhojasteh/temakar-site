@@ -281,3 +281,16 @@ buttons, link hovers and the single closing call-to-action band. Working hours a
 model and the contact page; the contact map now sits under the address block instead of a separate
 section. The services menu keeps its 380ms entrance but uses `display` so a closed menu is out of the
 accessibility tree and out of the inspector's text scan.
+
+
+## 2026-11-16: The hero becomes a still photograph with moving clouds
+
+**Context:** the owner supplied a poster and a ten second cloud clip and asked to drop every
+previous hero effect.
+
+**Decision:** the halo, grid, streaks and haze are removed together with their markup and styles.
+The hero shows the poster first, then sets the video source and plays it muted, inline and looped;
+the video fades in only when playback actually starts, so there is never a black frame. Both layers
+use `object-fit: cover` with the same position, and the hero's aspect keeps the frame from jumping.
+With `prefers-reduced-motion` the source is never set and no video request is made. If autoplay is
+blocked or the file fails, the poster simply stays.

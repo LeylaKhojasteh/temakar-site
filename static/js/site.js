@@ -311,3 +311,33 @@
       }
     });
   }
+
+  // ویدیوی ابرها: فقط بعد از نمایش عکس و اگر کاربر حرکت کمتر نخواسته باشد.
+  var heroVideo = document.querySelector(".hero-media__video");
+  if (heroVideo && heroVideo.dataset.src) {
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion) {
+      var startHeroVideo = function () {
+        if (heroVideo.dataset.started === "true") {
+          return;
+        }
+        heroVideo.dataset.started = "true";
+        heroVideo.addEventListener("playing", function () {
+          heroVideo.classList.add("is-playing");
+        }, { once: true });
+        heroVideo.addEventListener("error", function () {
+          heroVideo.classList.remove("is-playing");
+        }, { once: true });
+        heroVideo.src = heroVideo.dataset.src;
+        var attempt = heroVideo.play();
+        if (attempt && typeof attempt.catch === "function") {
+          attempt.catch(function () {});
+        }
+      };
+      if (document.readyState === "complete") {
+        startHeroVideo();
+      } else {
+        window.addEventListener("load", startHeroVideo);
+      }
+    }
+  }

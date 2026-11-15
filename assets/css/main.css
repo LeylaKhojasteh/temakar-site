@@ -2182,25 +2182,6 @@ html[lang="fa"] .prose-temakar {
   object-position: center;
 }
 
-.hero-media__effects {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-media__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(6, 20, 33, 0.92) 0%,
-    rgba(6, 20, 33, 0.62) 30%,
-    rgba(6, 20, 33, 0.2) 58%,
-    rgba(6, 20, 33, 0) 78%
-  );
-}
-
 html[dir="ltr"] .hero-media__scrim {
   background: linear-gradient(
     to right,
@@ -2231,11 +2212,6 @@ html[dir="ltr"] .hero-media__scrim {
   color: color-mix(in srgb, var(--color-paper) 90%, transparent);
 }
 
-.hero-grid {
-  opacity: 0.26;
-  animation: hero-grid-breathe 9s ease-in-out infinite alternate;
-}
-
 @keyframes hero-grid-breathe {
   from {
     opacity: 0.18;
@@ -2243,47 +2219,6 @@ html[dir="ltr"] .hero-media__scrim {
   to {
     opacity: 0.3;
   }
-}
-
-.hero-light {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.hero-light--track {
-  stroke: var(--hero-gold);
-  stroke-width: 2;
-  opacity: 0.14;
-}
-
-.hero-light--glow {
-  stroke: var(--hero-gold);
-  stroke-width: 9;
-  stroke-dasharray: 16 84;
-  filter: url(#hero-glow);
-  opacity: 0.55;
-  animation: hero-travel var(--hero-speed) linear infinite;
-}
-
-.hero-light--core {
-  stroke: #ffe6b0;
-  stroke-width: 2.6;
-  stroke-dasharray: 16 84;
-  opacity: 0.9;
-  animation: hero-travel var(--hero-speed) linear infinite;
-}
-
-.hero-light--second {
-  animation-delay: -2.1s;
-  animation-duration: 6.4s;
-}
-
-.hero-light--blue {
-  stroke: var(--hero-ice);
-  opacity: 0.5;
-  animation-delay: -3.4s;
-  animation-duration: 7.4s;
 }
 
 @keyframes hero-travel {
@@ -2302,40 +2237,6 @@ html[dir="ltr"] .hero-media__scrim {
 
   .hero--media .hero-copy {
     max-width: 100%;
-  }
-
-  .hero-grid {
-    opacity: 0.16;
-  }
-
-  .hero-light--glow {
-    opacity: 0.38;
-  }
-
-  .hero-light--core {
-    stroke-width: 2;
-  }
-
-  .hero-media__scrim {
-    background: linear-gradient(
-      to bottom,
-      rgba(6, 20, 33, 0.94) 0%,
-      rgba(6, 20, 33, 0.72) 48%,
-      rgba(6, 20, 33, 0.3) 100%
-    );
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-grid,
-  .hero-light {
-    animation: none !important;
-  }
-
-  .hero-light--glow,
-  .hero-light--core {
-    stroke-dasharray: none;
-    opacity: 0.2;
   }
 }
 
@@ -2387,54 +2288,8 @@ html[dir="ltr"] .hero-media__shade {
     linear-gradient(to top, rgba(4, 14, 24, 0.5) 0%, rgba(4, 14, 24, 0) 42%);
 }
 
-.hero-media__veil {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(70% 80% at 82% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
-}
-
 html[dir="ltr"] .hero-media__veil {
   background: radial-gradient(70% 80% at 18% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
-}
-
-.hero-grid {
-  animation: hero-grid-breathe 11s ease-in-out infinite alternate;
-}
-
-.hero-dot {
-  animation: hero-twinkle 5.5s ease-in-out infinite alternate;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.hero-dot--2 {
-  animation-delay: -1.4s;
-}
-
-.hero-dot--3 {
-  animation-delay: -2.6s;
-}
-
-.hero-dot--4 {
-  animation-delay: -3.1s;
-}
-
-.hero-dot--5 {
-  animation-delay: -0.8s;
-}
-
-.hero-dot--6 {
-  animation-delay: -4.2s;
-}
-
-.hero-dot--7 {
-  animation-delay: -1.9s;
-}
-
-.hero-source {
-  animation: hero-source-pulse 8s ease-in-out infinite alternate;
-  transform-box: fill-box;
-  transform-origin: center;
 }
 
 .hero-glow__base {
@@ -2447,36 +2302,6 @@ html[dir="ltr"] .hero-media__veil {
 
 .hero-glow__run {
   animation: hero-run 16s linear infinite;
-}
-
-.hero-arc {
-  animation: hero-drift 20s ease-in-out infinite alternate;
-}
-
-.hero-arc--2 {
-  animation-delay: -6s;
-  animation-duration: 26s;
-}
-
-.hero-orbit {
-  animation: hero-shimmer 14s ease-in-out infinite alternate;
-}
-
-.hero-orbit--2 {
-  animation-delay: -5s;
-  animation-duration: 19s;
-}
-
-.hero-streak {
-  animation: hero-streak 13s ease-in-out infinite alternate;
-}
-
-.hero-streak--r {
-  animation-delay: -4s;
-}
-
-.hero-streak--l2 {
-  animation-delay: -7s;
 }
 
 @keyframes hero-grid-breathe {
@@ -2567,14 +2392,6 @@ html[dir="ltr"] .hero-media__veil {
   .hero-glow__run {
     opacity: 0.6;
   }
-
-  .hero-arcs {
-    opacity: 0.7;
-  }
-
-  .hero-media__veil {
-    background: radial-gradient(90% 70% at 70% 30%, rgba(4, 14, 24, 0.55), rgba(4, 14, 24, 0) 65%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2622,19 +2439,6 @@ html[dir="ltr"] .hero-media__veil {
   z-index: 0;
 }
 
-.hero-media__overlay {
-  z-index: 1;
-}
-
-.hero-media__motion {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  opacity: 0.38;
-}
-
 .hero-media__shade {
   position: absolute;
   inset: 0;
@@ -2660,27 +2464,6 @@ html[dir="ltr"] .hero-media__shade {
   z-index: 5;
 }
 
-.hero-spark {
-  opacity: 0.65;
-}
-
-.hero-spark--main {
-  animation: hero-spark-breathe 8s ease-in-out infinite alternate;
-}
-
-.hero-spark--side {
-  animation: hero-spark-breathe 11s ease-in-out infinite alternate;
-}
-
-@keyframes hero-spark-breathe {
-  from {
-    opacity: 0.34;
-  }
-  to {
-    opacity: 0.7;
-  }
-}
-
 @media (max-width: 720px) {
   .hero--media {
     height: 78svh;
@@ -2690,10 +2473,6 @@ html[dir="ltr"] .hero-media__shade {
   .hero-media__image,
   .hero-media__overlay {
     object-position: 55% center;
-  }
-
-  .hero-media__motion {
-    opacity: 0.18;
   }
 
   .hero-media__shade {
@@ -2706,16 +2485,6 @@ html[dir="ltr"] .hero-media__shade {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-spark {
-    animation: none !important;
-  }
-
-  .hero-media__motion {
-    display: none;
-  }
-}
-
 /* ---------- هیرو: جریان نور روی لایهٔ مرجع ---------- */
 
 .hero-media__motion {
@@ -2724,56 +2493,10 @@ html[dir="ltr"] .hero-media__shade {
   mix-blend-mode: screen;
 }
 
-.flow-base {
-  animation: none;
-}
-
-.flow-main__wide {
-  animation: none;
-}
-
-.flow-main__mid {
-  animation: flow-breathe 4.5s ease-in-out infinite alternate;
-}
-
-.flow-main__core {
-  animation: flow-breathe 3.5s ease-in-out infinite alternate-reverse;
-}
-
-
-
-
-
-
-
-
-@keyframes flow-breathe {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-
 
 @keyframes flow-side-breathe {
   from { opacity: 0.72; }
   to { opacity: 0.95; }
-}
-
-
-
-@media (max-width: 720px) {
-  .flow-main__wide { display: none; }
-  .flow-main__mid { opacity: 0.7; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flow-base,
-  .flow-main__wide,
-  .flow-main__mid,
-  .flow-main__core,
-  .flow-side__left-glow,
-  .flow-side__right-glow {
-    animation: none !important;
-  }
 }
 
 /* هاله کمی تیره‌تر تا رگه‌های نور مشخص شوند */
@@ -2791,71 +2514,26 @@ html[dir="ltr"] .hero-media__shade {
   pointer-events: none;
 }
 
-.hero-haze {
+/* ---------- هیرو: عکس ثابت + ویدیوی ابرها ---------- */
+
+.hero-media__video {
   position: absolute;
-  display: block;
-  width: 62%;
-  height: 22%;
-  border-radius: 50%;
-  filter: blur(46px);
-  mix-blend-mode: screen;
-  opacity: 0.5;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 700ms ease;
 }
 
-.hero-haze--1 {
-  left: -12%;
-  top: 26%;
-  background: radial-gradient(closest-side, rgba(255, 176, 92, 0.22), rgba(255, 176, 92, 0) 70%);
-  animation: haze-drift-a 54s ease-in-out infinite alternate;
-}
-
-.hero-haze--2 {
-  left: 38%;
-  top: 30%;
-  width: 54%;
-  background: radial-gradient(closest-side, rgba(255, 208, 150, 0.18), rgba(255, 208, 150, 0) 72%);
-  animation: haze-drift-b 68s ease-in-out infinite alternate;
-}
-
-.hero-haze--3 {
-  left: 72%;
-  top: 24%;
-  width: 46%;
-  background: radial-gradient(closest-side, rgba(150, 205, 255, 0.14), rgba(150, 205, 255, 0) 72%);
-  animation: haze-drift-a 76s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes haze-drift-a {
-  from {
-    transform: translate3d(-3%, 0, 0) scale(1);
-    opacity: 0.38;
-  }
-  to {
-    transform: translate3d(4%, -1.5%, 0) scale(1.06);
-    opacity: 0.6;
-  }
-}
-
-@keyframes haze-drift-b {
-  from {
-    transform: translate3d(2%, 1%, 0) scale(1.04);
-    opacity: 0.3;
-  }
-  to {
-    transform: translate3d(-4%, -1%, 0) scale(1);
-    opacity: 0.52;
-  }
-}
-
-@media (max-width: 720px) {
-  .hero-haze {
-    filter: blur(30px);
-    opacity: 0.35;
-  }
+.hero-media__video.is-playing {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-haze {
-    animation: none !important;
+  .hero-media__video {
+    display: none;
   }
 }
