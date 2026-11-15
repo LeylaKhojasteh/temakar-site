@@ -51,8 +51,8 @@
             <stop offset=".7" stop-color="#ffe2b8" stop-opacity=".95" />
             <stop offset=".78" stop-color="#ffd9a8" stop-opacity=".35" />
             <stop offset="1" stop-color="#ffc98d" stop-opacity="0" />
-            <animate attributeName="x1" values="300;-40" dur="6.5s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="360;520" dur="6.5s" repeatCount="indefinite" />
+            <animate attributeName="x1" values="286;40" dur="6.5s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="326;330" dur="6.5s" repeatCount="indefinite" />
           </linearGradient>
 
           <linearGradient id="flow-right" gradientUnits="userSpaceOnUse" x1="1260" y1="0" x2="1520" y2="0">
@@ -78,6 +78,9 @@
           <path id="flow-path-main" d="M 638 544 C 633 520 672 505 707 526 C 790 585 1107 636 1380 751 S 1665 871 1810 929" />
           <path id="flow-path-left" d="M 109 477 C 117 454 370 439 603 440" />
           <path id="flow-path-right" d="M 1288 466 C 1350 474 1420 502 1470 540" />
+          <clipPath id="left-needle-clip">
+            <rect x="60" y="400" width="250" height="120" />
+          </clipPath>
         </defs>
 
         <!-- موج نور روی شبکهٔ کف -->
@@ -104,7 +107,7 @@
 
         <!-- قوس‌های فرعی چپ و راست -->
         <g class="flow-side">
-          <path class="flow-side__left-needle" d="M 300 486 C 250 458 170 444 96 442" fill="none"
+          <path class="flow-side__left-needle" clip-path="url(#left-needle-clip)" d="M 96 480 C 112 452 372 437 620 439" fill="none"
                 stroke="url(#flow-left)" stroke-width="3" stroke-linecap="butt"
                 filter="url(#flow-blur-xs)" opacity="1" />
           
