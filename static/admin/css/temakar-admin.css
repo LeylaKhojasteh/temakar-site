@@ -1,0 +1,213 @@
+@font-face {
+  font-family: "Estedad";
+  src: url("/static/fonts/estedad-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* ---------- پنل مدیریت تماکار ---------- */
+
+:root {
+  --tk-blue: #1d4f86;
+  --tk-blue-2: #2a6bb3;
+  --tk-ink: #0e1b28;
+  --tk-paper: #f4f6f9;
+  --tk-line: #d8dee7;
+  --tk-radius: 10px;
+}
+
+body {
+  font-family: "Estedad", "Vazirmatn", system-ui, sans-serif;
+  background: var(--tk-paper);
+  color: var(--tk-ink);
+}
+
+/* هدر */
+#header {
+  background: var(--tk-blue);
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#header a:link,
+#header a:visited {
+  color: #fff;
+}
+
+.tk-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tk-brand__logo {
+  height: 36px;
+  width: auto;
+}
+
+.tk-brand__name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+}
+
+.tk-brand__tag {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* لینک‌های هدر در سمت دیگر */
+#user-tools {
+  margin-inline-start: auto;
+  font-size: 0.8rem;
+}
+
+#user-tools a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* نان‌ریزه */
+div.breadcrumbs {
+  background: #fff;
+  color: var(--tk-ink);
+  border-bottom: 1px solid var(--tk-line);
+  padding: 12px 24px;
+}
+
+div.breadcrumbs a {
+  color: var(--tk-blue-2);
+}
+
+/* بدنه */
+#content {
+  padding: 24px;
+}
+
+#content h1 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+/* ماژول‌ها */
+.module {
+  border: 1px solid var(--tk-line);
+  border-radius: var(--tk-radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(14, 27, 40, 0.04);
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: #eef2f7;
+  color: var(--tk-ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.module table {
+  border-collapse: collapse;
+}
+
+.module th,
+.module td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.module tr:last-child th,
+.module tr:last-child td {
+  border-bottom: 0;
+}
+
+/* دکمه‌ها */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+  background: var(--tk-blue);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+a.button:hover {
+  background: var(--tk-blue-2);
+}
+
+.button.default,
+input[type="submit"].default,
+.submit-row input.default {
+  background: var(--tk-blue-2);
+}
+
+/* فرم‌ها */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+  border: 1px solid var(--tk-line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--tk-blue-2);
+  outline-offset: 1px;
+}
+
+/* فیلترها */
+#changelist-filter {
+  background: #fff;
+  border: 1px solid var(--tk-line);
+  border-radius: var(--tk-radius);
+}
+
+#changelist-filter h2 {
+  background: #eef2f7;
+  color: var(--tk-ink);
+}
+
+/* جدول‌ها */
+#result_list thead th {
+  background: #eef2f7;
+  color: var(--tk-ink);
+  font-weight: 700;
+}
+
+#result_list tbody tr:hover {
+  background: #f7f9fc;
+}
+
+/* پیام‌ها */
+.messagelist li {
+  border-radius: 8px;
+}
+
+/* لوگو در صفحهٔ ورود */
+.login #header {
+  justify-content: center;
+}
+
+.login .tk-brand {
+  margin: 0 auto;
+}

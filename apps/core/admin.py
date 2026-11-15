@@ -68,14 +68,10 @@ class SiteImageAdmin(admin.ModelAdmin):
 
 @admin.register(Partner)
 class PartnerAdmin(admin.ModelAdmin):
-    list_display = ("name_fa", "thumb", "order", "is_active")
+    list_display = ("thumb", "order", "is_active")
     list_editable = ("order", "is_active")
     list_filter = ("is_active",)
-    search_fields = ("name_fa", "name_en")
-    fieldsets = (
-        ("شناسه", {"fields": ("name_fa", "name_en", "url", "order", "is_active")}),
-        ("لوگو", {"fields": ("logo",)}),
-    )
+    fields = ("logo", "order", "is_active")
 
     @admin.display(description="لوگو")
     def thumb(self, obj):
@@ -83,6 +79,6 @@ class PartnerAdmin(admin.ModelAdmin):
             return "-"
         variant = image_variant(obj.logo, "thumb")
         return format_html(
-            '<img class="admin-thumb" src="{}" width="48" height="48" alt="">',
+            '<img class="admin-thumb" src="{}" width="64" height="40" alt="" style="object-fit:contain">',
             variant.url,
         )

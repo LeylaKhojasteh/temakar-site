@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | تماکار{% endblock %}
+
+{% block branding %}
+  <div class="tk-brand">
+    <img class="tk-brand__logo" src="{% static 'img/brand/logo-light.png' %}" alt="" width="40" height="36">
+    <a class="tk-brand__name" href="{% url 'admin:index' %}">تماکار</a>
+    <span class="tk-brand__tag">پنل مدیریت</span>
+  </div>
+{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/css/temakar-admin.css' %}">
+{% endblock %}

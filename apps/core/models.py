@@ -117,22 +117,18 @@ class SiteImage(models.Model):
 
 
 class Partner(models.Model):
-    """همکار یا تأمین‌کننده که لوگویش در نوار همکاران نمایش داده می‌شود."""
+    """لوگوی همکار یا تأمین‌کننده؛ فقط تصویر لازم است."""
 
-    name_fa = models.CharField("نام (فارسی)", max_length=120)
-    name_en = models.CharField("نام (انگلیسی)", max_length=120, blank=True)
     logo = models.ImageField(
         "لوگو",
         upload_to=UploadToFolder("partners"),
         validators=[ImageFileSizeValidator()],
-        help_text="PNG با پس‌زمینهٔ شفاف یا سفید؛ ارتفاع نمایش ۴۴ پیکسل است.",
+        help_text="PNG با پس‌زمینهٔ شفاف؛ ارتفاع نمایش ۴۴ پیکسل است.",
     )
     image_width = models.PositiveIntegerField(editable=False, default=0)
     image_height = models.PositiveIntegerField(editable=False, default=0)
-    url = models.URLField("نشانی وب", blank=True, help_text="اختیاری.")
     order = models.PositiveSmallIntegerField("ترتیب", default=0)
     is_active = models.BooleanField("فعال", default=True)
-    created_at = models.DateTimeField("تاریخ ایجاد", auto_now_add=True)
 
     class Meta:
         ordering = ("order", "id")
@@ -140,7 +136,7 @@ class Partner(models.Model):
         verbose_name_plural = "همکاران و تأمین‌کنندگان"
 
     def __str__(self) -> str:
-        return self.name_fa or self.name_en
+        return f"لوگوی همکار {self.pk or ''}".strip()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

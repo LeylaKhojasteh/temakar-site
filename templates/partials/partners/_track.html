@@ -2,13 +2,8 @@
 <ul class="partners__track"{% if duplicate %} aria-hidden="true"{% endif %}>
   {% for partner in partners %}
     <li class="partners__item">
-      {% if partner.url %}
-        <a href="{{ partner.url }}" rel="noopener noreferrer nofollow" target="_blank">
-      {% endif %}
       <img src="{{ partner.logo.url }}" width="{{ partner.image_width }}" height="{{ partner.image_height }}"
-           alt="{% if is_fa %}{{ partner.name_fa }}{% else %}{{ partner.name_en|default:partner.name_fa }}{% endif %}"
-           loading="lazy" decoding="async">
-      {% if partner.url %}</a>{% endif %}
+           alt="" loading="lazy" decoding="async">
     </li>
   {% endfor %}
 </ul>
