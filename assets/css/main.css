@@ -2447,7 +2447,6 @@ html[dir="ltr"] .hero-media__shade {
 
 .request__card {
   --request-width: clamp(320px, 31vw, 460px);
-  translate: 0 var(--parallax, 0px);
   width: var(--request-width);
   height: clamp(118px, 9.5vw, 146px);
   aspect-ratio: auto;
@@ -2462,7 +2461,7 @@ html[dir="ltr"] .hero-media__shade {
 
 @media (prefers-reduced-motion: reduce) {
   .request__card {
-    translate: none;
+    animation: none;
   }
 }
 
@@ -2508,5 +2507,70 @@ html[dir="ltr"] .hero-media__shade {
   .request__title,
   .request__text {
     white-space: normal;
+  }
+}
+
+/* ---------- نفس رنگ کارت درخواست ---------- */
+
+.request__card {
+  animation: request-breath 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes request-breath {
+  from {
+    background-color: #1d4f86;
+  }
+  to {
+    background-color: #3576b8;
+  }
+}
+
+.text-link--fill {
+  position: relative;
+  border-block-end-color: transparent;
+}
+
+.text-link--fill::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 2px;
+  background-color: currentColor;
+  transform-origin: left;
+  animation: link-fill 2.8s ease-in-out infinite;
+}
+
+html[dir="rtl"] .text-link--fill::after {
+  transform-origin: right;
+}
+
+@keyframes link-fill {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.6;
+  }
+  72% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-link--fill::after {
+    animation: none;
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .request__card {
+    animation: none;
+    background-color: var(--color-accent);
   }
 }

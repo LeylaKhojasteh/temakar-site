@@ -271,26 +271,4 @@
     });
   }
 
-  // پارالاکس بسیار ملایم کارت درخواست هنگام اسکرول.
-  var requestCard = document.querySelector(".request__card");
-  var reduceMotionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (requestCard && reduceMotionQuery && !reduceMotionQuery.matches) {
-    var ticking = false;
-    var moveCard = function () {
-      var rect = requestCard.getBoundingClientRect();
-      var viewport = window.innerHeight || document.documentElement.clientHeight;
-      var progress = (viewport - rect.top) / (viewport + rect.height);
-      progress = Math.max(0, Math.min(1, progress));
-      var offset = (progress - 0.5) * 22;
-      requestCard.style.setProperty("--parallax", offset.toFixed(1) + "px");
-      ticking = false;
-    };
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        window.requestAnimationFrame(moveCard);
-        ticking = true;
-      }
-    }, { passive: true });
-    moveCard();
-  }
 })();
