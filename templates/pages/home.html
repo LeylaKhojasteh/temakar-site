@@ -38,10 +38,10 @@
         {% with img=site_images|get:"home_about" %}
           {% if img %}
             <img src="{{ img.image.url }}" width="{{ img.image_width }}" height="{{ img.image_height }}"
-                 alt="تماکار" loading="lazy" decoding="async">
+                 alt="" loading="lazy" decoding="async">
           {% else %}
             <img src="{% static 'img/about/who-we-are.webp' %}" width="1568" height="1175"
-                 alt="تماکار" loading="lazy" decoding="async">
+                 alt="" loading="lazy" decoding="async">
           {% endif %}
         {% endwith %}
       </figure>
@@ -68,7 +68,7 @@
   </section>
 
   {# خدمات: هر خدمت با لوگوی دوبعدی خودش #}
-  <section class="panel panel--paper-2" aria-labelledby="services-title">
+  <section class="panel panel--paper-2 panel--services" aria-labelledby="services-title">
     <div class="shell">
       <h2 class="h2 reveal" id="services-title">{% if is_fa %}کاری که انجام می‌دهیم{% else %}What we do{% endif %}</h2>
 
@@ -93,12 +93,14 @@
   <section class="request" aria-labelledby="request-title">
     <div class="shell request__shell">
       <div class="request__card reveal">
-        <h2 class="h2 request__title" id="request-title">
-          {% if is_fa %}درخواستی دارید؟{% else %}Do you have a request?{% endif %}
-        </h2>
-        <p class="request__text">
-          {% if is_fa %}با ما در تماس باشید.{% else %}Feel free to contact us.{% endif %}
-        </p>
+        <div class="request__copy">
+          <h2 class="h2 request__title" id="request-title">
+            {% if is_fa %}درخواستی دارید؟{% else %}Do you have a request?{% endif %}
+          </h2>
+          <p class="request__text">
+            {% if is_fa %}با ما در تماس باشید.{% else %}Feel free to contact us.{% endif %}
+          </p>
+        </div>
         <div class="request__actions">
           {% if site.phone %}
             <a class="text-link" href="tel:{{ site.phone|cut:' ' }}"><span class="ltr-text">{{ site.phone }}</span></a>

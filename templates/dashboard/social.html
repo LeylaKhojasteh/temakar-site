@@ -1,0 +1,43 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}شبکه‌های اجتماعی{% endblock %}
+{% block heading %}شبکه‌های اجتماعی{% endblock %}
+
+{% block content %}
+  <section class="panel-block">
+    <h2>افزودن لینک</h2>
+    <form method="post" class="panel-form">
+      {% csrf_token %}
+      <div class="grid-2">
+        {% include "dashboard/_field.html" with field=form.label_fa %}
+        {% include "dashboard/_field.html" with field=form.label_en %}
+        {% include "dashboard/_field.html" with field=form.url %}
+        {% include "dashboard/_field.html" with field=form.order %}
+      </div>
+      <div class="form-actions"><button type="submit" class="btn btn--primary">افزودن</button></div>
+    </form>
+  </section>
+
+  <section class="panel-block">
+    <h2>لینک‌های ثبت‌شده</h2>
+    {% if links %}
+      <div class="table-wrap">
+        <table class="panel-table">
+          <thead><tr><th>برچسب</th><th>نشانی</th><th>ترتیب</th><th>وضعیت</th></tr></thead>
+          <tbody>
+            {% for link in links %}
+              <tr>
+                <td>{{ link.label_fa }}</td>
+                <td class="ltr num">{{ link.url }}</td>
+                <td class="num">{{ link.order }}</td>
+                <td>{% if link.is_active %}<span class="pill pill--read">فعال</span>{% else %}<span class="pill pill--new">غیرفعال</span>{% endif %}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty">هنوز لینکی ثبت نشده است.</p>
+    {% endif %}
+  </section>
+{% endblock %}

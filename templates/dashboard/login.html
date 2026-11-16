@@ -1,0 +1,30 @@
+{% load static %}<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ورود به پنل · تماکار</title>
+    <link rel="icon" href="{% static 'img/icon-32.png' %}?v=2" sizes="32x32" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  </head>
+  <body class="panel panel--login">
+    <main class="login-card">
+      <a class="login-brand" href="{% url 'core:home' %}">تماکار</a>
+      <h1>ورود به پنل مدیریت</h1>
+
+      {% if form.errors %}
+        <p class="form-error">نام کاربری یا رمز عبور درست نیست.</p>
+      {% endif %}
+
+      <form method="post" action="{% url 'dashboard:login' %}" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <label for="id_username">نام کاربری</label>
+        <input type="text" name="username" id="id_username" autocomplete="username" autofocus required>
+        <label for="id_password">رمز عبور</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password" required>
+        <button type="submit" class="btn btn--primary">ورود</button>
+      </form>
+    </main>
+  </body>
+</html>

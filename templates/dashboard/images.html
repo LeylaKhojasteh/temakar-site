@@ -1,0 +1,37 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}تصاویر صفحه‌ها{% endblock %}
+{% block heading %}تصاویر صفحه‌ها{% endblock %}
+
+{% block content %}
+  <div class="image-grid">
+    {% for row in rows %}
+      <section class="panel-block image-card">
+        <h2>{{ row.label }}</h2>
+        {% if row.obj and row.obj.image %}
+          <img class="image-preview" src="{{ row.obj.image.url }}" alt="" width="{{ row.obj.image_width }}" height="{{ row.obj.image_height }}">
+        {% else %}
+          <div class="image-preview image-preview--empty">تصویری انتخاب نشده</div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="key" value="{{ row.key }}">
+          <label for="id_image_{{ row.key }}">تصویر تازه</label>
+          <input type="file" name="image" id="id_image_{{ row.key }}" accept="image/*">
+          <div class="grid-2">
+            <div class="field">
+              <label for="id_alt_fa_{{ row.key }}">متن جایگزین (فارسی)</label>
+              <input type="text" name="alt_fa" id="id_alt_fa_{{ row.key }}" value="{{ row.obj.alt_fa|default:'' }}">
+            </div>
+            <div class="field">
+              <label for="id_alt_en_{{ row.key }}">متن جایگزین (انگلیسی)</label>
+              <input type="text" name="alt_en" id="id_alt_en_{{ row.key }}" value="{{ row.obj.alt_en|default:'' }}" dir="ltr">
+            </div>
+          </div>
+          <button type="submit" class="btn btn--primary">ذخیره</button>
+        </form>
+      </section>
+    {% endfor %}
+  </div>
+{% endblock %}

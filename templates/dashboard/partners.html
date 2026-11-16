@@ -1,0 +1,40 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}همکاران{% endblock %}
+{% block heading %}همکاران{% endblock %}
+
+{% block content %}
+  <section class="panel-block">
+    <h2>افزودن لوگو</h2>
+    <form method="post" enctype="multipart/form-data" class="panel-form">
+      {% csrf_token %}
+      <div class="grid-3">
+        {% include "dashboard/_field.html" with field=form.logo %}
+        {% include "dashboard/_field.html" with field=form.order %}
+        {% include "dashboard/_field.html" with field=form.is_active %}
+      </div>
+      <div class="form-actions"><button type="submit" class="btn btn--primary">افزودن</button></div>
+    </form>
+  </section>
+
+  <section class="panel-block">
+    <h2>لوگوهای ثبت‌شده</h2>
+    {% if partners %}
+      <ul class="logo-list">
+        {% for partner in partners %}
+          <li class="logo-item">
+            <img src="{{ partner.logo.url }}" alt="" width="{{ partner.image_width }}" height="{{ partner.image_height }}">
+            <span class="num">ترتیب {{ partner.order }}</span>
+            {% if partner.is_active %}<span class="pill pill--read">فعال</span>{% else %}<span class="pill pill--new">غیرفعال</span>{% endif %}
+            <form method="post" action="{% url 'dashboard:partner_delete' partner.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn--danger">حذف</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty">هنوز لوگویی اضافه نشده است.</p>
+    {% endif %}
+  </section>
+{% endblock %}

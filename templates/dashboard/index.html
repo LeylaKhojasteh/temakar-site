@@ -1,0 +1,65 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}داشبورد{% endblock %}
+{% block heading %}داشبورد{% endblock %}
+
+{% block content %}
+  <section class="panel-stats">
+    <article class="stat">
+      <span class="stat__value">{{ active_services }}</span>
+      <span class="stat__label">خدمت فعال از {{ services_count }}</span>
+    </article>
+    <article class="stat">
+      <span class="stat__value">{{ partners_count }}</span>
+      <span class="stat__label">لوگوی همکار</span>
+    </article>
+    <article class="stat">
+      <span class="stat__value">{{ images_count }}</span>
+      <span class="stat__label">تصویر صفحه</span>
+    </article>
+    <article class="stat stat--alert">
+      <span class="stat__value">{{ new_messages }}</span>
+      <span class="stat__label">پیام خوانده‌نشده</span>
+    </article>
+  </section>
+
+  <section class="panel-block">
+    <div class="panel-block__head">
+      <h2>تازه‌ترین پیام‌ها</h2>
+      <a class="panel-more" href="{% url 'dashboard:messages' %}">همهٔ پیام‌ها</a>
+    </div>
+
+    {% if messages %}
+      <div class="table-wrap">
+        <table class="panel-table">
+          <thead>
+            <tr><th>فرستنده</th><th>موضوع</th><th>وضعیت</th><th>تاریخ</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for message in messages %}
+              <tr>
+                <td>{{ message.name }}</td>
+                <td>{{ message.subject|default:"—" }}</td>
+                <td><span class="pill pill--{{ message.status }}">{{ message.get_status_display }}</span></td>
+                <td class="num">{{ message.created_at|date:"Y/m/d H:i" }}</td>
+                <td><a class="panel-more" href="{% url 'dashboard:message_detail' message.pk %}">خواندن</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty">هنوز پیامی نرسیده است.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel-block">
+    <div class="panel-block__head"><h2>میان‌برها</h2></div>
+    <div class="quick-grid">
+      <a class="quick" href="{% url 'dashboard:settings' %}"><strong>تنظیمات سایت</strong><span>تلفن، ایمیل، نشانی</span></a>
+      <a class="quick" href="{% url 'dashboard:services' %}"><strong>ویرایش خدمات</strong><span>متن و تصویر هر خدمت</span></a>
+      <a class="quick" href="{% url 'dashboard:images' %}"><strong>تصاویر صفحه‌ها</strong><span>لوگو و تصاویر اصلی</span></a>
+      <a class="quick" href="{% url 'dashboard:partners' %}"><strong>لوگوی همکاران</strong><span>افزودن و حذف</span></a>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}پیام‌ها{% endblock %}
+{% block heading %}پیام‌ها{% endblock %}
+
+{% block content %}
+  <section class="panel-block">
+    {% if messages %}
+      <div class="table-wrap">
+        <table class="panel-table">
+          <thead><tr><th>فرستنده</th><th>موضوع</th><th>ایمیل</th><th>وضعیت</th><th>تاریخ</th><th></th></tr></thead>
+          <tbody>
+            {% for message in messages %}
+              <tr>
+                <td>{{ message.name }}{% if message.company %} · {{ message.company }}{% endif %}</td>
+                <td>{{ message.subject|default:"—" }}</td>
+                <td class="ltr num">{{ message.email }}</td>
+                <td><span class="pill pill--{{ message.status }}">{{ message.get_status_display }}</span></td>
+                <td class="num">{{ message.created_at|date:"Y/m/d H:i" }}</td>
+                <td><a class="panel-more" href="{% url 'dashboard:message_detail' message.pk %}">خواندن</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty">هنوز پیامی نرسیده است.</p>
+    {% endif %}
+  </section>
+{% endblock %}

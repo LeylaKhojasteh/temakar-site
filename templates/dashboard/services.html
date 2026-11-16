@@ -1,0 +1,35 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}خدمات{% endblock %}
+{% block heading %}خدمات{% endblock %}
+{% block actions %}<a class="btn btn--primary" href="{% url 'dashboard:service_new' %}">خدمت تازه</a>{% endblock %}
+
+{% block content %}
+  <section class="panel-block">
+    {% if services %}
+      <div class="table-wrap">
+        <table class="panel-table">
+          <thead>
+            <tr><th>عنوان</th><th>نامک</th><th>ترتیب</th><th>وضعیت</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for service in services %}
+              <tr>
+                <td>{{ service.title_fa }}</td>
+                <td class="num ltr">{{ service.slug }}</td>
+                <td class="num">{{ service.order }}</td>
+                <td>
+                  {% if service.is_active %}<span class="pill pill--read">فعال</span>
+                  {% else %}<span class="pill pill--new">غیرفعال</span>{% endif %}
+                </td>
+                <td><a class="panel-more" href="{% url 'dashboard:service_edit' service.pk %}">ویرایش</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty">هنوز خدمتی ثبت نشده است.</p>
+    {% endif %}
+  </section>
+{% endblock %}

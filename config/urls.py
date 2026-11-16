@@ -15,6 +15,7 @@ from apps.core import views as core_views
 from apps.core.sitemap import sitemap_view
 
 urlpatterns = [
+    path("manage/", include("apps.dashboard.urls")),
     path("admin/", admin.site.urls),
     path("favicon.ico", core_views.favicon, name="favicon"),
     path(

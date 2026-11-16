@@ -1,0 +1,41 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}تنظیمات سایت{% endblock %}
+{% block heading %}تنظیمات سایت{% endblock %}
+
+{% block content %}
+  <form method="post" class="panel-form" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<p class="form-error">{{ form.non_field_errors }}</p>{% endif %}
+
+    <fieldset class="panel-block">
+      <legend>تماس</legend>
+      <div class="grid-2">
+        {% include "dashboard/_field.html" with field=form.phone %}
+        {% include "dashboard/_field.html" with field=form.phone_secondary %}
+        {% include "dashboard/_field.html" with field=form.email %}
+      </div>
+    </fieldset>
+
+    <fieldset class="panel-block">
+      <legend>نشانی</legend>
+      <div class="grid-2">
+        {% include "dashboard/_field.html" with field=form.address_fa %}
+        {% include "dashboard/_field.html" with field=form.address_en %}
+      </div>
+    </fieldset>
+
+    <fieldset class="panel-block">
+      <legend>نقشه</legend>
+      <div class="grid-2">
+        {% include "dashboard/_field.html" with field=form.map_query %}
+        {% include "dashboard/_field.html" with field=form.map_url %}
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn--primary">ذخیرهٔ تغییرات</button>
+      {% if obj.updated_at %}<span class="form-note">آخرین ویرایش: <span class="num">{{ obj.updated_at|date:"Y/m/d H:i" }}</span></span>{% endif %}
+    </div>
+  </form>
+{% endblock %}

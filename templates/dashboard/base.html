@@ -1,0 +1,59 @@
+{% load static %}<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}پنل تماکار{% endblock %} · تماکار</title>
+    <link rel="icon" href="{% static 'img/icon-32.png' %}?v=2" sizes="32x32" type="image/png">
+    <link rel="preload" href="{% static 'fonts/estedad-var.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  </head>
+  <body class="panel">
+    <a class="panel-skip" href="#panel-main">رفتن به محتوا</a>
+
+    <div class="panel-shell">
+      <aside class="panel-side">
+        <a class="panel-brand" href="{% url 'dashboard:index' %}">
+          <img src="{% static 'img/brand/logo-light.png' %}" alt="" width="44" height="40">
+          <span>
+            <strong>تماکار</strong>
+            <small>پنل مدیریت</small>
+          </span>
+        </a>
+
+        <nav class="panel-nav" aria-label="منوی پنل">
+          <a href="{% url 'dashboard:index' %}" {% if active == "dashboard" %}aria-current="page"{% endif %}>داشبورد</a>
+          <a href="{% url 'dashboard:settings' %}" {% if active == "settings" %}aria-current="page"{% endif %}>تنظیمات سایت</a>
+          <a href="{% url 'dashboard:services' %}" {% if active == "services" %}aria-current="page"{% endif %}>خدمات</a>
+          <a href="{% url 'dashboard:images' %}" {% if active == "images" %}aria-current="page"{% endif %}>تصاویر صفحه‌ها</a>
+          <a href="{% url 'dashboard:partners' %}" {% if active == "partners" %}aria-current="page"{% endif %}>همکاران</a>
+          <a href="{% url 'dashboard:social' %}" {% if active == "social" %}aria-current="page"{% endif %}>شبکه‌های اجتماعی</a>
+          <a href="{% url 'dashboard:messages' %}" {% if active == "messages" %}aria-current="page"{% endif %}>پیام‌ها</a>
+        </nav>
+
+        <div class="panel-side-foot">
+          <a href="{% url 'core:home' %}">دیدن سایت</a>
+          <form method="post" action="{% url 'dashboard:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="panel-link-button">خروج</button>
+          </form>
+        </div>
+      </aside>
+
+      <main class="panel-main" id="panel-main">
+        <header class="panel-top">
+          <h1>{% block heading %}{% endblock %}</h1>
+          {% block actions %}{% endblock %}
+        </header>
+
+        {% if messages %}
+          <ul class="panel-flash">
+            {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

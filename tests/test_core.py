@@ -1,4 +1,5 @@
 import time
+from pathlib import Path
 
 import pytest
 from django.core.signing import TimestampSigner
@@ -505,3 +506,19 @@ def test_import_service_images_command(settings, tmp_path):
     service.refresh_from_db()
     assert service.image
     assert service.image_width == 1600
+
+
+def test_no_unused_translation_keys():
+    """هر کلید ترجمه باید جایی در قالب‌ها، کد یا اسکریپت استفاده شده باشد."""
+    root = Path(__file__).resolve().parents[1]
+    corpus = ""
+    for pattern in ("templates/**/*.html", "apps/**/*.py", "static/js/**/*.js"):
+        for path in root.glob(pattern):
+            if any(part in {".venv", "node_modules", "migrations"} for part in path.parts):
+                continue
+            if path.name == "i18n.py":
+                continue
+            corpus += path.read_text(encoding="utf-8", errors="ignore")
+
+    unused = [key for key in STRINGS if f'"{key}"' not in corpus]
+    assert unused == []

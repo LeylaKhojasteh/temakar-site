@@ -1,0 +1,19 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}پیام{% endblock %}
+{% block heading %}پیام از {{ message.name }}{% endblock %}
+{% block actions %}<a class="panel-more" href="{% url 'dashboard:messages' %}">بازگشت به پیام‌ها</a>{% endblock %}
+
+{% block content %}
+  <section class="panel-block">
+    <dl class="message-meta">
+      <div><dt>نام</dt><dd>{{ message.name }}</dd></div>
+      {% if message.company %}<div><dt>شرکت</dt><dd>{{ message.company }}</dd></div>{% endif %}
+      <div><dt>ایمیل</dt><dd class="ltr num"><a href="mailto:{{ message.email }}">{{ message.email }}</a></dd></div>
+      {% if message.phone %}<div><dt>تلفن</dt><dd class="ltr num">{{ message.phone }}</dd></div>{% endif %}
+      <div><dt>موضوع</dt><dd>{{ message.subject|default:"—" }}</dd></div>
+      <div><dt>تاریخ</dt><dd class="num">{{ message.created_at|date:"Y/m/d H:i" }}</dd></div>
+    </dl>
+    <div class="message-body">{{ message.body|linebreaks }}</div>
+  </section>
+{% endblock %}
