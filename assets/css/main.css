@@ -366,7 +366,7 @@ html[dir="rtl"] .primary-nav a::after {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   margin-inline-start: auto;
 }
 
