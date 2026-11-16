@@ -2761,3 +2761,49 @@ html[data-theme="dark"] .hero-actions .btn:hover {
   text-align: center;
   margin-block-end: 6px;
 }
+
+/* ---------- دو ردیف همکاران ---------- */
+
+.partners__rows {
+  display: grid;
+  gap: 4px;
+}
+
+.partners__marquee--b {
+  animation-name: partners-marquee-reverse;
+  animation-duration: 64s;
+}
+
+@keyframes partners-marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.partners__item {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.partners__rail:hover .partners__item {
+  opacity: 0.42;
+}
+
+.partners__rail:hover .partners__item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+html[data-theme="dark"] .partners__rail {
+  background-color: rgba(232, 237, 242, 0.94);
+  border-radius: 16px;
+  padding-block: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners__marquee--b {
+    animation: none;
+  }
+}

@@ -157,7 +157,7 @@ class Partner(models.Model):
             with Image.open(self.logo) as image:
                 payload, width, height = prepare_logo(image)
             self.logo.save(
-                f"{Path(old_name).stem}-logo.png",
+                f"{Path(old_name).stem}-logo.webp",
                 ContentFile(payload),
                 save=False,
             )

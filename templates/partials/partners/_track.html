@@ -1,6 +1,6 @@
 {% load site_tags %}
 <ul class="partners__track"{% if duplicate %} aria-hidden="true"{% endif %}>
-  {% for partner in partners %}
+  {% for partner in items %}
     <li class="partners__item">
       <img src="{{ partner.logo.url }}" width="{{ partner.image_width }}" height="{{ partner.image_height }}"
            alt="" loading="eager" decoding="async">

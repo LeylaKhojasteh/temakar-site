@@ -46,5 +46,5 @@ def prepare_logo(image: Image.Image) -> tuple[bytes, int, int]:
     fitted = _fit_on_canvas(cleared)
 
     buffer = BytesIO()
-    fitted.save(buffer, format="PNG", optimize=True)
+    fitted.save(buffer, format="WEBP", quality=90, method=6)
     return buffer.getvalue(), fitted.width, fitted.height

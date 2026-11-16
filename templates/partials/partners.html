@@ -7,9 +7,15 @@
 
     {% if partners %}
       <div class="partners__rail reveal">
-        <div class="partners__marquee">
-          {% include "partials/partners/_track.html" %}
-          {% include "partials/partners/_track.html" with duplicate=True %}
+        <div class="partners__rows">
+          <div class="partners__marquee partners__marquee--a">
+            {% include "partials/partners/_track.html" with items=partners|slice:":8" %}
+            {% include "partials/partners/_track.html" with items=partners|slice:":8" duplicate=True %}
+          </div>
+          <div class="partners__marquee partners__marquee--b">
+            {% include "partials/partners/_track.html" with items=partners|slice:"8:" %}
+            {% include "partials/partners/_track.html" with items=partners|slice:"8:" duplicate=True %}
+          </div>
         </div>
       </div>
     {% else %}
