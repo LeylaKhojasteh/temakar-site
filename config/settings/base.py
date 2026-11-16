@@ -113,7 +113,6 @@ LANGUAGES = [("en", "English"), ("fa", "فارسی")]
 USE_I18N = True
 USE_TZ = True
 TIME_ZONE = "Asia/Tehran"
-LOCALE_PATHS = [BASE_DIR / "locale"]
 
 # --- فایل‌ها -------------------------------------------------------------
 

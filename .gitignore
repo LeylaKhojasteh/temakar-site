@@ -32,7 +32,6 @@ Thumbs.db
 .idea/
 
 # خروجی بیلد تیلویند (با npm run css:build ساخته می‌شود)
-/static/css/app.css
 
 # کلاستر محلی پستگرس برای توسعه (با scripts/dev-db.ps1 ساخته می‌شود)
 /.pgdata/

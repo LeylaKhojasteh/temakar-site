@@ -3,6 +3,38 @@
 
   "use strict";
 
+  // تصویر ثابت تا شروع پخش، بعد ویدیوی ابرها.
+    // ویدیوی ابرها: فقط بعد از نمایش عکس و اگر کاربر حرکت کمتر نخواسته باشد.
+    var heroVideo = document.querySelector(".hero-media__video");
+    if (heroVideo && heroVideo.dataset.src) {
+      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduceMotion) {
+        var startHeroVideo = function () {
+          if (heroVideo.dataset.started === "true") {
+            return;
+          }
+          heroVideo.dataset.started = "true";
+          heroVideo.addEventListener("playing", function () {
+            heroVideo.classList.add("is-playing");
+          }, { once: true });
+          heroVideo.addEventListener("error", function () {
+            heroVideo.classList.remove("is-playing");
+          }, { once: true });
+          heroVideo.src = heroVideo.dataset.src;
+          var attempt = heroVideo.play();
+          if (attempt && typeof attempt.catch === "function") {
+            attempt.catch(function () {});
+          }
+        };
+        if (document.readyState === "complete") {
+          startHeroVideo();
+        } else {
+          window.addEventListener("load", startHeroVideo);
+        }
+      }
+    }
+
+
   var header = document.querySelector("[data-site-header]");
   var menu = document.querySelector("[data-menu]");
   var openButton = document.querySelector("[data-menu-open]");
@@ -35,62 +67,6 @@
     );
     Array.prototype.forEach.call(reveals, function (element) {
       observer.observe(element);
-    });
-  }
-
-  // پارالاکس ملایم تصویر هرو روی ماوس؛ در لمس و کاهش حرکت غیرفعال است.
-  var art = document.querySelector("[data-hero-art]");
-  var hero = art ? art.closest(".hero") : null;
-  if (art && hero && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-    hero.addEventListener("pointermove", function (event) {
-      var rect = hero.getBoundingClientRect();
-      var dx = (event.clientX - rect.left) / rect.width - 0.5;
-      var dy = (event.clientY - rect.top) / rect.height - 0.5;
-      art.style.transform = "translate3d(" + (dx * 18).toFixed(1) + "px," + (dy * 12).toFixed(1) + "px,0)";
-    });
-    hero.addEventListener("pointerleave", function () {
-      art.style.transform = "";
-    });
-  }
-
-  // پیش‌نمایش تصویر دسته هنگام حرکت ماوس روی ردیف‌ها؛ روی لمس وجود ندارد.
-  var previewRows = document.querySelectorAll("[data-preview]");
-  if (
-    previewRows.length &&
-    !reduceMotion &&
-    window.matchMedia("(pointer: fine)").matches
-  ) {
-    var preview = null;
-
-    var ensurePreview = function () {
-      if (!preview) {
-        preview = document.createElement("img");
-        preview.className = "row-preview";
-        preview.alt = "";
-        preview.setAttribute("aria-hidden", "true");
-        document.body.appendChild(preview);
-      }
-      return preview;
-    };
-
-    Array.prototype.forEach.call(previewRows, function (row) {
-      row.addEventListener("pointerenter", function () {
-        var element = ensurePreview();
-        element.src = row.getAttribute("data-preview");
-        element.classList.add("is-on");
-      });
-      row.addEventListener("pointermove", function (event) {
-        if (!preview) {
-          return;
-        }
-        preview.style.transform =
-          "translate3d(" + (event.clientX + 26) + "px," + (event.clientY - 110) + "px, 0)";
-      });
-      row.addEventListener("pointerleave", function () {
-        if (preview) {
-          preview.classList.remove("is-on");
-        }
-      });
     });
   }
 
@@ -211,24 +187,6 @@
     }
   }
 
-  // نقشهٔ مسیر تأمین: هاور روی هر ایستگاه، همان بخش مسیر را روشن می‌کند.
-  var routeFigure = document.querySelector("[data-route]");
-  if (routeFigure) {
-    var routeItems = routeFigure.querySelectorAll(".route__item");
-    Array.prototype.forEach.call(routeItems, function (item) {
-      var focus = function () {
-        routeFigure.setAttribute("data-focus", item.getAttribute("data-stop"));
-      };
-      var blur = function () {
-        routeFigure.removeAttribute("data-focus");
-      };
-      item.addEventListener("pointerenter", focus);
-      item.addEventListener("pointerleave", blur);
-      item.addEventListener("focusin", focus);
-      item.addEventListener("focusout", blur);
-    });
-  }
-
   if (!menu || !openButton) {
     return;
   }
@@ -302,7 +260,7 @@
       close(false);
     }
   });
-})();
+
 
   // احترام به کاهش حرکت برای انیمیشن‌های SMIL داخل هیرو.
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -312,33 +270,4 @@
       }
     });
   }
-
-  // ویدیوی ابرها: فقط بعد از نمایش عکس و اگر کاربر حرکت کمتر نخواسته باشد.
-  var heroVideo = document.querySelector(".hero-media__video");
-  if (heroVideo && heroVideo.dataset.src) {
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduceMotion) {
-      var startHeroVideo = function () {
-        if (heroVideo.dataset.started === "true") {
-          return;
-        }
-        heroVideo.dataset.started = "true";
-        heroVideo.addEventListener("playing", function () {
-          heroVideo.classList.add("is-playing");
-        }, { once: true });
-        heroVideo.addEventListener("error", function () {
-          heroVideo.classList.remove("is-playing");
-        }, { once: true });
-        heroVideo.src = heroVideo.dataset.src;
-        var attempt = heroVideo.play();
-        if (attempt && typeof attempt.catch === "function") {
-          attempt.catch(function () {});
-        }
-      };
-      if (document.readyState === "complete") {
-        startHeroVideo();
-      } else {
-        window.addEventListener("load", startHeroVideo);
-      }
-    }
-  }
+})();

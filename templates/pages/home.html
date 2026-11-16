@@ -38,10 +38,10 @@
         {% with img=site_images|get:"home_about" %}
           {% if img %}
             <img src="{{ img.image.url }}" width="{{ img.image_width }}" height="{{ img.image_height }}"
-                 alt="{% if is_fa %}تیم تماکار{% else %}The Temakar team{% endif %}" loading="lazy" decoding="async">
+                 alt="تماکار" loading="lazy" decoding="async">
           {% else %}
             <img src="{% static 'img/about/who-we-are.webp' %}" width="1568" height="1175"
-                 alt="{% if is_fa %}تیم تماکار{% else %}The Temakar team{% endif %}" loading="lazy" decoding="async">
+                 alt="تماکار" loading="lazy" decoding="async">
           {% endif %}
         {% endwith %}
       </figure>

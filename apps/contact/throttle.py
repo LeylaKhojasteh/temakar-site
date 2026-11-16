@@ -14,9 +14,18 @@ from .models import ContactMessage
 
 
 def client_ip(request) -> str:
+    """IP واقعی کاربر.
+
+    X-Forwarded-For فقط وقتی معتبر است که بدانیم چند پروکسی قابل‌اعتماد جلوی
+    برنامه است؛ آن عدد از تنظیمات TRUSTED_PROXY_COUNT خوانده می‌شود. با مقدار
+    پیش‌فرض صفر، هدر نادیده گرفته می‌شود تا با جعل هدر، محدودیت دور زده نشود.
+    """
     forwarded = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    if forwarded:
-        return forwarded.split(",")[0].strip()
+    trusted = int(getattr(settings, "TRUSTED_PROXY_COUNT", 0) or 0)
+    if forwarded and trusted > 0:
+        hops = [part.strip() for part in forwarded.split(",") if part.strip()]
+        if len(hops) >= trusted:
+            return hops[-trusted]
     return request.META.get("REMOTE_ADDR", "")
 
 

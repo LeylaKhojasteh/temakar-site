@@ -294,3 +294,16 @@ the video fades in only when playback actually starts, so there is never a black
 use `object-fit: cover` with the same position, and the hero's aspect keeps the frame from jumping.
 With `prefers-reduced-motion` the source is never set and no video request is made. If autoplay is
 blocked or the file fails, the poster simply stays.
+
+
+## 2026-11-16: The admin panel is designed, and the built CSS is tracked
+
+**Context:** the owner asked for a designed admin panel instead of the stock Django screen, and an
+audit found that `static/css/app.css` was ignored while the deploy notes never built it.
+
+**Decision:** the admin gets a branded header, a login card without the logo, a dashboard head with
+quick links, card modules, and quieter tables and forms; the auth models are unregistered because the
+site does not manage users there. This is a deliberate exception to the earlier "no custom admin"
+note, recorded here. `static/css/app.css` is now committed and the deploy notes run `css:build` before
+`collectstatic`, so a fresh clone serves the same styles. The contact rate limit no longer trusts
+`X-Forwarded-For` unless `TRUSTED_PROXY_COUNT` is set.

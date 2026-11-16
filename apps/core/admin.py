@@ -23,7 +23,7 @@ for _model in (Group, User):
 class SiteSettingsAdmin(admin.ModelAdmin):
     list_display = ("__str__", "phone", "email", "updated_at")
     fieldsets = (
-        ("اطلاعات تماس", {"fields": ("phone", "email")}),
+        ("اطلاعات تماس", {"fields": ("phone", "phone_secondary", "email")}),
         ("نشانی", {"fields": ("address_fa", "address_en")}),
         ("نقشه", {"fields": ("map_query", "map_url")}),
     )
