@@ -3,7 +3,7 @@
   {% for partner in partners %}
     <li class="partners__item">
       <img src="{{ partner.logo.url }}" width="{{ partner.image_width }}" height="{{ partner.image_height }}"
-           alt="" loading="lazy" decoding="async">
+           alt="" loading="eager" decoding="async">
     </li>
   {% endfor %}
 </ul>
