@@ -2183,6 +2183,7 @@ html[lang="fa"] .prose-temakar {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   align-items: center;
+  direction: ltr;
 }
 
 .about-feature__media {
@@ -2198,9 +2199,15 @@ html[lang="fa"] .prose-temakar {
 
 .about-feature__body {
   position: relative;
-  margin-inline-start: clamp(-96px, -5vw, -48px);
+  grid-column: 2;
+  margin-left: clamp(-96px, -5vw, -48px);
   background-color: var(--color-paper);
   padding: clamp(24px, 3.2vw, 56px);
+}
+
+html[dir="rtl"] .about-feature__body {
+  direction: rtl;
+  text-align: right;
 }
 
 .about-feature__text {
@@ -2242,8 +2249,13 @@ html[lang="fa"] .prose-temakar {
     grid-template-columns: 1fr;
   }
 
+  .about-feature__grid {
+    direction: inherit;
+  }
+
   .about-feature__body {
-    margin-inline-start: 0;
+    grid-column: auto;
+    margin-left: 0;
     padding-inline: 0;
     padding-block-start: 28px;
   }
@@ -2658,8 +2670,8 @@ html[data-theme="dark"] .site-footer {
   min-width: 40px;
   min-height: 40px;
   padding: 4px 6px;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
+  border: 0;
+  border-radius: 0;
   background: transparent;
   color: var(--color-ink);
   font-size: 0.6875rem;
@@ -2672,13 +2684,13 @@ html[data-theme="dark"] .site-footer {
 
 .header-actions .lang-switch:hover,
 .header-actions .theme-toggle:hover {
-  border-color: var(--color-ink-3);
+  color: var(--color-accent);
 }
 
 .header-actions .lang-switch svg,
 .header-actions .theme-toggle svg {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
 }
 
 .theme-toggle .theme-toggle__moon {
@@ -2703,4 +2715,41 @@ html[data-theme="dark"] .theme-toggle .theme-toggle__moon {
 html[data-theme="dark"] .site-header .wordmark__img,
 html[data-theme="dark"] .mobile-menu .wordmark__img {
   content: url("/static/img/brand/logo-light.png");
+}
+
+/* ---------- تعادل رنگ در تم تیره ---------- */
+
+html[data-theme="dark"] .request__card {
+  background-color: #2b5678;
+  color: #e8edf2;
+}
+
+html[data-theme="dark"] .request__title,
+html[data-theme="dark"] .request__text {
+  color: #e8edf2;
+}
+
+html[data-theme="dark"] .request__actions .btn {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(232, 237, 242, 0.5);
+  color: #e8edf2;
+}
+
+html[data-theme="dark"] .request__actions .btn:hover,
+html[data-theme="dark"] .request__actions .btn:focus-visible {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: #e8edf2;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .hero-actions .btn {
+  background-color: #e8edf2;
+  border-color: #e8edf2;
+  color: #0c1a26;
+}
+
+html[data-theme="dark"] .hero-actions .btn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0c1a26;
 }
