@@ -2065,7 +2065,7 @@ html[lang="fa"] .prose-temakar {
   height: calc(var(--request-width) / 2);
   margin-left: auto;
   margin-right: clamp(0px, 8vw, 132px);
-  margin-block-end: -1px;
+  margin-block-end: -16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2454,7 +2454,7 @@ html[dir="ltr"] .hero-media__shade {
   align-items: center;
   gap: 28px;
   padding: clamp(16px, 1.6vw, 24px) clamp(20px, 2vw, 32px);
-  margin-block-end: -1px;
+  margin-block-end: -16px;
   overflow: hidden;
 }
 
@@ -2538,7 +2538,12 @@ html[dir="ltr"] .hero-media__shade {
   height: 2px;
   background-color: currentColor;
   transform-origin: left;
-  animation: link-fill 2.8s ease-in-out infinite;
+  animation: link-fill 2.6s linear infinite;
+}
+
+.text-link--fill:hover,
+.text-link--fill:focus-visible {
+  border-block-end-color: transparent;
 }
 
 html[dir="rtl"] .text-link--fill::after {
@@ -2548,15 +2553,9 @@ html[dir="rtl"] .text-link--fill::after {
 @keyframes link-fill {
   0% {
     transform: scaleX(0);
-    opacity: 0.6;
-  }
-  72% {
-    transform: scaleX(1);
-    opacity: 1;
   }
   100% {
     transform: scaleX(1);
-    opacity: 0;
   }
 }
 

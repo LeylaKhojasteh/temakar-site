@@ -271,4 +271,53 @@
     });
   }
 
+
+  // تایپ‌شدن یک‌بارهٔ متن کارت درخواست وقتی به دید می‌رسد.
+  var typeTargets = document.querySelectorAll("[data-typewriter]");
+  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (typeTargets.length && !reducedMotion && "IntersectionObserver" in window) {
+    var entries = [];
+    Array.prototype.forEach.call(typeTargets, function (element) {
+      var full = element.textContent.trim();
+      entries.push({ element: element, text: full, typed: false });
+      // نام دسترس‌پذیر عنوان کامل می‌ماند، حتی وقتی متن در حال تایپ‌شدن است.
+      if (/^H[1-6]$/.test(element.tagName)) {
+        element.setAttribute("aria-label", full);
+      }
+      element.textContent = "";
+    });
+
+    var started = false;
+    var typeAll = function () {
+      if (started) {
+        return;
+      }
+      started = true;
+      var delay = 0;
+      entries.forEach(function (item) {
+        var index = 0;
+        var speed = 32;
+        var type = function () {
+          if (index <= item.text.length) {
+            item.element.textContent = item.text.slice(0, index);
+            index += 1;
+            window.setTimeout(type, speed);
+          }
+        };
+        window.setTimeout(type, delay);
+        delay += item.text.length * speed + 160;
+      });
+    };
+
+    var card = document.querySelector(".request__card") || typeTargets[0];
+    var observer = new IntersectionObserver(function (list) {
+      list.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          typeAll();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(card);
+  }
 })();
