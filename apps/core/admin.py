@@ -3,12 +3,20 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
+from django.contrib.auth.models import Group, User
+
 from .models import Partner, SiteImage, SiteSettings, SocialLink
 from .uploads import image_variant
 
 admin.site.site_header = "مدیریت تماکار"
 admin.site.site_title = "تماکار"
 admin.site.index_title = "پنل مدیریت"
+
+for _model in (Group, User):
+    try:
+        admin.site.unregister(_model)
+    except admin.sites.NotRegistered:
+        pass
 
 
 @admin.register(SiteSettings)
