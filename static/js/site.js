@@ -276,10 +276,10 @@
   var typeTargets = document.querySelectorAll("[data-typewriter]");
   var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (typeTargets.length && !reducedMotion && "IntersectionObserver" in window) {
-    var entries = [];
+    var typeEntries = [];
     Array.prototype.forEach.call(typeTargets, function (element) {
       var full = element.textContent.trim();
-      entries.push({ element: element, text: full, typed: false });
+      typeEntries.push({ element: element, text: full, typed: false });
       // نام دسترس‌پذیر عنوان کامل می‌ماند، حتی وقتی متن در حال تایپ‌شدن است.
       if (/^H[1-6]$/.test(element.tagName)) {
         element.setAttribute("aria-label", full);
@@ -287,16 +287,16 @@
       element.textContent = "";
     });
 
-    var started = false;
+    var typingStarted = false;
     var typeAll = function () {
-      if (started) {
+      if (typingStarted) {
         return;
       }
-      started = true;
+      typingStarted = true;
       var delay = 0;
-      entries.forEach(function (item) {
+      typeEntries.forEach(function (item) {
         var index = 0;
-        var speed = 32;
+        var speed = 55;
         var type = function () {
           if (index <= item.text.length) {
             item.element.textContent = item.text.slice(0, index);

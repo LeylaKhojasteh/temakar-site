@@ -2102,14 +2102,6 @@ html[lang="fa"] .prose-temakar {
   color: var(--color-ink);
 }
 
-.request__card::after {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid var(--color-on-accent);
-  opacity: 0.18;
-  pointer-events: none;
-}
 
 .request__card:hover {
   transform: translateY(-4px);
@@ -2510,20 +2502,6 @@ html[dir="ltr"] .hero-media__shade {
   }
 }
 
-/* ---------- نفس رنگ کارت درخواست ---------- */
-
-.request__card {
-  animation: request-breath 4.5s ease-in-out infinite alternate;
-}
-
-@keyframes request-breath {
-  from {
-    background-color: #1d4f86;
-  }
-  to {
-    background-color: #3576b8;
-  }
-}
 
 .text-link--fill {
   position: relative;
@@ -2567,9 +2545,23 @@ html[dir="rtl"] .text-link--fill::after {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .request__card {
-    animation: none;
-    background-color: var(--color-accent);
-  }
+/* ---------- دکمهٔ کارت درخواست ---------- */
+
+.request__actions .btn {
+  background-color: var(--color-paper);
+  border-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.request__actions .btn:hover,
+.request__actions .btn:focus-visible {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--color-ink);
+}
+
+/* ---------- نفوذ بیشتر کارت در فوتر ---------- */
+
+.request__card {
+  margin-block-end: -23px;
 }
