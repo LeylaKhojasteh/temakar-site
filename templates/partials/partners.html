@@ -17,6 +17,16 @@
             {% include "partials/partners/_track.html" with items=partners|slice:"8:" duplicate=True %}
           </div>
         </div>
+        <div class="partners__manual">
+          <ul class="partners__track partners__track--manual">
+            {% for partner in partners %}
+              <li class="partners__item">
+                <img src="{{ partner.logo.url }}" width="{{ partner.image_width }}" height="{{ partner.image_height }}"
+                     alt="" loading="eager" decoding="async">
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     {% else %}
       <p class="partners__empty">

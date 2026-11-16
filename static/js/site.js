@@ -375,10 +375,10 @@
   if (partnerRail && window.matchMedia && window.matchMedia("(max-width: 899px)").matches) {
     var quietMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (quietMotion) {
-      partnerRail.classList.add("is-static");
+      partnerRail.classList.add("is-manual");
     } else {
       window.setTimeout(function () {
-        partnerRail.classList.add("is-static");
+        partnerRail.classList.add("is-manual");
       }, 26000);
     }
   }
