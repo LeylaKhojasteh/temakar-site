@@ -1964,8 +1964,6 @@ html[lang="fa"] .prose-temakar {
   margin-block-start: 34px;
   overflow: hidden;
   direction: ltr;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .partners__marquee {
@@ -2796,14 +2794,23 @@ html[data-theme="dark"] .hero-actions .btn:hover {
   transform: scale(1.05);
 }
 
-html[data-theme="dark"] .partners__rail {
-  background-color: rgba(232, 237, 242, 0.94);
-  border-radius: 16px;
-  padding-block: 10px;
+html[data-theme="dark"] .partners__item img {
+  filter: grayscale(1) invert(1) brightness(1.35);
+  opacity: 0.92;
+}
+
+html[data-theme="dark"] .partners__item:hover img {
+  opacity: 1;
+  filter: grayscale(1) invert(1) brightness(1.7);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .partners__marquee--b {
     animation: none;
   }
+}
+
+.partners__rail {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
 }
