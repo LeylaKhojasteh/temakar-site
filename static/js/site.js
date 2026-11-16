@@ -369,4 +369,17 @@
       syncThemeButton();
     });
   }
+
+  // موبایل: بعد از یک دور اسلاید، لوگوها مرتب و ثابت چیده می‌شوند.
+  var partnerRail = document.querySelector(".partners__rail");
+  if (partnerRail && window.matchMedia && window.matchMedia("(max-width: 899px)").matches) {
+    var quietMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (quietMotion) {
+      partnerRail.classList.add("is-static");
+    } else {
+      window.setTimeout(function () {
+        partnerRail.classList.add("is-static");
+      }, 26000);
+    }
+  }
 })();

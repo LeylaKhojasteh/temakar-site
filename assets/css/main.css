@@ -2848,3 +2848,55 @@ html[data-theme="dark"] .panel--blue {
 .footer-map__link:hover {
   border-color: var(--color-paper);
 }
+
+/* ---------- موبایل: یک دور اسلاید، بعد چیدمان ثابت ---------- */
+
+@media (max-width: 899px) {
+  .partners__marquee {
+    animation-duration: 26s;
+  }
+
+  .partners__marquee--b {
+    animation-duration: 30s;
+  }
+
+  .partners__rail.is-static {
+    width: auto;
+    margin-inline: 0;
+  }
+
+  .partners__rail.is-static .partners__marquee {
+    width: auto;
+    display: block;
+    animation: none;
+  }
+
+  .partners__rail.is-static .partners__track {
+    width: 100%;
+  }
+
+  .partners__rail.is-static .partners__rows {
+    gap: 10px;
+  }
+
+  .partners__rail.is-static .partners__track {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .partners__rail.is-static .partners__track[aria-hidden="true"] {
+    display: none;
+  }
+
+  .partners__rail.is-static .partners__item {
+    width: calc(50% - 6px);
+    height: 96px;
+  }
+
+  .partners__rail.is-static .partners__item img {
+    max-width: 92%;
+    max-height: 76px;
+  }
+}
