@@ -20,7 +20,12 @@
           heroVideo.addEventListener("error", function () {
             heroVideo.classList.remove("is-playing");
           }, { once: true });
-          heroVideo.src = heroVideo.dataset.src;
+          var narrow = window.matchMedia && window.matchMedia("(max-width: 899px)").matches;
+        var saveData = navigator.connection && navigator.connection.saveData;
+        if (saveData) {
+          return;
+        }
+        heroVideo.src = narrow && heroVideo.dataset.srcMobile ? heroVideo.dataset.srcMobile : heroVideo.dataset.src;
           var attempt = heroVideo.play();
           if (attempt && typeof attempt.catch === "function") {
             attempt.catch(function () {});

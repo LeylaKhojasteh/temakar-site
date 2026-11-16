@@ -15,6 +15,7 @@ from apps.core import views as core_views
 from apps.core.sitemap import sitemap_view
 
 urlpatterns = [
+    path("_preview/<int:code>/", core_views.preview_error),
     path("manage/", include("apps.dashboard.urls")),
     path("admin/", RedirectView.as_view(url="/manage/", permanent=False)),
     path("favicon.ico", core_views.favicon, name="favicon"),

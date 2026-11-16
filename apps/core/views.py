@@ -58,3 +58,13 @@ def server_error(request):
         },
         status=500,
     )
+
+
+def preview_error(request, code: int):
+    """پیش‌نمایش صفحه‌های خطا در حالت توسعه (زبان با ?lang=en قابل تغییر است)."""
+    from django.utils import translation
+
+    if code not in (404, 500):
+        raise Http404
+    translation.activate(request.GET.get("lang", "fa"))
+    return render(request, f"errors/{code}.html", status=code)
