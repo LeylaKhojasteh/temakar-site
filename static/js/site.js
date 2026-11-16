@@ -340,4 +340,28 @@
     }, { passive: true });
     window.setTimeout(startWhenVisible, 1200);
   }
+
+  // کلید تم روشن و تیره.
+  var themeToggle = document.querySelector("[data-theme-toggle]");
+  if (themeToggle) {
+    var syncThemeButton = function () {
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      themeToggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    };
+    syncThemeButton();
+    themeToggle.addEventListener("click", function () {
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      if (dark) {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+      try {
+        window.localStorage.setItem("temakar-theme", dark ? "light" : "dark");
+      } catch (error) {
+        /* بی‌صدا رد شو؛ تم فقط برای همین صفحه می‌ماند. */
+      }
+      syncThemeButton();
+    });
+  }
 })();

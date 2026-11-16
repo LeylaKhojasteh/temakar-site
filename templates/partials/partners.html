@@ -1,16 +1,21 @@
 {% load site_tags %}
-{% if partners %}
-  <section class="panel panel--paper partners-section" aria-labelledby="partners-title">
-    <div class="shell">
-      <h2 class="h2 reveal" id="partners-title">
-        {% if is_fa %}همکاران و تأمین‌کنندگان{% else %}Partners and suppliers{% endif %}
-      </h2>
+<section class="panel panel--paper partners-section" aria-labelledby="partners-title">
+  <div class="shell">
+    <h2 class="h2 reveal" id="partners-title">
+      {% if is_fa %}همکاران و تأمین‌کنندگان{% else %}Partners and suppliers{% endif %}
+    </h2>
+
+    {% if partners %}
       <div class="partners__rail reveal">
         <div class="partners__marquee">
           {% include "partials/partners/_track.html" %}
           {% include "partials/partners/_track.html" with duplicate=True %}
         </div>
       </div>
-    </div>
-  </section>
-{% endif %}
+    {% else %}
+      <p class="partners__empty">
+        {% if is_fa %}لوگوی همکاران به‌زودی در همین بخش قرار می‌گیرد.{% else %}Partner logos will appear here soon.{% endif %}
+      </p>
+    {% endif %}
+  </div>
+</section>

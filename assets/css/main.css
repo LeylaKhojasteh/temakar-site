@@ -2605,3 +2605,102 @@ html[dir="rtl"] .text-link--fill::after {
   font-style: normal;
   font-size: 0.86rem;
 }
+
+.partners__empty {
+  margin: 22px 0 0;
+  padding: 22px;
+  border: 1px dashed var(--color-ink-3);
+  color: var(--color-ink-2);
+  font-size: var(--t-small);
+  text-align: center;
+}
+
+/* ---------- تم تیره ---------- */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #0a1521;
+  --color-paper-2: #0e1c2a;
+  --color-ink: #e9eef4;
+  --color-ink-2: #b8c4d0;
+  --color-ink-3: #7d8d9c;
+  --color-line: #22303d;
+  --color-navy: #0f2438;
+  --color-accent: #6fb1e0;
+  --color-sky: #1f4a6b;
+  --color-on-accent: #06121d;
+}
+
+/* هیرو و فوتر رنگ خودشان را نگه می‌دارند تا روی عکس و زمینهٔ تیره خوانا بمانند. */
+.hero--media,
+.site-footer {
+  --color-paper: #e8edf2;
+  --color-paper-2: #dde4eb;
+  --color-ink: #0c1a26;
+  --color-ink-2: #2b3b49;
+  --color-ink-3: #55697a;
+  --color-line: #c6d1db;
+}
+
+html[data-theme="dark"] .site-footer {
+  background-color: #060e17;
+}
+
+/* کلیدهای هدر */
+
+.header-actions .lang-switch,
+.header-actions .theme-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 4px 6px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-actions .lang-switch:hover,
+.header-actions .theme-toggle:hover {
+  border-color: var(--color-ink-3);
+}
+
+.header-actions .lang-switch svg,
+.header-actions .theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .theme-toggle__moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-toggle__sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-toggle__moon {
+  display: block;
+}
+
+.theme-toggle:focus-visible,
+.lang-switch:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* لوگوی روشن در تم تیره */
+html[data-theme="dark"] .site-header .wordmark__img,
+html[data-theme="dark"] .mobile-menu .wordmark__img {
+  content: url("/static/img/brand/logo-light.png");
+}
