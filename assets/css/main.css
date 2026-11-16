@@ -111,6 +111,7 @@ html[lang="fa"] body {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+
 }
 
 /* ---------- چیدمان و پنل‌ها ---------- */
@@ -409,6 +410,7 @@ html[dir="rtl"] .primary-nav a::after {
   .menu-toggle {
     display: none;
   }
+
 }
 
 /* منوی موبایل */
@@ -638,6 +640,7 @@ html[lang="fa"] .hero-title {
   .hero-copy {
     max-width: none;
   }
+
 }
 
 /* ---------- نوار کوتاه دربارهٔ ما ---------- */
@@ -646,12 +649,6 @@ html[lang="fa"] .hero-title {
   display: grid;
   gap: clamp(24px, 4vw, 56px);
   align-items: end;
-}
-
-@media (min-width: 900px) {
-  .about-strip {
-    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
-  }
 }
 
 .poster-row__title {
@@ -696,6 +693,8 @@ html[lang="fa"] .poster-row__title {
     align-self: center;
     font-size: var(--t-small);
   }
+
+
 
 }
 
@@ -743,6 +742,7 @@ html[lang="fa"] .poster-row__title {
     transform: rotate(-0.8deg);
     margin-block-start: 12px;
   }
+
 }
 
 .contact-band__title {
@@ -765,6 +765,7 @@ html[lang="fa"] .contact-band__title {
   .contact-band__action {
     justify-self: end;
   }
+
 }
 
 /* ---------- تصویرها ---------- */
@@ -855,6 +856,7 @@ html[lang="fa"] .contact-band__title {
     gap: 80px;
     align-items: start;
   }
+
 }
 
 /* ---------- فرم ---------- */
@@ -1039,6 +1041,7 @@ html[lang="fa"] .contact-band__title {
   .footer-contact {
     grid-column: 1 / -1;
   }
+
 }
 
 @media (min-width: 1280px) {
@@ -1049,6 +1052,7 @@ html[lang="fa"] .contact-band__title {
   .footer-contact {
     grid-column: auto;
   }
+
 }
 
 .footer-contact {
@@ -1077,12 +1081,14 @@ html[lang="fa"] .contact-band__title {
   .footer-map iframe {
     height: 100%;
   }
+
 }
 
 @media (max-width: 699px) {
   .footer-map {
     display: none;
   }
+
 }
 
 .footer-title {
@@ -1297,6 +1303,7 @@ img {
     width: 100%;
     margin-block-start: 0;
   }
+
 }
 
 /* ---------- کارت تصویری خدمت ---------- */
@@ -1305,68 +1312,6 @@ img {
   display: grid;
   gap: clamp(18px, 2.4vw, 28px);
   grid-template-columns: 1fr;
-}
-
-.service-card {
-  display: grid;
-  color: inherit;
-  text-decoration: none;
-  background-color: var(--color-paper);
-}
-
-.service-card__media {
-  display: block;
-  aspect-ratio: 2 / 1;
-  height: calc(var(--request-width) / 2);
-  overflow: hidden;
-  background-color: var(--color-paper-2);
-}
-
-.service-card__media--empty {
-  background-color: var(--color-navy);
-}
-
-.service-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 600ms cubic-bezier(0.16, 0.84, 0.32, 1);
-}
-
-.service-card:hover .service-card__media img {
-  transform: scale(1.03);
-}
-
-.service-card__body {
-  padding-block: 16px 4px;
-}
-
-.service-card__title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--t-lead);
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.service-card__text {
-  display: block;
-  margin-block-start: 6px;
-  font-size: var(--t-small);
-  color: var(--color-ink-2);
-}
-
-@media (min-width: 700px) {
-  .service-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1100px) {
-  .service-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 .detail-aside {
@@ -1384,6 +1329,7 @@ img {
     padding: 0;
     background-color: transparent;
   }
+
 }
 
 /* ---------- تیتر و مقدمهٔ صفحه‌های داخلی ---------- */
@@ -1455,6 +1401,7 @@ html[lang="fa"] .page-lead {
   .row-preview {
     display: none;
   }
+
 }
 
 
@@ -1478,6 +1425,7 @@ html[lang="fa"] .page-lead {
   .about-copy {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
+
 }
 
 
@@ -1498,28 +1446,10 @@ html[lang="fa"] .page-lead {
   justify-content: center;
 }
 
-.hero-scene .art-draw path,
-.hero-scene .art-draw circle {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: art-draw 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
 @keyframes art-draw {
   to {
     stroke-dashoffset: 0;
   }
-}
-
-.hero-scene .art-flow path {
-  stroke-dasharray: 10 16;
-  animation: art-flow 3.2s linear infinite;
-  opacity: 0.75;
-}
-
-.hero-scene .art-pulse path {
-  stroke-dasharray: 2 140;
-  animation: art-pulse 3.6s linear infinite;
 }
 
 @keyframes art-flow {
@@ -1532,11 +1462,6 @@ html[lang="fa"] .page-lead {
   to {
     stroke-dashoffset: -142;
   }
-}
-
-.hero-scene .art-fill {
-  opacity: 0;
-  animation: fade-in 900ms 1.2s ease forwards;
 }
 
 
@@ -1579,6 +1504,7 @@ html[lang="fa"] .page-lead {
     height: 84px;
     flex-basis: 84px;
   }
+
 }
 
 .service-row {
@@ -2073,22 +1999,6 @@ html[lang="fa"] .prose-temakar {
   margin: 48px 0 0;
 }
 
-.route__scene {
-  display: block;
-  width: 100%;
-  height: auto;
-  color: color-mix(in srgb, var(--color-paper) 52%, transparent);
-}
-
-.route__path {
-  opacity: 0.9;
-  transition: stroke 220ms ease, stroke-width 220ms ease;
-}
-
-.route__nodes rect {
-  transition: fill 220ms ease;
-}
-
 .route__item h3 {
   margin: 0;
   font-family: var(--font-display);
@@ -2112,19 +2022,6 @@ html[lang="fa"] .prose-temakar {
   color: var(--color-sky);
 }
 
-.route__legend {
-  display: grid;
-  gap: 26px;
-  margin-block-start: 28px;
-}
-
-@media (min-width: 900px) {
-  .route__legend {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 44px;
-  }
-}
-
 [data-route][data-focus="source"] #route-a {
   stroke: var(--color-paper);
   stroke-width: 3;
@@ -2137,12 +2034,6 @@ html[lang="fa"] .prose-temakar {
 
 [data-route][data-focus="middle"] .route__nodes rect {
   fill: var(--color-paper);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .route__pulse {
-    display: none;
-  }
 }
 
 
@@ -2240,6 +2131,7 @@ html[dir="ltr"] .hero-media__scrim {
   .hero--media .hero-copy {
     max-width: 100%;
   }
+
 }
 
 /* ---------- پیوند پرش به محتوا ---------- */
@@ -2292,18 +2184,6 @@ html[dir="ltr"] .hero-media__shade {
 
 html[dir="ltr"] .hero-media__veil {
   background: radial-gradient(70% 80% at 18% 42%, rgba(4, 14, 24, 0.5), rgba(4, 14, 24, 0) 62%);
-}
-
-.hero-glow__base {
-  animation: hero-breathe 9s ease-in-out infinite alternate;
-}
-
-.hero-glow__bloom {
-  animation: hero-breathe 7s ease-in-out infinite alternate-reverse;
-}
-
-.hero-glow__run {
-  animation: hero-run 16s linear infinite;
 }
 
 @keyframes hero-grid-breathe {
@@ -2382,39 +2262,6 @@ html[dir="ltr"] .hero-media__veil {
   }
 }
 
-@media (max-width: 720px) {
-  .hero-glow__base {
-    display: none;
-  }
-
-  .hero-glow__bloom {
-    opacity: 0.45;
-  }
-
-  .hero-glow__run {
-    opacity: 0.6;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-grid,
-  .hero-dot,
-  .hero-source,
-  .hero-glow__base,
-  .hero-glow__bloom,
-  .hero-glow__run,
-  .hero-arc,
-  .hero-orbit,
-  .hero-streak {
-    animation: none !important;
-  }
-
-  .hero-glow__run {
-    stroke-dasharray: none;
-    opacity: 0.35;
-  }
-}
-
 /* ---------- هرو v4: لایهٔ شفاف مرجع + حرکت نقاط درخشان ---------- */
 
 .hero--media {
@@ -2485,6 +2332,7 @@ html[dir="ltr"] .hero-media__shade {
       rgba(2, 13, 30, 0) 100%
     );
   }
+
 }
 
 /* ---------- هیرو: جریان نور روی لایهٔ مرجع ---------- */
@@ -2538,6 +2386,7 @@ html[dir="ltr"] .hero-media__shade {
   .hero-media__video {
     display: none;
   }
+
 }
 
 /* ---------- تنظیمات تازهٔ هیرو، هدر، بخش پرسش و فوتر ---------- */
@@ -2582,6 +2431,7 @@ html[dir="ltr"] .hero-media__shade {
   .hero--media .hero-title {
     font-size: clamp(1.7rem, 7vw, 2.2rem);
   }
+
 }
 
 .primary-nav {
@@ -2684,6 +2534,7 @@ html[dir="ltr"] .hero-media__shade {
     height: 34px;
     max-width: 130px;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2695,6 +2546,7 @@ html[dir="ltr"] .hero-media__shade {
   .partners__track[aria-hidden="true"] {
     display: none;
   }
+
 }
 
 /* ---------- کارت درخواست: مستطیل ۳:۴ سمت راست با هم‌پوشانی فوتر ---------- */
@@ -2799,6 +2651,7 @@ html[dir="ltr"] .hero-media__shade {
   .site-footer {
     padding-block-start: clamp(28px, 4vw, 46px);
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2809,6 +2662,7 @@ html[dir="ltr"] .hero-media__shade {
   .request__card:hover {
     transform: none;
   }
+
 }
 
 /* ---------- ما کی هستیم: تصویر بزرگ، متن روی لبه ---------- */
@@ -2889,4 +2743,5 @@ html[dir="ltr"] .hero-media__shade {
   .about-feature__media img {
     aspect-ratio: 16 / 11;
   }
+
 }
