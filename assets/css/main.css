@@ -2393,7 +2393,7 @@ html[dir="ltr"] .hero-media__shade {
 
 .hero--media {
   height: calc(100svh - var(--header-height));
-  min-height: 480px;
+  min-height: min(480px, calc(100svh - var(--header-height)));
 }
 
 .hero--media .hero-inner {
@@ -2425,7 +2425,7 @@ html[dir="ltr"] .hero-media__shade {
 @media (max-width: 720px) {
   .hero--media {
     height: calc(100svh - var(--header-height));
-    min-height: 440px;
+    min-height: min(440px, calc(100svh - var(--header-height)));
   }
 
   .hero--media .hero-title {
