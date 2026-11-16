@@ -8,30 +8,27 @@
     {% csrf_token %}
     {% if form.non_field_errors %}<p class="form-error">{{ form.non_field_errors }}</p>{% endif %}
 
-    <fieldset class="panel-block">
-      <legend>تماس</legend>
+    <section class="panel-block"><h2>تماس</h2>
       <div class="grid-2">
         {% include "dashboard/_field.html" with field=form.phone %}
         {% include "dashboard/_field.html" with field=form.phone_secondary %}
         {% include "dashboard/_field.html" with field=form.email %}
       </div>
-    </fieldset>
+    </section>
 
-    <fieldset class="panel-block">
-      <legend>نشانی</legend>
+    <section class="panel-block"><h2>نشانی</h2>
       <div class="grid-2">
         {% include "dashboard/_field.html" with field=form.address_fa %}
         {% include "dashboard/_field.html" with field=form.address_en %}
       </div>
-    </fieldset>
+    </section>
 
-    <fieldset class="panel-block">
-      <legend>نقشه</legend>
+    <section class="panel-block"><h2>نقشه</h2>
       <div class="grid-2">
         {% include "dashboard/_field.html" with field=form.map_query %}
         {% include "dashboard/_field.html" with field=form.map_url %}
       </div>
-    </fieldset>
+    </section>
 
     <div class="form-actions">
       <button type="submit" class="btn btn--primary">ذخیرهٔ تغییرات</button>

@@ -10,30 +10,27 @@
     {% if form.non_field_errors %}<p class="form-error">{{ form.non_field_errors }}</p>{% endif %}
 
     <div class="grid-2">
-      <fieldset class="panel-block">
-        <legend>فارسی</legend>
+      <section class="panel-block"><h2>فارسی</h2>
         {% include "dashboard/_field.html" with field=form.title_fa %}
         {% include "dashboard/_field.html" with field=form.summary_fa %}
         {% include "dashboard/_field.html" with field=form.body_fa %}
-      </fieldset>
+      </section>
 
-      <fieldset class="panel-block">
-        <legend>انگلیسی</legend>
+      <section class="panel-block"><h2>انگلیسی</h2>
         {% include "dashboard/_field.html" with field=form.title_en %}
         {% include "dashboard/_field.html" with field=form.summary_en %}
         {% include "dashboard/_field.html" with field=form.body_en %}
-      </fieldset>
+      </section>
     </div>
 
-    <fieldset class="panel-block">
-      <legend>انتشار</legend>
+    <section class="panel-block"><h2>انتشار</h2>
       <div class="grid-3">
         {% include "dashboard/_field.html" with field=form.slug %}
         {% include "dashboard/_field.html" with field=form.order %}
         {% include "dashboard/_field.html" with field=form.is_active %}
         {% include "dashboard/_field.html" with field=form.image %}
       </div>
-    </fieldset>
+    </section>
 
     <div class="form-actions">
       <button type="submit" class="btn btn--primary">ذخیره</button>
