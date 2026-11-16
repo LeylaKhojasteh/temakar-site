@@ -275,49 +275,69 @@
   // تایپ‌شدن یک‌بارهٔ متن کارت درخواست وقتی به دید می‌رسد.
   var typeTargets = document.querySelectorAll("[data-typewriter]");
   var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (typeTargets.length && !reducedMotion && "IntersectionObserver" in window) {
-    var typeEntries = [];
-    Array.prototype.forEach.call(typeTargets, function (element) {
-      var full = element.textContent.trim();
-      typeEntries.push({ element: element, text: full, typed: false });
-      // نام دسترس‌پذیر عنوان کامل می‌ماند، حتی وقتی متن در حال تایپ‌شدن است.
-      if (/^H[1-6]$/.test(element.tagName)) {
-        element.setAttribute("aria-label", full);
-      }
-      element.textContent = "";
-    });
-
+  if (typeTargets.length && !reducedMotion) {
     var typingStarted = false;
     var typeAll = function () {
       if (typingStarted) {
         return;
       }
       typingStarted = true;
+
+      var items = [];
+      Array.prototype.forEach.call(typeTargets, function (element) {
+        var full = element.getAttribute("aria-label") || element.textContent.trim();
+        if (/^H[1-6]$/.test(element.tagName)) {
+          element.setAttribute("aria-label", full);
+        }
+        items.push({ element: element, text: full });
+        element.textContent = "";
+      });
+
       var delay = 0;
-      typeEntries.forEach(function (item) {
+      items.forEach(function (item) {
         var index = 0;
         var speed = 55;
-        var type = function () {
+        var tick = function () {
           if (index <= item.text.length) {
             item.element.textContent = item.text.slice(0, index);
             index += 1;
-            window.setTimeout(type, speed);
+            window.setTimeout(tick, speed);
           }
         };
-        window.setTimeout(type, delay);
+        window.setTimeout(tick, delay);
         delay += item.text.length * speed + 160;
       });
     };
 
     var card = document.querySelector(".request__card") || typeTargets[0];
-    var observer = new IntersectionObserver(function (list) {
-      list.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          typeAll();
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    observer.observe(card);
+    var startWhenVisible = function () {
+      var rect = card.getBoundingClientRect();
+      var viewport = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < viewport * 0.85 && rect.bottom > 0) {
+        typeAll();
+        return true;
+      }
+      return false;
+    };
+
+    if ("IntersectionObserver" in window) {
+      var typeObserver = new IntersectionObserver(function (list) {
+        list.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            typeAll();
+            typeObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      typeObserver.observe(card);
+    }
+
+    // فالبک: اگر observer به هر دلیلی شلیک نشد، اسکرول و تایمر بررسی می‌کنند.
+    window.addEventListener("scroll", function () {
+      if (!typingStarted) {
+        startWhenVisible();
+      }
+    }, { passive: true });
+    window.setTimeout(startWhenVisible, 1200);
   }
 })();
