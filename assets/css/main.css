@@ -2064,7 +2064,7 @@ html[lang="fa"] .prose-temakar {
   aspect-ratio: 2 / 1;
   height: calc(var(--request-width) / 2);
   margin-left: auto;
-  margin-right: clamp(0px, 1.2vw, 18px);
+  margin-right: clamp(0px, 8vw, 132px);
   margin-block-end: -1px;
   display: flex;
   flex-direction: column;
