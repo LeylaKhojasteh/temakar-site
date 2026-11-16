@@ -479,3 +479,56 @@ fieldset.module h2 {
     padding: 22px;
   }
 }
+
+/* ---------- سر داشبورد ---------- */
+
+.tk-dash-head {
+  background: var(--tk-surface);
+  border: 1px solid var(--tk-line);
+  border-radius: var(--tk-radius);
+  box-shadow: var(--tk-shadow);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.tk-dash-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+  color: var(--tk-ink);
+}
+
+.tk-dash-lead {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--tk-ink-2);
+}
+
+.tk-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tk-quick a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--tk-line);
+  border-radius: 9px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--tk-ink);
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.tk-quick a:hover {
+  border-color: var(--tk-blue);
+  color: var(--tk-blue);
+  background: #f3f7fc;
+}

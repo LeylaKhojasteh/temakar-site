@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block nav-sidebar %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <section class="tk-dash-head">
+      <div>
+        <h1 class="tk-dash-title">مدیریت محتوا</h1>
+        <p class="tk-dash-lead">از همین‌جا متن‌ها، خدمات، تصاویر و لوگوی همکاران را به‌روز کن.</p>
+      </div>
+      <ul class="tk-quick">
+        <li><a href="{% url 'admin:core_sitesettings_changelist' %}">تنظیمات سایت</a></li>
+        <li><a href="{% url 'admin:services_service_changelist' %}">خدمات</a></li>
+        <li><a href="{% url 'admin:core_siteimage_changelist' %}">تصاویر صفحه‌ها</a></li>
+        <li><a href="{% url 'admin:core_partner_add' %}">افزودن لوگوی همکار</a></li>
+      </ul>
+    </section>
+
+    {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+  </div>
+{% endblock %}
