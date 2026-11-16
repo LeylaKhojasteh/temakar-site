@@ -3,6 +3,8 @@
 در بوت، متغیرهای ضروری بررسی می‌شوند تا سرویس با تنظیم ناقص بالا نیاید.
 """
 
+import os
+
 from .base import *  # noqa: F401,F403
 
 DEBUG = False
@@ -12,7 +14,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")  # noqa: F405
 if len(SECRET_KEY) < 50 or SECRET_KEY.startswith("dev-"):
     raise RuntimeError("DJANGO_SECRET_KEY پروداکشن باید تصادفی و حداقل ۵۰ کاراکتر باشد.")
 
-if not DATABASES["default"]["PASSWORD"]:  # noqa: F405
+if not os.environ.get("DATABASE_URL") and not DATABASES["default"]["PASSWORD"]:  # noqa: F405
     raise RuntimeError("POSTGRES_PASSWORD برای پروداکشن تنظیم نشده است.")
 
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS")  # noqa: F405
@@ -30,10 +32,16 @@ SECURE_HSTS_PRELOAD = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+WHITENOISE_USE_FINDERS = env_bool("WHITENOISE_USE_FINDERS", False)  # noqa: F405
+
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": (
+            "whitenoise.storage.CompressedStaticFilesStorage"
+            if WHITENOISE_USE_FINDERS
+            else "whitenoise.storage.CompressedManifestStaticFilesStorage"
+        ),
     },
 }
 

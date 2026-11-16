@@ -104,6 +104,23 @@ DATABASES = {
     }
 }
 
+# اگر DATABASE_URL تنظیم شده باشد (مثل Neon یا Supabase) از همان استفاده می‌شود.
+_database_url = os.environ.get("DATABASE_URL")
+if _database_url:
+    from urllib.parse import unquote, urlparse
+
+    _parsed = urlparse(_database_url)
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": _parsed.path.lstrip("/"),
+        "USER": unquote(_parsed.username or ""),
+        "PASSWORD": unquote(_parsed.password or ""),
+        "HOST": _parsed.hostname or "",
+        "PORT": str(_parsed.port or 5432),
+        "CONN_MAX_AGE": 0,
+        "OPTIONS": {"sslmode": "require"},
+    }
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # --- زبان ---------------------------------------------------------------

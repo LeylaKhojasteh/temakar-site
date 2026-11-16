@@ -1,0 +1,9 @@
+﻿.venv
+.pgdata
+media
+staticfiles
+.taste-skill
+node_modules
+tests
+e2e
+*.zip
