@@ -33,6 +33,7 @@
 
         <div class="panel-side-foot">
           <a href="{% url 'core:home' %}">دیدن سایت</a>
+          <a href="{% url 'dashboard:password' %}">تغییر رمز</a>
           <form method="post" action="{% url 'dashboard:logout' %}">
             {% csrf_token %}
             <button type="submit" class="panel-link-button">خروج</button>

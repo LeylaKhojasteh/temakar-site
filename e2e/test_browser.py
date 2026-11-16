@@ -202,14 +202,14 @@ class AdminTests(BrowserTestCase):
         User = get_user_model()
         User.objects.create_superuser(username="owner", password="a-very-long-test-pass-1")
 
-        self.page.goto(self.live_server_url + "/admin/login/")
+        self.page.goto(self.live_server_url + "/manage/login/")
         self.page.get_by_label("نام کاربری").fill("owner")
-        self.page.get_by_label("گذرواژه").fill("a-very-long-test-pass-1")
+        self.page.get_by_label("رمز عبور").fill("a-very-long-test-pass-1")
         self.page.get_by_role("button", name="ورود").click()
-        self.page.wait_for_url("**/admin/")
+        self.page.wait_for_url("**/manage/")
 
-        self.page.goto(self.live_server_url + f"/admin/services/service/{self.service.pk}/change/")
-        expect(self.page.locator(".ql-editor").first).to_be_visible()
+        self.page.goto(self.live_server_url + f"/manage/services/{self.service.pk}/")
+        expect(self.page.locator("#id_body_fa")).to_be_visible()
 
         ContactMessage.objects.create(
             name="پیام‌دهنده",
@@ -218,8 +218,8 @@ class AdminTests(BrowserTestCase):
             body="متن پیام",
             language="fa",
         )
-        self.page.goto(self.live_server_url + "/admin/contact/contactmessage/")
-        expect(self.page.locator("#result_list")).to_contain_text("موضوع پیام")
+        self.page.goto(self.live_server_url + "/manage/messages/")
+        expect(self.page.locator(".panel-table")).to_contain_text("موضوع پیام")
 
     def test_admin_can_upload_a_service_image(self):
         import tempfile
@@ -230,11 +230,11 @@ class AdminTests(BrowserTestCase):
 
         User = get_user_model()
         User.objects.create_superuser(username="owner", password="a-very-long-test-pass-1")
-        self.page.goto(self.live_server_url + "/admin/login/")
+        self.page.goto(self.live_server_url + "/manage/login/")
         self.page.get_by_label("نام کاربری").fill("owner")
-        self.page.get_by_label("گذرواژه").fill("a-very-long-test-pass-1")
+        self.page.get_by_label("رمز عبور").fill("a-very-long-test-pass-1")
         self.page.get_by_role("button", name="ورود").click()
-        self.page.wait_for_url("**/admin/")
+        self.page.wait_for_url("**/manage/")
 
         with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as handle:
             image = Image.new("RGB", (2400, 1600), "olive")
@@ -242,12 +242,10 @@ class AdminTests(BrowserTestCase):
             upload_path = handle.name
 
         try:
-            self.page.goto(
-                self.live_server_url + f"/admin/services/service/{self.service.pk}/change/"
-            )
-            self.page.set_input_files("input[type=file][name=image]", upload_path)
-            self.page.get_by_role("button", name="ذخیره", exact=True).click()
-            expect(self.page.locator(".messagelist")).to_contain_text("با موفقیت تغییر یافت")
+            self.page.goto(self.live_server_url + f"/manage/services/{self.service.pk}/")
+            self.page.set_input_files("#id_image", upload_path)
+            self.page.locator(".form-actions .btn").click()
+            self.page.wait_for_url("**/manage/services/")
 
             self.service.refresh_from_db()
             assert self.service.image_width == 2000

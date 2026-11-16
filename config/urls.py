@@ -7,7 +7,7 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static as static_files
-from django.contrib import admin
+from django.views.generic import RedirectView
 from django.urls import include, path
 from django.views.generic import TemplateView
 
@@ -16,7 +16,7 @@ from apps.core.sitemap import sitemap_view
 
 urlpatterns = [
     path("manage/", include("apps.dashboard.urls")),
-    path("admin/", admin.site.urls),
+    path("admin/", RedirectView.as_view(url="/manage/", permanent=False)),
     path("favicon.ico", core_views.favicon, name="favicon"),
     path(
         "robots.txt",

@@ -2443,3 +2443,61 @@ html[dir="ltr"] .hero-media__shade {
 
 }
 
+/* ---------- کارت درخواست: نوار افقی ---------- */
+
+.request__card {
+  --request-width: clamp(520px, 62vw, 900px);
+  width: var(--request-width);
+  height: clamp(118px, 9.5vw, 146px);
+  aspect-ratio: auto;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: clamp(16px, 1.6vw, 24px) clamp(20px, 2vw, 32px);
+  margin-block-end: -1px;
+}
+
+.request__copy {
+  gap: 2px;
+}
+
+.request__title {
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  white-space: nowrap;
+}
+
+.request__text {
+  font-size: 0.88rem;
+  white-space: nowrap;
+  max-width: none;
+}
+
+.request__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.request__actions .text-link {
+  font-size: 0.84rem;
+}
+
+.request__actions .btn {
+  min-height: 34px;
+  padding-inline: 14px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 899px) {
+  .request__card {
+    --request-width: 100%;
+    height: auto;
+    margin-block-end: 0;
+    gap: 12px;
+  }
+
+  .request__title,
+  .request__text {
+    white-space: normal;
+  }
+}

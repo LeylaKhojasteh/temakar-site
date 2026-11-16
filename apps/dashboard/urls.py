@@ -9,6 +9,7 @@ app_name = "dashboard"
 urlpatterns = [
     path("login/", views.PanelLoginView.as_view(), name="login"),
     path("logout/", views.PanelLogoutView.as_view(), name="logout"),
+    path("password/", views.PanelPasswordView.as_view(), name="password"),
     path("", views.index, name="index"),
     path("settings/", views.settings_view, name="settings"),
     path("services/", views.services_view, name="services"),

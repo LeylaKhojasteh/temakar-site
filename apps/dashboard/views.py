@@ -6,7 +6,8 @@
 from functools import wraps
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -30,10 +31,20 @@ IMAGE_KEYS = (
 class PanelLoginView(LoginView):
     template_name = "dashboard/login.html"
     redirect_authenticated_user = True
+    next_page = reverse_lazy("dashboard:index")
 
 
 class PanelLogoutView(LogoutView):
     next_page = reverse_lazy("dashboard:login")
+
+
+class PanelPasswordView(PasswordChangeView):
+    template_name = "dashboard/password.html"
+    success_url = reverse_lazy("dashboard:index")
+
+    def form_valid(self, form):
+        messages.success(self.request, "رمز عبور تغییر کرد.")
+        return super().form_valid(form)
 
 
 def panel_required(view):
