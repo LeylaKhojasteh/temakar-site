@@ -1,7 +1,9 @@
 """مدل‌های عمومی سایت: تنظیمات و شبکه‌های اجتماعی."""
 
+from pathlib import Path
 from django.db import models
 
+from apps.core.logos import prepare_logo
 from apps.core.uploads import ImageFileSizeValidator, UploadToFolder, store_optimized_image
 
 
@@ -144,7 +146,28 @@ class Partner(models.Model):
 
     def save(self, *args, **kwargs):
         if self.logo and self.logo.name != self._original_image:
-            store_optimized_image(self, field_name="logo")
+            from io import BytesIO
+
+            from django.core.files.base import ContentFile
+
+            from PIL import Image
+
+            old_name = self.logo.name
+            self.logo.seek(0)
+            with Image.open(self.logo) as image:
+                payload, width, height = prepare_logo(image)
+            self.logo.save(
+                f"{Path(old_name).stem}-logo.png",
+                ContentFile(payload),
+                save=False,
+            )
+            self.image_width = width
+            self.image_height = height
+            if old_name and old_name != self.logo.name and self.logo.storage.exists(old_name):
+                try:
+                    self.logo.storage.delete(old_name)
+                except OSError:
+                    pass
         super().save(*args, **kwargs)
         if self.logo:
             self._original_image = self.logo.name
