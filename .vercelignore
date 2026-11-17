@@ -7,3 +7,9 @@ node_modules
 tests
 e2e
 *.zip
+.env
+.env.*
+.ruff_cache
+scripts
+docs
+assets

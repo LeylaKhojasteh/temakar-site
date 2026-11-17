@@ -44,3 +44,5 @@ Thumbs.db
 /temakar-energy-hero-files-*.zip
 /*.zip
 /*.jpg
+.vercel
+.env*
