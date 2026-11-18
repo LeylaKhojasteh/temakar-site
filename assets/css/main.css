@@ -3077,7 +3077,7 @@ html[data-theme="dark"] .panel--blue {
 .panel--services .service-list {
   display: grid;
   gap: 12px;
-  max-width: 1040px;
+  max-width: 1240px;
   margin-inline: auto;
   grid-template-columns: 1fr;
 }
@@ -3091,10 +3091,12 @@ html[data-theme="dark"] .panel--blue {
 }
 
 .service-card {
+  position: relative;
   display: flex;
   align-items: center;
   gap: clamp(16px, 2vw, 26px);
-  padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2vw, 26px);
+  padding: clamp(12px, 1.3vw, 16px) clamp(16px, 2vw, 26px);
+  padding-inline-start: calc(clamp(108px, 9.4vw, 138px) + 26px);
   background-color: var(--color-paper);
   border-radius: 14px;
   color: inherit;
@@ -3109,10 +3111,14 @@ html[data-theme="dark"] .panel--blue {
 }
 
 .service-card__avatar {
+  position: absolute;
+  inset-inline-start: -66px;
+  top: 50%;
+  transform: translateY(-50%);
   flex: 0 0 auto;
   display: block;
-  width: clamp(96px, 8.6vw, 128px);
-  height: clamp(96px, 8.6vw, 128px);
+  width: clamp(108px, 9.4vw, 138px);
+  height: clamp(108px, 9.4vw, 138px);
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--color-paper-2);
@@ -3160,9 +3166,11 @@ html[lang="fa"] .service-card__title {
   .service-card {
     gap: 14px;
     padding: 14px;
+    padding-inline-start: 84px;
   }
 
   .service-card__avatar {
+    inset-inline-start: -18px;
     width: 76px;
     height: 76px;
   }
