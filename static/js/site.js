@@ -382,4 +382,18 @@
       }, 26000);
     }
   }
+
+  // نقشهٔ فوتر: با کلیک، نسخهٔ زنده جای پیش‌نمایش را می‌گیرد.
+  var mapTriggers = document.querySelectorAll("[data-map-src]");
+  Array.prototype.forEach.call(mapTriggers, function (button) {
+    button.addEventListener("click", function () {
+      var frame = document.createElement("iframe");
+      frame.src = button.getAttribute("data-map-src");
+      frame.title = button.getAttribute("aria-label") || "map";
+      frame.loading = "lazy";
+      frame.referrerPolicy = "no-referrer-when-downgrade";
+      frame.className = "map-live";
+      button.replaceWith(frame);
+    });
+  });
 })();
