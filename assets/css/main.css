@@ -2948,3 +2948,41 @@ html[data-theme="dark"] .panel--blue {
     opacity: 1;
   }
 }
+
+/* ---------- کارت درخواست: چیدمان نهایی و مقاوم ---------- */
+
+.request__card {
+  --request-width: clamp(320px, 31vw, 460px);
+  width: var(--request-width);
+  height: auto;
+  aspect-ratio: auto;
+  grid-template-columns: minmax(150px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-height: clamp(104px, 8vw, 124px);
+  padding: 20px 24px;
+  margin-block-end: -1px;
+}
+
+@media (max-width: 1199px) {
+  .request__card {
+    width: min(100%, 440px);
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px 18px;
+    margin-block-end: 0;
+  }
+
+  .request__title,
+  .request__text {
+    white-space: normal;
+  }
+
+  .request__actions {
+    flex-wrap: wrap;
+  }
+
+  .request__copy {
+    gap: 4px;
+  }
+}
