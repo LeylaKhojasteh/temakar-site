@@ -1,12 +1,10 @@
 // تم اولیه پیش از رنگ‌آمیزی صفحه، تا پرش رنگ دیده نشود.
+// پیش‌فرض روشن است؛ فقط اگر کاربر خودش تیره را انتخاب کرده باشد، تیره می‌شود.
 (function () {
   "use strict";
 
   try {
-    var stored = window.localStorage.getItem("temakar-theme");
-    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var dark = stored ? stored === "dark" : prefersDark;
-    if (dark) {
+    if (window.localStorage.getItem("temakar-theme") === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
     }
   } catch (error) {

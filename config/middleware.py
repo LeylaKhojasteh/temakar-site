@@ -74,3 +74,21 @@ class SecurityHeadersMiddleware:
                 "max-age=31536000; includeSubDomains; preload",
             )
         return response
+
+
+class DefaultLanguageMiddleware:
+    """برای نشانی‌های بدون پیشوند زبان، همیشه انگلیسی فعال می‌شود."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        from django.conf import settings
+        from django.utils import translation
+
+        codes = {code for code, _ in settings.LANGUAGES if code != settings.LANGUAGE_CODE}
+        first = request.path_info.strip("/").split("/")[0]
+        if first not in codes:
+            translation.activate(settings.LANGUAGE_CODE)
+            request.LANGUAGE_CODE = settings.LANGUAGE_CODE
+        return self.get_response(request)
