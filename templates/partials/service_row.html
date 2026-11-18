@@ -2,8 +2,15 @@
 <a class="service-card reveal" href="{{ service.get_absolute_url }}">
   <span class="service-card__avatar">
     {% if service.image %}
-      <img src="{{ service.image.url }}" width="{{ service.image_width }}" height="{{ service.image_height }}"
-           alt="" loading="lazy" decoding="async">
+      {% with thumb=service.image|variant:"thumb" %}
+        {% if thumb %}
+          <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"
+               alt="" loading="lazy" decoding="async">
+        {% else %}
+          <img src="{{ service.image.url }}" width="{{ service.image_width }}" height="{{ service.image_height }}"
+               alt="" loading="lazy" decoding="async">
+        {% endif %}
+      {% endwith %}
     {% else %}
       <span class="service-card__avatar-dot" aria-hidden="true"></span>
     {% endif %}
