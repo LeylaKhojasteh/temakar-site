@@ -43,14 +43,14 @@
 
         {% map_embed_url site as embed_url %}
         {% if embed_url and request.resolver_match.app_name != "contact" %}
-          <div class="footer-map footer-map--link">
-            <a class="footer-map__link" href="{{ embed_url }}" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">
-                <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/>
-                <circle cx="12" cy="10" r="2.6"/>
-              </svg>
-              <span>{% if is_fa %}مشاهده روی نقشه{% else %}Open in maps{% endif %}</span>
-            </a>
+          <div class="footer-map">
+            <div class="map-frame map-frame--footer">
+              <iframe
+                src="{{ embed_url }}"
+                title="{% if is_fa %}نقشهٔ موقعیت تماکار{% else %}Temakar location map{% endif %}"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
         {% endif %}
       </div>

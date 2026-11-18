@@ -103,9 +103,6 @@
           </p>
         </div>
         <div class="request__actions">
-          {% if site.phone %}
-            <a class="text-link" href="tel:{{ site.phone|cut:' ' }}"><span class="ltr-text">{{ site.phone }}</span></a>
-          {% endif %}
           <a class="btn" href="{% url 'contact:page' %}">{% tr "cta.send_message" %}</a>
         </div>
       </div>
