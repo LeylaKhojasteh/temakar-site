@@ -3077,8 +3077,17 @@ html[data-theme="dark"] .panel--blue {
 .panel--services .service-list {
   display: grid;
   gap: 12px;
-  max-width: 860px;
+  max-width: 1040px;
   margin-inline: auto;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .service-list,
+  .panel--services .service-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
 }
 
 .service-card {
@@ -3102,8 +3111,8 @@ html[data-theme="dark"] .panel--blue {
 .service-card__avatar {
   flex: 0 0 auto;
   display: block;
-  width: clamp(76px, 7.4vw, 104px);
-  height: clamp(76px, 7.4vw, 104px);
+  width: clamp(96px, 8.6vw, 128px);
+  height: clamp(96px, 8.6vw, 128px);
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--color-paper-2);
@@ -3154,7 +3163,7 @@ html[lang="fa"] .service-card__title {
   }
 
   .service-card__avatar {
-    width: 64px;
-    height: 64px;
+    width: 76px;
+    height: 76px;
   }
 }
