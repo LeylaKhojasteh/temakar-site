@@ -73,7 +73,7 @@
     <div class="shell">
       <h2 class="h2 reveal" id="services-title">{% if is_fa %}کاری که انجام می‌دهیم{% else %}What we do{% endif %}</h2>
 
-      <div class="mt-8">
+      <div class="mt-8 service-list">
         {% for service in services %}
           {% include "partials/service_row.html" with service=service %}
         {% empty %}

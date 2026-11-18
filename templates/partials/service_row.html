@@ -1,5 +1,12 @@
 {% load site_tags %}
 <a class="service-row reveal" href="{{ service.get_absolute_url }}">
-  <span class="service-row__logo">{% include service.logo_template %}</span>
+  <span class="service-row__avatar">
+    {% if service.image %}
+      <img src="{{ service.image.url }}" width="{{ service.image_width }}" height="{{ service.image_height }}"
+           alt="" loading="lazy" decoding="async">
+    {% else %}
+      <span class="service-row__avatar-dot" aria-hidden="true"></span>
+    {% endif %}
+  </span>
   <span class="service-row__title">{% pick service "title" %}</span>
 </a>
