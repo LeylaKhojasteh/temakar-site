@@ -68,3 +68,17 @@ def preview_error(request, code: int):
         raise Http404
     translation.activate(request.GET.get("lang", "fa"))
     return render(request, f"errors/{code}.html", status=code)
+
+
+def media_file(request, path: str):
+    """فایل رسانه را از پایگاه‌داده برمی‌گرداند."""
+    from django.http import HttpResponse
+
+    from .models import MediaFile
+
+    stored = MediaFile.objects.filter(name=path).only("data", "size", "content_type").first()
+    if stored is None:
+        raise Http404
+    response = HttpResponse(bytes(stored.data), content_type=stored.content_type or "application/octet-stream")
+    response["Cache-Control"] = "public, max-age=31536000, immutable"
+    return response

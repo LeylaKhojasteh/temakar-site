@@ -171,3 +171,20 @@ class Partner(models.Model):
         super().save(*args, **kwargs)
         if self.logo:
             self._original_image = self.logo.name
+
+
+class MediaFile(models.Model):
+    """فایل رسانه ذخیره‌شده در پایگاه‌داده (برای میزبان بدون دیسک پایدار)."""
+
+    name = models.CharField("نام", max_length=255, unique=True)
+    data = models.BinaryField("داده")
+    size = models.PositiveIntegerField("حجم", default=0)
+    content_type = models.CharField("نوع", max_length=100, blank=True)
+    created_at = models.DateTimeField("تاریخ", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "فایل رسانه"
+        verbose_name_plural = "فایل‌های رسانه"
+
+    def __str__(self) -> str:
+        return self.name

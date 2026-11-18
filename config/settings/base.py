@@ -139,10 +139,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = Path(os.environ.get("DJANGO_MEDIA_ROOT", str(BASE_DIR / "media")))
 
+
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
 }
+
+MEDIA_STORAGE = os.environ.get("MEDIA_STORAGE", "")
+if MEDIA_STORAGE == "db":
+    STORAGES["default"] = {"BACKEND": "apps.core.storage.DatabaseStorage"}
 
 # --- امنیت ---------------------------------------------------------------
 

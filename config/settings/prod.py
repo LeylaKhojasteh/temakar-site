@@ -45,6 +45,9 @@ STORAGES = {
     },
 }
 
+if os.environ.get("MEDIA_STORAGE") == "db":
+    STORAGES["default"] = {"BACKEND": "apps.core.storage.DatabaseStorage"}
+
 # هشدار زودهنگام: بدون ایمیل واقعی، پیام‌ها فقط در دیتابیس می‌مانند.
 if EMAIL_BACKEND.endswith("console.EmailBackend"):  # noqa: F405
     import warnings

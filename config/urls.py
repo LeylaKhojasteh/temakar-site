@@ -14,7 +14,12 @@ from django.views.generic import TemplateView
 from apps.core import views as core_views
 from apps.core.sitemap import sitemap_view
 
-urlpatterns = [
+urlpatterns = []
+
+if getattr(settings, "MEDIA_STORAGE", "") == "db":
+    urlpatterns += [path("media/<path:path>", core_views.media_file, name="media_file")]
+
+urlpatterns += [
     path("_preview/<int:code>/", core_views.preview_error),
     path("manage/", include("apps.dashboard.urls")),
     path("admin/", RedirectView.as_view(url="/manage/", permanent=False)),
