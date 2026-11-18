@@ -20,11 +20,13 @@
   <section class="panel panel--paper" aria-labelledby="services-list-title">
     <div class="shell">
       <h2 class="visually-hidden" id="services-list-title">{% tr "services.list.title" %}</h2>
-      {% for service in services %}
-        {% include "partials/service_row.html" with service=service %}
-      {% empty %}
-        <p class="empty-state">{% tr "services.empty" %}</p>
-      {% endfor %}
+      <div class="service-list">
+        {% for service in services %}
+          {% include "partials/service_row.html" with service=service %}
+        {% empty %}
+          <p class="empty-state">{% tr "services.empty" %}</p>
+        {% endfor %}
+      </div>
     </div>
   </section>
 {% endblock %}

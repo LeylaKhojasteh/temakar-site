@@ -3071,3 +3071,90 @@ html[data-theme="dark"] .panel--blue {
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-weight: 700;
 }
+
+/* ---------- خدمات: کارت‌های مستطیلی با تصویر دایره‌ای بزرگ ---------- */
+
+.panel--services .service-list {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 26px);
+  padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2vw, 26px);
+  background-color: var(--color-paper);
+  border-radius: 14px;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.service-card:hover,
+.service-card:focus-visible {
+  background-color: color-mix(in srgb, var(--color-paper) 88%, var(--color-accent));
+  transform: translateY(-2px);
+}
+
+.service-card__avatar {
+  flex: 0 0 auto;
+  display: block;
+  width: clamp(76px, 7.4vw, 104px);
+  height: clamp(76px, 7.4vw, 104px);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--color-paper-2);
+}
+
+.service-card__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-card__avatar-dot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 35% 30%, var(--color-accent), var(--color-navy));
+  opacity: 0.28;
+}
+
+.service-card__body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.service-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.32rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+html[lang="fa"] .service-card__title {
+  line-height: 1.55;
+}
+
+.service-card__summary {
+  font-size: var(--t-small);
+  line-height: 1.7;
+  color: var(--color-ink-2);
+}
+
+@media (max-width: 720px) {
+  .service-card {
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .service-card__avatar {
+    width: 64px;
+    height: 64px;
+  }
+}
