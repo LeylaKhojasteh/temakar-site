@@ -3433,6 +3433,6 @@ html[lang="fa"] .service-card__title {
 
 @media (min-width: 900px) {
   .panel--services .service-list.mt-8 {
-    margin-block-start: 48px !important;
+    margin-block-start: 32px !important;
   }
 }
