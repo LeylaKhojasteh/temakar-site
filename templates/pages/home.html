@@ -71,7 +71,7 @@
   {# خدمات: هر خدمت با لوگوی دوبعدی خودش #}
   <section class="panel panel--paper-2 panel--services" aria-labelledby="services-title">
     <div class="shell">
-      <h2 class="h2 reveal" id="services-title">{% if is_fa %}کاری که انجام می‌دهیم{% else %}What we do{% endif %}</h2>
+      <h2 class="h2 reveal services-heading" id="services-title">{% if is_fa %}کاری که انجام می‌دهیم{% else %}What we do{% endif %}</h2>
 
       <div class="mt-8 service-list">
         {% for service in services %}
@@ -81,7 +81,7 @@
         {% endfor %}
       </div>
 
-      <p class="mt-10">
+      <p class="mt-10 services-footer-link">
         <a class="text-link reveal" href="{% url 'services:index' %}">{% tr "cta.all_services" %}</a>
       </p>
     </div>
