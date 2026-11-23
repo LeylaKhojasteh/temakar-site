@@ -138,12 +138,12 @@ class NavigationTests(BrowserTestCase):
 
 
 class ServicesListTests(BrowserTestCase):
-    def test_services_page_lists_each_service_with_a_logo(self):
+    def test_services_page_lists_each_service_with_an_image(self):
         self.page.goto(self.live_server_url + "/fa/our-services/")
-        rows = self.page.locator(".service-row")
-        expect(rows).to_have_count(2)
-        expect(rows.first.locator(".service-logo")).to_be_visible()
-        rows.first.click()
+        cards = self.page.locator(".service-card")
+        expect(cards).to_have_count(2)
+        expect(cards.first.locator(".service-card__avatar")).to_be_visible()
+        cards.first.click()
         self.page.wait_for_url("**/our-services/svc-a/")
         self.assert_no_console_errors()
 
