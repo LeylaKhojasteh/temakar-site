@@ -42,8 +42,20 @@ def _nav_items(path: str) -> list[dict]:
                 "url": reverse(url_name),
                 "label": translate(label_key),
                 "active": active,
+                "dropdown": False,
             }
         )
+
+    # تب خدمات: منوی کشویی همان چهار خدمت را نشان میدهد. چون صفحهٔ فهرست
+    # حذف شده، لینک خود تب به اولین خدمت میرود.
+    services = list(Service.objects.filter(is_active=True).order_by("order", "id"))
+    if services:
+        items.insert(2, {
+            "url": services[0].get_absolute_url(),
+            "label": translate("nav.services"),
+            "active": neutral.startswith("/our-services/"),
+            "dropdown": True,
+        })
     return items
 
 

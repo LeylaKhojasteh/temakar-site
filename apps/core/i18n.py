@@ -12,6 +12,7 @@ from django.utils.translation import get_language
 STRINGS: dict[str, dict[str, str]] = {
     # ناوبری و برند
     "nav.home": {"en": "Home", "fa": "خانه"},
+    "nav.services": {"en": "Our services", "fa": "خدمات ما"},
     "nav.about": {"en": "Who we are", "fa": "ما کی هستیم"},
     "nav.contact": {"en": "Contact us", "fa": "تماس با ما"},
     "nav.menu": {"en": "Menu", "fa": "منو"},
