@@ -7,7 +7,7 @@ from django.utils.html import strip_tags
 
 from apps.core.i18n import localized, translate
 
-from .models import Service
+from .models import Service, ServiceImage
 
 HEADING_RE = re.compile(r"<h3(?P<attrs>[^>]*)>(?P<text>.*?)</h3>", re.S)
 
@@ -31,22 +31,8 @@ def _with_toc(html: str) -> tuple[str, list[dict]]:
     return HEADING_RE.sub(replace, html), items
 
 
-def index(request):
-    services = list(_published_services())
-    return render(
-        request,
-        "services/index.html",
-        {
-            "services": services,
-            "page_title": translate("meta.services.title") + translate("meta.suffix"),
-            "page_description": translate("meta.services.desc"),
-        },
-    )
-
-
 def detail(request, slug: str):
     service = get_object_or_404(_published_services(), slug=slug)
-    related = list(_published_services().exclude(pk=service.pk).order_by("order", "id")[:2])
     body = localized(service, "body")
     body_html, toc = _with_toc(body)
     return render(
@@ -54,8 +40,8 @@ def detail(request, slug: str):
         "services/detail.html",
         {
             "service": service,
-            "related_services": related,
-            "body_html": body_html,
+        "gallery": list(service.gallery.all()),
+                "body_html": body_html,
             "toc": toc,
             "page_title": _title(localized(service, "title")),
             "page_description": localized(service, "summary") or translate("meta.services.desc"),

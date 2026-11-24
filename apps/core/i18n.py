@@ -13,22 +13,17 @@ STRINGS: dict[str, dict[str, str]] = {
     # ناوبری و برند
     "nav.home": {"en": "Home", "fa": "خانه"},
     "nav.about": {"en": "Who we are", "fa": "ما کی هستیم"},
-    "nav.services": {"en": "Our services", "fa": "خدمات ما"},
     "nav.contact": {"en": "Contact us", "fa": "تماس با ما"},
     "nav.menu": {"en": "Menu", "fa": "منو"},
     "nav.close": {"en": "Close", "fa": "بستن"},
     "nav.skip": {"en": "Skip to content", "fa": "رفتن به محتوای اصلی"},
     # دکمه‌ها و پیوندهای عمومی
     "cta.contact": {"en": "Contact us", "fa": "تماس با ما"},
-    "cta.services": {"en": "See our services", "fa": "دیدن خدمات"},
-    "cta.all_services": {"en": "All services", "fa": "همهٔ خدمات"},
     "cta.about": {"en": "More about Temakar", "fa": "بیشتر دربارهٔ تماکار"},
-    "cta.back_to_services": {"en": "All services", "fa": "همهٔ خدمات"},
     "cta.send_message": {"en": "Send message", "fa": "ارسال پیام"},
     # صفحهٔ اصلی
     # ما کی هستیم
     # خدمات
-    "services.list.title": {"en": "All services", "fa": "فهرست خدمات"},
     "services.empty": {
         "en": "No services are published in this view yet.",
         "fa": "در این نما هنوز خدمتی منتشر نشده است.",
@@ -101,7 +96,6 @@ STRINGS: dict[str, dict[str, str]] = {
         "en": "About Temakar: path, mission, vision and how we work.",
         "fa": "معرفی تماکار: مسیر کاری، مأموریت، چشم‌انداز و اصول کار.",
     },
-    "meta.services.title": {"en": "Our services", "fa": "خدمات ما"},
     "meta.services.desc": {
         "en": "The services Temakar provides for the energy industry.",
         "fa": "خدماتی که تماکار برای صنعت انرژی ارائه می‌کند.",

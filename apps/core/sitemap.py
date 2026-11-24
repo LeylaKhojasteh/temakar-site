@@ -25,7 +25,6 @@ def sitemap_view(request):
     entries = [
         _entry("core:home"),
         _entry("core:who_we_are"),
-        _entry("services:index"),
         _entry("contact:page"),
     ]
 

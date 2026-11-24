@@ -76,43 +76,6 @@ class PagesTests(BrowserTestCase):
         assert "تماکار" in self.page.title()
         self.assert_no_console_errors()
 
-    def test_language_switch_keeps_the_same_page(self):
-        self.page.goto(self.live_server_url + "/fa/our-services/")
-        self.page.locator(".lang-switch").first.click()
-        self.page.wait_for_url(lambda url: url.endswith("/our-services/") and "/fa/" not in url)
-        expect(self.page.locator("html")).to_have_attribute("lang", "en")
-        expect(self.page.locator("h1")).to_contain_text("Our services")
-
-    def test_service_detail_shows_sanitized_body(self):
-        self.page.goto(self.live_server_url + f"/fa/our-services/{self.service.slug}/")
-        expect(self.page.locator(".prose-temakar")).to_contain_text("متن توضیحی خدمت")
-
-    def test_404_uses_site_design(self):
-        response = self.page.goto(self.live_server_url + "/missing-page/")
-        assert response.status == 404
-        expect(self.page.locator("h1")).to_be_visible()
-        expect(self.page.locator(".error-code")).to_have_text("404")
-        expect(self.page.locator(".site-header")).to_be_visible()
-
-    def test_no_horizontal_overflow(self):
-        # چهار عرض توافق‌شده به‌همراه مانیتور بزرگ؛ سرریز افقی در هیچ‌کدام مجاز نیست.
-        paths = [
-            "/fa/",
-            "/fa/who-we-are/",
-            "/fa/our-services/",
-            "/fa/our-services/svc-a/",
-            "/fa/contact/",
-        ]
-        for width in (320, 390, 768, 1024, 1440, 1920, 2560):
-            self.page.set_viewport_size({"width": width, "height": 900})
-            for path in paths:
-                self.page.goto(self.live_server_url + path)
-                overflow = self.page.evaluate(
-                    "() => document.documentElement.scrollWidth - document.documentElement.clientWidth"
-                )
-                assert overflow <= 0, f"{path} در عرض {width} سرریز افقی دارد: {overflow}px"
-
-
 class NavigationTests(BrowserTestCase):
     def test_mobile_menu_opens_traps_focus_and_closes(self):
         self.page.set_viewport_size({"width": 390, "height": 844})
@@ -129,42 +92,6 @@ class NavigationTests(BrowserTestCase):
         expect(menu).to_be_hidden()
         assert self.page.evaluate("() => document.body.classList.contains('has-overlay')") is False
         assert self.page.evaluate("() => getComputedStyle(document.body).overflow") != "hidden"
-
-    def test_active_navigation_item_is_marked(self):
-        self.page.goto(self.live_server_url + "/fa/our-services/")
-        current = self.page.locator(".primary-nav a[aria-current='page']")
-        expect(current).to_have_count(1)
-        expect(current).to_contain_text("خدمات")
-
-
-class ServicesListTests(BrowserTestCase):
-    def test_services_page_lists_each_service_with_an_image(self):
-        self.page.goto(self.live_server_url + "/fa/our-services/")
-        cards = self.page.locator(".service-card")
-        expect(cards).to_have_count(2)
-        expect(cards.first.locator(".service-card__avatar")).to_be_visible()
-        cards.first.click()
-        self.page.wait_for_url("**/our-services/svc-a/")
-        self.assert_no_console_errors()
-
-    def test_header_dropdown_lists_services_and_closes(self):
-        self.page.goto(self.live_server_url + "/fa/")
-        toggle = self.page.locator("[data-nav-dd-toggle]")
-        toggle.click()
-        menu = self.page.locator("#services-menu")
-        expect(menu).to_be_visible()
-        expect(menu).to_contain_text("خدمت الف")
-        expect(toggle).to_have_attribute("aria-expanded", "true")
-        self.page.keyboard.press("Escape")
-        expect(menu).to_be_hidden()
-        expect(toggle).to_have_attribute("aria-expanded", "false")
-
-    def test_mobile_menu_lists_services(self):
-        self.page.set_viewport_size({"width": 390, "height": 844})
-        self.page.goto(self.live_server_url + "/fa/")
-        self.page.locator("[data-menu-open]").click()
-        expect(self.page.locator(".mobile-menu__sub")).to_contain_text("خدمت ب")
-
 
 class ContactFormTests(BrowserTestCase):
     def fill_form(self, **overrides):

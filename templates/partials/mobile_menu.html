@@ -21,7 +21,7 @@
   <nav class="mobile-menu__nav" aria-label="{% if is_fa %}ناوبری موبایل{% else %}Mobile navigation{% endif %}">
     {% for item in nav_items %}
       <a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
-      {% if item.url == services_url and service_menu %}
+      {% if False %}
         <div class="mobile-menu__sub">
           {% for service in service_menu %}
             <a href="{{ service.get_absolute_url }}">{% pick service "title" %}</a>

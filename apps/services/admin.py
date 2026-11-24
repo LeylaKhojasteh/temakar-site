@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from apps.core.uploads import image_variant
 from apps.core.widgets import RichTextWidget
 
+from .gallery import ServiceImage
 from .models import Service
 
 
@@ -23,9 +24,16 @@ class ServiceAdminForm(forms.ModelForm):
         widgets = {"body_fa": RichTextWidget, "body_en": RichTextWidget}
 
 
+class ServiceImageInline(admin.TabularInline):
+    model = ServiceImage
+    extra = 3
+    fields = ("image", "caption_fa", "caption_en", "order")
+
+
 @admin.register(Service)
 class ServiceAdmin(AdminSiteMedia, admin.ModelAdmin):
     form = ServiceAdminForm
+    inlines = [ServiceImageInline]
     list_display = ("title_en", "thumb", "order", "is_active", "updated_at")
     list_editable = ("order", "is_active")
     list_filter = ("is_active",)

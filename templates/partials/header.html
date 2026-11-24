@@ -15,7 +15,7 @@
 
     <nav class="primary-nav" aria-label="{% if is_fa %}ناوبری اصلی{% else %}Main navigation{% endif %}">
       {% for item in nav_items %}
-        {% if item.url == services_url and service_menu %}
+        {% if False %}
           <div class="nav-dd" data-nav-dd>
             <a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
             <button class="nav-dd__toggle" type="button" data-nav-dd-toggle

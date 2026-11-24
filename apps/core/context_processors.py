@@ -32,7 +32,6 @@ def _nav_items(path: str) -> list[dict]:
     definitions = [
         ("core:home", "nav.home", "/", True),
         ("core:who_we_are", "nav.about", "/who-we-are/", False),
-        ("services:index", "nav.services", "/our-services/", False),
         ("contact:page", "nav.contact", "/contact/", False),
     ]
     items = []
@@ -65,7 +64,6 @@ def site_context(request) -> dict:
         "site_images": {image.key: image for image in SiteImage.objects.all()},
         "social_links": SocialLink.objects.filter(is_active=True),
         "service_menu": services,
-        "services_url": reverse("services:index"),
         "lang": lang,
         "is_fa": lang == "fa",
         "dir": "rtl" if lang == "fa" else "ltr",

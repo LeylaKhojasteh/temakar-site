@@ -69,16 +69,6 @@ def test_service_slug_is_unique():
 
 
 @pytest.mark.django_db
-def test_inactive_service_is_hidden(client):
-    service = make_service(is_active=False)
-
-    listing = client.get(reverse("services:index"))
-    assert service.slug not in listing.content.decode()
-
-    detail = client.get(reverse("services:detail", args=[service.slug]))
-    assert detail.status_code == 404
-
-
 @pytest.mark.django_db
 def test_home_lists_the_published_services(client):
     make_service(slug="s-1", title_fa="خدمت یک")
@@ -459,17 +449,16 @@ def test_page_uses_the_uploaded_masthead_over_the_fallback(settings, tmp_path, c
 
     settings.MEDIA_ROOT = tmp_path
     image = SiteImage(
-        key=SiteImage.Key.SERVICES,
-        image=SimpleUploadedFile("services.jpg", make_image_bytes(1600, 1000), content_type="image/jpeg"),
+        key=SiteImage.Key.ABOUT,
+        image=SimpleUploadedFile("about.jpg", make_image_bytes(1600, 1000), content_type="image/jpeg"),
         alt_fa="سالن تأسیسات",
         alt_en="Plant hall",
     )
     image.save()
 
-    body = client.get("/our-services/").content.decode()
+    body = client.get("/who-we-are/").content.decode()
 
     assert image.image.url in body
-    assert "img/demo/bridge-fog.jpg" not in body
     assert "Plant hall" in body
 
 

@@ -82,3 +82,6 @@ class Service(models.Model):
         super().save(*args, **kwargs)
         if self.image:
             self._original_image = self.image.name
+
+
+from .gallery import ServiceImage  # noqa: E402,F401

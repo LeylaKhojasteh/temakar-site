@@ -3436,3 +3436,37 @@ html[lang="fa"] .service-card__title {
     margin-block-start: 32px !important;
   }
 }
+
+/* ---------- گالری عکس خدمت ---------- */
+
+.gallery-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 24px;
+}
+
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--color-paper-2);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.gallery-item figcaption {
+  padding: 10px 14px;
+  font-size: var(--t-small);
+  color: var(--color-ink-2);
+}
+
+.service-contact {
+  background-color: var(--color-paper);
+  padding-block: clamp(28px, 3.6vw, 56px) 0;
+}
