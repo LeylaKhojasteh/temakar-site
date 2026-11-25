@@ -2019,10 +2019,7 @@ html[lang="fa"] .prose-temakar {
 }
 
 @media (max-width: 720px) {
-  .partners__item img {
-    height: 34px;
-    max-width: 130px;
-  }
+
 
 
 
@@ -3108,7 +3105,7 @@ html[data-theme="dark"] .panel--blue {
     width: 720px !important;
     height: 126px !important;
     min-height: 126px !important;
-    padding-inline-start: calc(var(--avatar-size) * 0.5 + 40px);
+    padding-inline-start: calc(var(--avatar-size) * 0.5 + 80px) !important;
     /* فاصله متن از آواتار - بسیار زیاد تا همپوشانی صفر */
     padding-inline-end: 64px;
   }
@@ -3135,16 +3132,6 @@ html[data-theme="dark"] .panel--blue {
   }
 
   /* موقعیت آواتار: همیشه در start (راست در RTL، چپ در LTR) */
-  html[dir="rtl"] .panel--services .service-list .service-card .service-card__avatar {
-    right: calc(var(--avatar-size) * -0.5) !important;
-    left: auto !important;
-  }
-
-  html[dir="ltr"] .panel--services .service-list .service-card .service-card__avatar,
-  html:not([dir]) .panel--services .service-list .service-card .service-card__avatar {
-    left: calc(var(--avatar-size) * -0.5) !important;
-    right: auto !important;
-  }
 
   /* جهت متن همیشه start */
   html[dir="rtl"] .panel--services .service-list .service-card .service-card__body {
@@ -3194,16 +3181,6 @@ html[data-theme="dark"] .panel--blue {
 }
 
 /* پیش‌فرض (موبایل و fallback) */
-html[dir="rtl"] .service-card__avatar {
-  right: calc(var(--avatar-size) * -0.5);
-  left: auto;
-}
-
-html[dir="ltr"] .service-card__avatar,
-html:not([dir]) .service-card__avatar {
-  left: calc(var(--avatar-size) * -0.5);
-  right: auto;
-}
 
 .service-card:hover .service-card__avatar,
 .service-card:focus-visible .service-card__avatar {
@@ -3280,15 +3257,6 @@ html[lang="fa"] .service-card__title {
       min-height: 104px;
       border-radius: 10px;
     }
-
-  html[dir="rtl"] .service-card__avatar,
-  html[dir="ltr"] .service-card__avatar,
-  html:not([dir]) .service-card__avatar {
-    inset-inline-start: auto !important;
-    inset-inline-end: 10px !important;
-    right: auto !important;
-    left: auto !important;
-  }
 
   .service-card__title {
     font-size: clamp(0.95rem, 3.5vw, 1.15rem);
@@ -3472,3 +3440,98 @@ html[lang="fa"] .service-card__title {
     gap: 14px;
   }
 }
+
+@media (max-width: 899px) {
+  .panel--services .service-card {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .panel--services .service-card__avatar {
+    position: relative !important;
+    inset: auto !important;
+    right: auto !important;
+    left: auto !important;
+    order: 2;
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .panel--services .service-card__body {
+    order: 1;
+    width: auto !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-inline-end: 12px !important;
+    text-align: right;
+  }
+
+  .panel--services .service-list .service-card {
+    padding-inline: 12px !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px 16px !important;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1 !important;
+  }
+
+  .footer-contact {
+    grid-column: auto !important;
+  }
+}
+
+@media (min-width: 900px) {
+  html[dir="ltr"] .panel--services .service-card__avatar,
+  html:not([dir]) .panel--services .service-card__avatar {
+    inset-inline-start: calc(var(--avatar-size) / -2);
+    inset-inline-end: auto;
+  }
+
+  html[dir="rtl"] .panel--services .service-card__avatar {
+    inset-inline-start: auto;
+    inset-inline-end: calc(var(--avatar-size) / -2);
+  }
+}
+
+@media (min-width: 900px) {
+  html[dir="rtl"] .panel--services .service-card {
+    padding-inline-end: calc(var(--avatar-size) * 0.5 + 80px) !important;
+  }
+}
+
+@media (max-width: 899px) {
+  .partners__item {
+    width: 170px !important;
+    height: 110px !important;
+    flex: 0 0 170px !important;
+  }
+
+  .partners__item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain;
+  }
+
+  .partners__manual {
+    overflow-x: auto;
+  }
+}
+
+.partners-section {
+  overflow: hidden;
+}
+
+.panel--paper.partners-section { overflow: clip !important; }
+
+@media (max-width: 899px) {
+  .partners__rail { overflow: hidden !important; width: 100% !important; }
+}
+
+html, body { overflow-x: clip !important; }
