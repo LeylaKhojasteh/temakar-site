@@ -1627,9 +1627,6 @@ html[lang="fa"] .service-row__title {
 /* ---------- فهرست درون‌صفحه‌ای ---------- */
 
 .detail-aside {
-  position: sticky;
-  inset-block-start: 104px;
-  align-self: start;
   display: grid;
   gap: 20px;
   justify-items: start;
@@ -3111,9 +3108,9 @@ html[data-theme="dark"] .panel--blue {
     width: 720px !important;
     height: 126px !important;
     min-height: 126px !important;
-    padding-inline-start: calc(var(--avatar-size) * 0.5 + 40px) !important;
+    padding-inline-start: calc(var(--avatar-size) * 0.5 + 40px);
     /* فاصله متن از آواتار - بسیار زیاد تا همپوشانی صفر */
-    padding-inline-end: 64px !important;
+    padding-inline-end: 64px;
   }
 
   /* شیب مورب: کارت ۱ در مرکز، کارت ۶ در لبه viewport */
@@ -3274,22 +3271,21 @@ html[lang="fa"] .service-card__title {
     width: auto;
   }
 
-  .service-card {
-    --avatar-size: 132px;
-    gap: 12px;
-    padding-block: 8px;
-    padding-inline-start: calc(var(--avatar-size) + 18px) !important;
-    padding-inline-end: clamp(12px, 3vw, 18px);
-    height: 108px;
-    min-height: 108px;
-    border-radius: 10px;
-  }
+.service-card {
+      --avatar-size: 104px;
+      gap: 12px;
+      padding-block: 8px;
+      padding-inline-end: calc(var(--avatar-size) + 22px);
+      height: 104px;
+      min-height: 104px;
+      border-radius: 10px;
+    }
 
   html[dir="rtl"] .service-card__avatar,
   html[dir="ltr"] .service-card__avatar,
   html:not([dir]) .service-card__avatar {
-    inset-inline-start: 10px !important;
-    inset-inline-end: auto !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: 10px !important;
     right: auto !important;
     left: auto !important;
   }
@@ -3299,68 +3295,7 @@ html[lang="fa"] .service-card__title {
   }
 }
 
-@media (max-width: 480px) {
-  .panel--services .service-list {
-    gap: 16px;
-  }
 
-  .service-card {
-    --avatar-size: 96px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-    padding: 10px 12px;
-    padding-block-start: calc(var(--avatar-size) * 0.5 + 8px);
-    min-height: auto;
-    border-radius: 10px;
-    width: auto;
-  }
-
-  .service-card__avatar {
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
-    inset-inline-start: auto;
-  }
-
-  html[dir="rtl"] .service-card__avatar {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-
-  .service-card:hover .service-card__avatar,
-  .service-card:focus-visible .service-card__avatar {
-    transform: translateX(-50%) scale(1.05);
-  }
-
-  html[dir="rtl"] .service-card:hover .service-card__avatar,
-  html[dir="rtl"] .service-card:focus-visible .service-card__avatar {
-    transform: translateX(-50%) scale(1.05);
-  }
-
-  .service-card__body {
-    padding-block-start: 0;
-    width: 100%;
-  }
-
-  .service-card__title {
-    font-size: 0.95rem;
-  }
-
-  .service-card__summary {
-    font-size: 0.85rem;
-    -webkit-line-clamp: 3;
-    text-align: right;
-  }
-
-  html[lang="fa"] .service-card__summary {
-    text-align: right;
-  }
-}
 
 /* احترام به ترجیح کاهش حرکت */
 @media (prefers-reduced-motion: reduce) {
@@ -3469,4 +3404,71 @@ html[lang="fa"] .service-card__title {
 .service-contact {
   background-color: var(--color-paper);
   padding-block: clamp(28px, 3.6vw, 56px) 0;
+}
+
+/* ---------- متن و عکس کنار هم ---------- */
+
+@media (min-width: 900px) {
+  .detail-grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: clamp(40px, 5vw, 80px);
+  }
+}
+
+.detail-section {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+  padding-block: clamp(20px, 2.5vw, 36px);
+}
+
+@media (min-width: 900px) {
+  .detail-section {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(30px, 3.5vw, 56px);
+  }
+
+  html[dir="rtl"] .detail-section .detail-photo {
+    order: -1;
+  }
+}
+
+.detail-photo {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-paper-2);
+}
+
+.detail-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.detail-photo figcaption {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--color-ink-2);
+}
+
+.detail-action {
+  margin-block-start: 24px;
+}
+
+@media (max-width: 899px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-contact {
+    grid-column: 1 / -1;
+    gap: 14px;
+  }
 }

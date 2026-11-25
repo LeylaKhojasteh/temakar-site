@@ -35,13 +35,27 @@ def detail(request, slug: str):
     service = get_object_or_404(_published_services(), slug=slug)
     body = localized(service, "body")
     body_html, toc = _with_toc(body)
+    gallery = list(service.gallery.all())
+
+    # Every h3 starts a section, and the photo with the same index sits
+    # next to it, so the picture belongs to the paragraph it illustrates.
+    sections = []
+    for part in re.split(r'(?=<h3\s)', body_html):
+        if part.strip():
+            index = len(sections)
+            sections.append({
+                "html": part,
+                "photo": gallery[index] if index < len(gallery) else None,
+            })
+
     return render(
         request,
         "services/detail.html",
         {
             "service": service,
-        "gallery": list(service.gallery.all()),
-                "body_html": body_html,
+            "sections": sections,
+            "gallery": gallery,
+            "body_html": body_html,
             "toc": toc,
             "page_title": _title(localized(service, "title")),
             "page_description": localized(service, "summary") or translate("meta.services.desc"),

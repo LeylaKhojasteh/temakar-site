@@ -33,52 +33,42 @@
         {% if is_fa %}جزئیات خدمت{% else %}Service details{% endif %}
       </h2>
 
-      <div class="detail-grid">
-        <div class="prose-temakar reveal">
-          {{ body_html|safe }}
-        </div>
+      <aside class="detail-aside reveal">
+        {% if toc %}
+          <nav class="toc" aria-labelledby="toc-title">
+            <p class="toc__title" id="toc-title">
+              {% if is_fa %}در این صفحه{% else %}On this page{% endif %}
+            </p>
+            <ol>
+              {% for item in toc %}
+                <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+              {% endfor %}
+            </ol>
+          </nav>
+        {% endif %}
+      </aside>
 
-        <aside class="detail-aside reveal">
-          {% if toc %}
-            <nav class="toc" aria-labelledby="toc-title">
-              <p class="toc__title" id="toc-title">
-                {% if is_fa %}در این صفحه{% else %}On this page{% endif %}
-              </p>
-              <ol>
-                {% for item in toc %}
-                  <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
-                {% endfor %}
-              </ol>
-            </nav>
+      {% for section in sections %}
+        <div class="detail-section reveal">
+          <div class="prose-temakar">
+            {{ section.html|safe }}
+          </div>
+          {% if section.photo %}
+            <figure class="detail-photo">
+              <img src="{{ section.photo.image.url }}" width="{{ section.photo.image_width }}"
+                   height="{{ section.photo.image_height }}"
+                   alt="{% if is_fa %}{{ section.photo.caption_fa }}{% else %}{{ section.photo.caption_en }}{% endif %}"
+                   loading="lazy" decoding="async">
+            </figure>
           {% endif %}
+        </div>
+      {% empty %}
+        <div class="prose-temakar reveal">{{ body_html|safe }}</div>
+      {% endfor %}
 
-          <a class="btn" href="{% url 'contact:page' %}">{% tr "cta.contact" %}</a>
-        </aside>
-      </div>
+
     </div>
   </section>
-
-  {% if gallery %}
-    <section class="panel panel--paper-2 service-gallery" aria-labelledby="gallery-title">
-      <div class="shell">
-        <h2 class="h2" id="gallery-title">
-          {% if is_fa %}نگاهی نزدیکتر{% else %}A closer look{% endif %}
-        </h2>
-        <div class="gallery-grid">
-          {% for photo in gallery %}
-            <figure class="gallery-item reveal">
-              <img src="{{ photo.image.url }}" width="{{ photo.image_width }}" height="{{ photo.image_height }}"
-                   alt="{% if is_fa %}{{ photo.caption_fa }}{% else %}{{ photo.caption_en }}{% endif %}"
-                   loading="lazy" decoding="async">
-              {% if photo.caption_fa or photo.caption_en %}
-                <figcaption>{% if is_fa %}{{ photo.caption_fa }}{% else %}{{ photo.caption_en }}{% endif %}</figcaption>
-              {% endif %}
-            </figure>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-  {% endif %}
 
   <section class="service-contact" aria-labelledby="service-contact-title">
     <div class="shell">
