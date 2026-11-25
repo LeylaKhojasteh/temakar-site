@@ -86,12 +86,12 @@ class NavigationTests(BrowserTestCase):
         menu = self.page.locator("#mobile-menu")
         expect(menu).to_be_visible()
         expect(trigger).to_have_attribute("aria-expanded", "true")
-        assert self.page.evaluate("() => getComputedStyle(document.body).overflow") == "hidden"
+        assert "hidden" in self.page.evaluate("() => getComputedStyle(document.body).overflow")
 
         self.page.keyboard.press("Escape")
         expect(menu).to_be_hidden()
         assert self.page.evaluate("() => document.body.classList.contains('has-overlay')") is False
-        assert self.page.evaluate("() => getComputedStyle(document.body).overflow") != "hidden"
+        assert "hidden" not in self.page.evaluate("() => getComputedStyle(document.body).overflow")
 
 class ContactFormTests(BrowserTestCase):
     def fill_form(self, **overrides):
