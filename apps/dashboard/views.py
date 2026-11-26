@@ -98,11 +98,8 @@ def services_view(request):
 
 @panel_required
 def service_edit(request, pk=None):
-    from apps.dashboard.forms import GalleryUploadForm
-
     instance = get_object_or_404(Service, pk=pk) if pk else None
     form = ServiceForm(request.POST or None, request.FILES or None, instance=instance)
-    gallery_form = GalleryUploadForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         delete_pk = request.POST.get("delete_photo")
         if delete_pk and instance:
@@ -118,8 +115,7 @@ def service_edit(request, pk=None):
     return render(
         request,
         "dashboard/service_form.html",
-        {"active": "services", "form": form, "gallery_form": gallery_form,
-         "gallery": instance.gallery.all() if instance else []},
+        {"active": "services", "form": form},
     )
 
 

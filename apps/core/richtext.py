@@ -21,9 +21,13 @@ ALLOWED_TAGS = {
     "h2",
     "h3",
     "blockquote",
+    "img",
 }
 
-ALLOWED_ATTRIBUTES = {"a": {"href", "title", "target"}}
+ALLOWED_ATTRIBUTES = {
+    "a": {"href", "title", "target"},
+    "img": {"src", "alt", "width", "height"},
+}
 
 
 def sanitize_html(value: str) -> str:

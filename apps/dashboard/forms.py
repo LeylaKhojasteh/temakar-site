@@ -2,7 +2,7 @@
 
 from django import forms
 
-from apps.services.gallery import ServiceImage
+from apps.core.widgets import RichTextWidget
 from apps.core.models import Partner, SiteImage, SiteSettings, SocialLink
 from apps.services.models import Service
 
@@ -61,15 +61,11 @@ class ServiceForm(forms.ModelForm):
         widgets = {
             "summary_fa": forms.Textarea(attrs={"rows": 3, "dir": "rtl"}),
             "summary_en": forms.Textarea(attrs={"rows": 3, "dir": "ltr"}),
-            "body_fa": forms.Textarea(attrs={"rows": 8, "dir": "rtl"}),
-            "body_en": forms.Textarea(attrs={"rows": 8, "dir": "ltr"}),
+            "body_fa": RichTextWidget(attrs={"dir": "rtl"}),
+            "body_en": RichTextWidget(attrs={"dir": "ltr"}),
         }
 
 
-class MultiFileInput(forms.FileInput):
-    def __init__(self, attrs=None):
-        super().__init__(attrs)
-        self.attrs["multiple"] = True
 
 
 class GalleryUploadForm(forms.Form):

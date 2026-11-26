@@ -5,6 +5,7 @@
 {% block actions %}<a class="panel-more" href="{% url 'dashboard:services' %}">بازگشت به فهرست</a>{% endblock %}
 
 {% block content %}
+  {{ form.media }}
   <form method="post" enctype="multipart/form-data" class="panel-form" novalidate>
     {% csrf_token %}
     {% if form.non_field_errors %}<p class="form-error">{{ form.non_field_errors }}</p>{% endif %}
@@ -33,27 +34,6 @@
     </section>
 
 
-    <fieldset class="panel-block">
-      <legend>عکسهای صفحهٔ خدمت</legend>
-      <p class="help">برای قرار دادن عکس در متن، بنویسید: <code>[عکس: 1]</code> (شماره همان ترتیب عکس است).</p>
-      {% if gallery %}
-        <div class="image-grid">
-          {% for photo in gallery %}
-            <figure class="gallery-item">
-              <img src="{{ photo.image.url }}" alt="" width="{{ photo.image_width }}" height="{{ photo.image_height }}">
-              <figcaption>
-                عکس {{ photo.order }} · {{ photo.caption_fa }} {{ photo.caption_en }}
-                <button type="submit" class="btn btn--danger" name="delete_photo" value="{{ photo.pk }}">حذف</button>
-              </figcaption>
-            </figure>
-          {% endfor %}
-        </div>
-      {% endif %}
-      <div class="field">
-        <label for="id_photos">افزودن عکس (چند عکس با هم)</label>
-        {{ gallery_form.photos }}
-      </div>
-    </fieldset>
 
     <div class="form-actions">
       <button type="submit" class="btn btn--primary">ذخیره</button>
