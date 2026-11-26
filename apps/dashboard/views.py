@@ -110,8 +110,10 @@ def service_edit(request, pk=None):
             return redirect("dashboard:service_edit", pk=instance.pk)
         if form.is_valid():
             service = form.save()
+            next_order = service.gallery.count()
             for photo in request.FILES.getlist("photos"):
-                ServiceImage.objects.create(service=service, image=photo)
+                next_order += 1
+                ServiceImage.objects.create(service=service, image=photo, order=next_order)
             return redirect("dashboard:services")
     return render(
         request,
