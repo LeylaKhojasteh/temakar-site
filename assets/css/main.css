@@ -7,31 +7,31 @@
 
 @font-face {
   font-family: "Estedad";
-  src: url("../fonts/estedad-var.woff2") format("woff2-variations");
+  src: url("../fonts/estedad-var.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: "Epilogue";
   src: url("../fonts/epilogue-400.woff2") format("woff2");
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: "Epilogue";
   src: url("../fonts/epilogue-500.woff2") format("woff2");
   font-weight: 500 800;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: "Epilogue";
   src: url("../fonts/epilogue-900.woff2") format("woff2");
   font-weight: 900;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* ---------- توکن‌ها ---------- */
