@@ -48,23 +48,9 @@
         {% endif %}
       </aside>
 
-      {% for section in sections %}
-        <div class="detail-section reveal">
-          <div class="prose-temakar">
-            {{ section.html|safe }}
-          </div>
-          {% if section.photo %}
-            <figure class="detail-photo">
-              <img src="{{ section.photo.image.url }}" width="{{ section.photo.image_width }}"
-                   height="{{ section.photo.image_height }}"
-                   alt="{% if is_fa %}{{ section.photo.caption_fa }}{% else %}{{ section.photo.caption_en }}{% endif %}"
-                   loading="lazy" decoding="async">
-            </figure>
-          {% endif %}
-        </div>
-      {% empty %}
-        <div class="prose-temakar reveal">{{ body_html|safe }}</div>
-      {% endfor %}
+      <div class="prose-temakar reveal">
+        {{ body_html|safe }}
+      </div>
 
 
     </div>

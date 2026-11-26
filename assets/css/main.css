@@ -3584,3 +3584,25 @@ html[data-theme="dark"] .menu-group { background: rgba(232, 237, 242, 0.06); bor
 html[data-theme="dark"] .menu-group__label, html[data-theme="dark"] .menu-group .menu-group__link { color: #b8c4d0; }
 html[data-theme="dark"] .menu-group .menu-group__link[aria-current="page"] { color: #6fb1e0; }
 html[data-theme="dark"] .mobile-menu .menu-toggle, html[data-theme="dark"] .mobile-menu .wordmark { color: #e9eef4; }
+
+/* ---------- عکس درون متن خدمت ---------- */
+
+.inline-photo {
+  margin: 24px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-paper-2);
+}
+
+.inline-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.inline-photo figcaption {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--color-ink-2);
+}

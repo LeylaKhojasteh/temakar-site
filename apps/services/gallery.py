@@ -1,6 +1,8 @@
 """عکسهای اضافی صفحهٔ جزئیات خدمت."""
 
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 from apps.core.uploads import ImageFileSizeValidator, UploadToFolder, store_optimized_image
 
@@ -29,7 +31,7 @@ class ServiceImage(models.Model):
         verbose_name_plural = "عکسهای خدمت"
 
     def __str__(self) -> str:
-        return f"عکس {self.pk} – {self.service}"
+        return f"عکس {self.order} – {self.service}"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -41,3 +43,13 @@ class ServiceImage(models.Model):
         super().save(*args, **kwargs)
         if self.image:
             self._original_image = self.image.name
+
+
+@receiver(post_delete, sender=ServiceImage)
+def delete_gallery_file(sender, instance, **kwargs):
+    """حذف فایل عکس وقتی رکوردش پاک میشود."""
+    if instance.image:
+        try:
+            instance.image.delete(save=False)
+        except OSError:
+            pass

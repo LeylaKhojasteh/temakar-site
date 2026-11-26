@@ -103,11 +103,16 @@ def service_edit(request, pk=None):
     instance = get_object_or_404(Service, pk=pk) if pk else None
     form = ServiceForm(request.POST or None, request.FILES or None, instance=instance)
     gallery_form = GalleryUploadForm(request.POST or None, request.FILES or None)
-    if request.method == "POST" and form.is_valid():
-        service = form.save()
-        for photo in request.FILES.getlist("photos"):
-            ServiceImage.objects.create(service=service, image=photo)
-        return redirect("dashboard:services")
+    if request.method == "POST":
+        delete_pk = request.POST.get("delete_photo")
+        if delete_pk and instance:
+            ServiceImage.objects.filter(pk=delete_pk, service=instance).delete()
+            return redirect("dashboard:service_edit", pk=instance.pk)
+        if form.is_valid():
+            service = form.save()
+            for photo in request.FILES.getlist("photos"):
+                ServiceImage.objects.create(service=service, image=photo)
+            return redirect("dashboard:services")
     return render(
         request,
         "dashboard/service_form.html",
