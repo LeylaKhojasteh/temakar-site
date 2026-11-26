@@ -64,12 +64,3 @@ class ServiceForm(forms.ModelForm):
             "body_fa": RichTextWidget(attrs={"dir": "rtl"}),
             "body_en": RichTextWidget(attrs={"dir": "ltr"}),
         }
-
-
-
-
-class GalleryUploadForm(forms.Form):
-    photos = forms.ImageField(
-        required=False,
-        widget=MultiFileInput(),
-    )
