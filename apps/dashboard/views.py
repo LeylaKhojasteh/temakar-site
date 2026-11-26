@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST
 
 from apps.contact.models import ContactMessage
 from apps.core.models import Partner, SiteImage, SiteSettings, SocialLink
+from apps.services.gallery import ServiceImage
 from apps.services.models import Service
 
 from .forms import ImageForm, PartnerForm, ServiceForm, SettingsForm, SocialForm
@@ -97,15 +98,21 @@ def services_view(request):
 
 @panel_required
 def service_edit(request, pk=None):
+    from apps.dashboard.forms import GalleryUploadForm
+
     instance = get_object_or_404(Service, pk=pk) if pk else None
     form = ServiceForm(request.POST or None, request.FILES or None, instance=instance)
+    gallery_form = GalleryUploadForm(request.POST or None, request.FILES or None)
     if request.method == "POST" and form.is_valid():
-        form.save()
+        service = form.save()
+        for photo in request.FILES.getlist("photos"):
+            ServiceImage.objects.create(service=service, image=photo)
         return redirect("dashboard:services")
     return render(
         request,
         "dashboard/service_form.html",
-        {"active": "services", "form": form, "service": instance},
+        {"active": "services", "form": form, "gallery_form": gallery_form,
+         "gallery": instance.gallery.all() if instance else []},
     )
 
 

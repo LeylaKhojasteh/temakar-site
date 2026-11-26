@@ -32,6 +32,25 @@
       </div>
     </section>
 
+
+    <fieldset class="panel-block">
+      <legend>عکسهای صفحهٔ خدمت</legend>
+      {% if gallery %}
+        <div class="image-grid">
+          {% for photo in gallery %}
+            <figure class="gallery-item">
+              <img src="{{ photo.image.url }}" alt="" width="{{ photo.image_width }}" height="{{ photo.image_height }}">
+              <figcaption>{{ photo.caption_fa }} {{ photo.caption_en }}</figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="field">
+        <label for="id_photos">افزودن عکس (چند عکس با هم)</label>
+        {{ gallery_form.photos }}
+      </div>
+    </fieldset>
+
     <div class="form-actions">
       <button type="submit" class="btn btn--primary">ذخیره</button>
     </div>
