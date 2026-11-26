@@ -1,5 +1,6 @@
 """آزمون‌های مرورگری جریان‌های اصلی (Playwright + کروم نصب‌شده)."""
 
+import secrets
 from pathlib import Path
 
 import pytest
@@ -127,11 +128,12 @@ class ContactFormTests(BrowserTestCase):
 class AdminTests(BrowserTestCase):
     def test_admin_rich_text_editor_and_message_inbox(self):
         User = get_user_model()
-        User.objects.create_superuser(username="owner", password="a-very-long-test-pass-1")
+        password = secrets.token_urlsafe(24)
+        User.objects.create_superuser(username="owner", password=password)
 
         self.page.goto(self.live_server_url + "/manage/login/")
         self.page.get_by_label("نام کاربری").fill("owner")
-        self.page.get_by_label("رمز عبور").fill("a-very-long-test-pass-1")
+        self.page.get_by_label("رمز عبور").fill(password)
         self.page.get_by_role("button", name="ورود").click()
         self.page.wait_for_url("**/manage/")
 
@@ -156,10 +158,11 @@ class AdminTests(BrowserTestCase):
         from apps.core.uploads import variant_name
 
         User = get_user_model()
-        User.objects.create_superuser(username="owner", password="a-very-long-test-pass-1")
+        password = secrets.token_urlsafe(24)
+        User.objects.create_superuser(username="owner", password=password)
         self.page.goto(self.live_server_url + "/manage/login/")
         self.page.get_by_label("نام کاربری").fill("owner")
-        self.page.get_by_label("رمز عبور").fill("a-very-long-test-pass-1")
+        self.page.get_by_label("رمز عبور").fill(password)
         self.page.get_by_role("button", name="ورود").click()
         self.page.wait_for_url("**/manage/")
 
