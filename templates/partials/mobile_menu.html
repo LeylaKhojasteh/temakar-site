@@ -19,24 +19,23 @@
   </div>
 
   <nav class="mobile-menu__nav" aria-label="{% if is_fa %}ناوبری موبایل{% else %}Mobile navigation{% endif %}">
-    {% for item in nav_items %}
-      <a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
-      {% if item.dropdown %}
-        <div class="mobile-menu__sub">
-          {% for service in service_menu %}
-            <a href="{{ service.get_absolute_url }}">{% pick service "title" %}</a>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="menu-group">
+      {% for item in nav_items %}
+        {% if not item.dropdown %}
+          <a class="menu-group__link" href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if service_menu %}
+      <div class="menu-group">
+        <p class="menu-group__label">{% if is_fa %}خدمات{% else %}Services{% endif %}</p>
+        {% for service in service_menu %}
+          <a class="menu-group__link" href="{{ service.get_absolute_url }}">{% pick service "title" %}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
   </nav>
 
-  <div class="mobile-menu__foot">
-    <a class="btn" href="{% url 'contact:page' %}">{% tr "cta.contact" %}</a>
-    {% if is_fa %}
-      <a class="text-link" href="{{ alt_paths.en }}" hreflang="en" lang="en">EN</a>
-    {% else %}
-      <a class="text-link" href="{{ alt_paths.fa }}" hreflang="fa" lang="fa">FA</a>
-    {% endif %}
-  </div>
+
 </div>

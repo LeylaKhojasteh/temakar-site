@@ -468,26 +468,14 @@ html[dir="rtl"] .primary-nav a::after {
 .mobile-menu__nav {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 14px;
   margin-block: auto;
-  padding-block: 24px;
+  padding-block: 20px;
 }
 
-.mobile-menu__nav > a {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 8.5vw, 2.6rem);
-  line-height: 1.3;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-paper);
-  text-decoration: none;
-  padding-block: 18px;
-  border-block-end: 1px solid rgba(232, 237, 242, 0.16);
-}
 
-.mobile-menu__nav a[aria-current="page"] {
-  color: var(--color-sky);
-}
+
+
 
 .mobile-menu__foot {
   display: flex;
@@ -1582,21 +1570,9 @@ html[lang="fa"] .service-row__title {
   margin-block-start: 2px;
 }
 
-.mobile-menu__sub {
-  display: grid;
-  gap: 0;
-  padding-inline-start: 16px;
-  margin-block: 4px 12px;
-  padding-block-end: 12px;
-  border-block-end: 1px solid rgba(232, 237, 242, 0.16);
-}
 
-.mobile-menu__sub a {
-  font-size: 1.05rem !important;
-  font-weight: 500;
-  color: color-mix(in srgb, var(--color-paper) 78%, transparent);
-  padding-block: 8px;
-}
+
+
 
 /* ---------- بخش پرسش، جدا از فوتر ---------- */
 
@@ -3538,3 +3514,73 @@ html[lang="fa"] .service-card__title {
 }
 
 html, body { overflow-x: clip !important; }
+
+/* ---------- منوی جمعوجور گroupبندی شده ---------- */
+
+.menu-group {
+  background: rgba(232, 237, 242, 0.06);
+  border: 1px solid rgba(232, 237, 242, 0.1);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.menu-group__label {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-sky);
+  letter-spacing: 0.02em;
+}
+
+.menu-group__link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-paper);
+  text-decoration: none;
+  border-block-end: 1px solid rgba(232, 237, 242, 0.1);
+}
+
+.menu-group__link:last-child {
+  border-block-end: 0;
+}
+
+.menu-group__link[aria-current="page"] {
+  color: var(--color-sky);
+}
+
+.menu-group__link:active {
+  opacity: 0.7;
+}
+
+.menu-group:last-child .menu-group__link {
+  font-size: 0.9375rem;
+  min-height: 40px;
+  font-weight: 500;
+}
+
+.menu-group .menu-group__link {
+  color: color-mix(in srgb, var(--color-paper) 78%, transparent);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.menu-group .menu-group__link[aria-current="page"] {
+  color: var(--color-sky);
+}
+
+/* ---------- منو همرنگ تم ---------- */
+
+.mobile-menu { background-color: #e8edf2; color: #0c1a26; }
+.menu-group { background: rgba(12, 26, 38, 0.04); border-color: rgba(12, 26, 38, 0.1); }
+.menu-group__label, .menu-group .menu-group__link { color: #2b3b49; }
+.menu-group .menu-group__link[aria-current="page"] { color: #1d4f86; }
+.mobile-menu .menu-toggle, .mobile-menu .wordmark { color: #0c1a26; }
+
+html[data-theme="dark"] .mobile-menu { background-color: #0a1521; color: #e9eef4; }
+html[data-theme="dark"] .menu-group { background: rgba(232, 237, 242, 0.06); border-color: rgba(232, 237, 242, 0.1); }
+html[data-theme="dark"] .menu-group__label, html[data-theme="dark"] .menu-group .menu-group__link { color: #b8c4d0; }
+html[data-theme="dark"] .menu-group .menu-group__link[aria-current="page"] { color: #6fb1e0; }
+html[data-theme="dark"] .mobile-menu .menu-toggle, html[data-theme="dark"] .mobile-menu .wordmark { color: #e9eef4; }
