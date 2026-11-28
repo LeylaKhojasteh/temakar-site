@@ -70,7 +70,9 @@
         </p>
       </div>
       <div class="reveal">
-        {% include "partials/page_image.html" with class_name="vision-image" fallback="img/about/who-we-are.webp" fallback_w=1400 fallback_h=900 fallback_alt="سازه فلزی در نور روز" fallback_alt_en="Steel structure in daylight" %}
+        {% with img=site_images|get:"vision" %}
+          {% include "partials/page_image.html" with img=img class_name="vision-image" fallback="img/about/who-we-are.webp" fallback_w=1400 fallback_h=900 fallback_alt="سازه فلزی در نور روز" fallback_alt_en="Steel structure in daylight" %}
+        {% endwith %}
       </div>
     </div>
   </section>

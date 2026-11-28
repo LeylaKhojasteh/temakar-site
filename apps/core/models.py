@@ -74,6 +74,7 @@ class SiteImage(models.Model):
         LOGO = "logo", "لوگو"
         HOME_ABOUT = "home_about", "نوار دربارهٔ ما (صفحهٔ اصلی)"
         ABOUT = "about", "سرصفحهٔ معرفی شرکت"
+        VISION = "vision", "عکس چشمانداز (صفحهٔ معرفی)"
         SERVICES = "services", "سرصفحهٔ خدمات"
         CONTACT = "contact", "سرصفحهٔ تماس"
 
