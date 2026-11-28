@@ -28,8 +28,11 @@ def upload_inline_image(request):
         return JsonResponse({"error": "size"}, status=400)
 
     optimized, (width, height) = optimize_image(upload)
+    import re
+
+    stem = re.sub(r"[^0-9A-Za-z_-]+", "-", upload.name.rsplit(".", 1)[0]).strip("-") or "image"
     suffix = upload.name.rsplit(".", 1)[-1].lower() if "." in upload.name else "jpg"
-    name = f"inline/{upload.name.rsplit('.', 1)[0]}.{suffix}"
+    name = f"inline/{stem}.{suffix}"
     stored = default_storage.save(name, ContentFile(optimized.read()))
     return JsonResponse({
         "url": default_storage.url(stored),
