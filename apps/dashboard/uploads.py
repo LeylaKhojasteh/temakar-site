@@ -1,10 +1,10 @@
 """آپلود تصویر داخل متن غنی؛ فقط ستاد مجاز است."""
 
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
-from apps.core.models import MediaFile
-from apps.core.storage import guess_content_type
 from apps.core.uploads import optimize_image
 
 ALLOWED = {"image/jpeg", "image/png", "image/webp", "image/gif"}
@@ -30,17 +30,9 @@ def upload_inline_image(request):
     optimized, (width, height) = optimize_image(upload)
     suffix = upload.name.rsplit(".", 1)[-1].lower() if "." in upload.name else "jpg"
     name = f"inline/{upload.name.rsplit('.', 1)[0]}.{suffix}"
-    data = optimized.read()
-    MediaFile.objects.update_or_create(
-        name=name,
-        defaults={
-            "data": data,
-            "size": len(data),
-            "content_type": guess_content_type(name),
-        },
-    )
+    stored = default_storage.save(name, ContentFile(optimized.read()))
     return JsonResponse({
-        "url": f"/media/{name}",
+        "url": default_storage.url(stored),
         "width": width,
         "height": height,
     })
